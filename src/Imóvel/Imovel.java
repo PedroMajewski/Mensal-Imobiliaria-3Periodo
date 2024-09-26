@@ -4,23 +4,32 @@
  */
 package Imóvel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import TelaInicial.TelaInicial;
+import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+
+import Imóvel.CadastroImovel;
 
 /**
  *
  * @author pedro
  */
+
+
+
 public class Imovel extends javax.swing.JPanel {
 
     /**
      * Creates new form CadastroImóvel
      */
+  
     public Imovel() {
         initComponents();
         JButton [] btns = {BtnImovel, BtnPesquisa};
@@ -51,7 +60,12 @@ public class Imovel extends javax.swing.JPanel {
            
            });
            }
+       
+
+// Adiciona o SistemaContent ao novo JPanel ou à outra parte da interface
+       
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +76,7 @@ public class Imovel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        PainelCentral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -77,9 +91,9 @@ public class Imovel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         BtnPesquisa = new javax.swing.JButton();
 
-        jPanel2.setBackground(new java.awt.Color(36, 114, 221));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setToolTipText("");
+        PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
+        PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
+        PainelCentral.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,10 +108,15 @@ public class Imovel extends javax.swing.JPanel {
         BtnImovel.setBackground(new java.awt.Color(30, 122, 206));
         BtnImovel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnImovel.setForeground(new java.awt.Color(255, 255, 255));
-        BtnImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imóvel/Imagens/Edit_1.png"))); // NOI18N
+        BtnImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
         BtnImovel.setText("Cadastrar Novo Imóvel");
         BtnImovel.setBorderPainted(false);
         BtnImovel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnImovel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnImovelActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Menu de Imóveis");
@@ -142,7 +161,7 @@ public class Imovel extends javax.swing.JPanel {
         BtnPesquisa.setBackground(new java.awt.Color(30, 122, 206));
         BtnPesquisa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnPesquisa.setForeground(new java.awt.Color(255, 255, 255));
-        BtnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imóvel/Imagens/Search.png"))); // NOI18N
+        BtnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Search.png"))); // NOI18N
         BtnPesquisa.setText("Pesquisar");
         BtnPesquisa.setBorderPainted(false);
         BtnPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -182,7 +201,7 @@ public class Imovel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,26 +220,26 @@ public class Imovel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout PainelCentralLayout = new javax.swing.GroupLayout(PainelCentral);
+        PainelCentral.setLayout(PainelCentralLayout);
+        PainelCentralLayout.setHorizontalGroup(
+            PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelCentralLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addContainerGap(535, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        PainelCentralLayout.setVerticalGroup(
+            PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelCentralLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -230,28 +249,45 @@ public class Imovel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 799, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(PainelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 724, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(PainelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImovelActionPerformed
+        // TODO add your handling code here:
+        CadastroImovel CadImovel = new CadastroImovel();
+        ShowPanel(CadImovel);
+    }//GEN-LAST:event_BtnImovelActionPerformed
 
+
+     private void ShowPanel(JPanel p){
+    p.setSize(799, 700);
+    p.setLocation(0, 0);
+    
+    PainelCentral.removeAll();
+    PainelCentral.add(p, BorderLayout.CENTER); 
+    PainelCentral.revalidate();
+    PainelCentral.repaint();    
+}
+   
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnImovel;
     private javax.swing.JButton BtnPesquisa;
     private javax.swing.JComboBox<String> FiltroCombo;
+    private javax.swing.JPanel PainelCentral;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
