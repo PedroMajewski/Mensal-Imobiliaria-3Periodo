@@ -4,6 +4,7 @@
  */
 package TelaInicial;
 
+import Clientes.ClientesImovel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -128,6 +129,11 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnClientes.setText("Clientes");
         BtnClientes.setBorderPainted(false);
         BtnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnClientesActionPerformed(evt);
+            }
+        });
 
         BtnContrato.setBackground(new java.awt.Color(30, 122, 206));
         BtnContrato.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -242,6 +248,12 @@ public class TelaInicial extends javax.swing.JFrame {
         Imovel ImovelPrincipal = new Imovel();
         ShowPanel(ImovelPrincipal);
     }//GEN-LAST:event_BtnImovelActionPerformed
+
+    private void BtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClientesActionPerformed
+        // TODO add your handling code here:
+        ClientesImovel ClientesPrincipal = new ClientesImovel();
+        ShowPanel(ClientesPrincipal);
+    }//GEN-LAST:event_BtnClientesActionPerformed
 
     /**
      * @param args the command line arguments
