@@ -16,6 +16,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import Imóvel.CadastroImovel;
+import Imóvel.EditarExcluirImóvel;
 
 /**
  *
@@ -126,22 +127,29 @@ public class Imovel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "IdImovel", "Nome", "Descricao", "Proprietario", "Locatario", "Valor", "IdRegistro", "IdLocalização"
+                "IdImovel", "Nome", "Descricao", "Locador", "Locatario", "IdRegistro", "Preço", "CEP", "Ação"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -181,7 +189,7 @@ public class Imovel extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addGap(137, 137, 137))
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -261,8 +269,9 @@ public class Imovel extends javax.swing.JPanel {
 
     private void BtnImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImovelActionPerformed
         // TODO add your handling code here:
-        CadastroImovel CadImovel = new CadastroImovel();
-        ShowPanel(CadImovel);
+        CadastroImovel CdImovel = new CadastroImovel();
+        ShowPanel(CdImovel);
+        
     }//GEN-LAST:event_BtnImovelActionPerformed
 
 
