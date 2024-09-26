@@ -9,10 +9,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
-import TelaInicial.TelaBoasVindas;
 import Imóvel.Imovel;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+
+
+import TelaInicial.TelaBoasVindas;
+import Financeiro.Financeiro;
 /**
  *
  * @author pedro
@@ -134,6 +137,7 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnContrato.setForeground(new java.awt.Color(255, 255, 255));
         BtnContrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Terms and Conditions.png"))); // NOI18N
         BtnContrato.setText("Contratos");
+        BtnContrato.setBorderPainted(false);
         BtnContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         BtnFinanceiro.setBackground(new java.awt.Color(30, 122, 206));
@@ -144,6 +148,11 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnFinanceiro.setBorderPainted(false);
         BtnFinanceiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnFinanceiro.setDoubleBuffered(true);
+        BtnFinanceiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFinanceiroActionPerformed(evt);
+            }
+        });
 
         Titulo1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Titulo1.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,6 +251,12 @@ public class TelaInicial extends javax.swing.JFrame {
         Imovel ImovelPrincipal = new Imovel();
         ShowPanel(ImovelPrincipal);
     }//GEN-LAST:event_BtnImovelActionPerformed
+
+    private void BtnFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFinanceiroActionPerformed
+        // TODO add your handling code here:
+        Financeiro FinanceiroPrincipal = new Financeiro();
+        ShowPanel(FinanceiroPrincipal);
+    }//GEN-LAST:event_BtnFinanceiroActionPerformed
 
     /**
      * @param args the command line arguments
