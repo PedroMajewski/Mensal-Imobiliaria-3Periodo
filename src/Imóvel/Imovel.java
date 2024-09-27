@@ -158,6 +158,11 @@ public class Imovel extends javax.swing.JPanel {
         jLabel5.setText("Pesquisar");
 
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImovel", "Nome", "Descricao", "Proprietario", "Valor", "IdRegistro", "idLocalizacao" }));
         FiltroCombo.setBorder(null);
@@ -189,7 +194,7 @@ public class Imovel extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addGap(137, 137, 137))
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -237,7 +242,7 @@ public class Imovel extends javax.swing.JPanel {
                 .addGroup(PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(535, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         PainelCentralLayout.setVerticalGroup(
@@ -273,6 +278,10 @@ public class Imovel extends javax.swing.JPanel {
         ShowPanel(CdImovel);
         
     }//GEN-LAST:event_BtnImovelActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
      private void ShowPanel(JPanel p){
