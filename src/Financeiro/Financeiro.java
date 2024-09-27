@@ -16,8 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
-import Imóvel.CadastroImovel;
-import Imóvel.EditarExcluirImóvel;
+import Financeiro.CadastroFinanceiro;
 
 /**
  *
@@ -271,8 +270,8 @@ public class Financeiro extends javax.swing.JPanel {
 
     private void BtnImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImovelActionPerformed
         // TODO add your handling code here:
-        CadastroImovel CdImovel = new CadastroImovel();
-        ShowPanel(CdImovel);
+        CadastroFinanceiro CdFinanceiro = new CadastroFinanceiro();
+        ShowPanel(CdFinanceiro);
         
     }//GEN-LAST:event_BtnImovelActionPerformed
 
