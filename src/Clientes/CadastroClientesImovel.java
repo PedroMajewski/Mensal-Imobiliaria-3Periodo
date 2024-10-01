@@ -26,19 +26,786 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PainelCentral = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        IdClienteLabel = new javax.swing.JLabel();
+        IdClienteText = new javax.swing.JTextField();
+        NomeClienteLabel = new javax.swing.JLabel();
+        NomeClienteText = new javax.swing.JTextField();
+        DDNLabel = new javax.swing.JLabel();
+        DDNText = new javax.swing.JTextField();
+        SituacaoClienteComboLabel = new javax.swing.JLabel();
+        SituaçãoClienteComboBox = new javax.swing.JComboBox<>();
+        CelularLabel = new javax.swing.JLabel();
+        CelularText = new javax.swing.JTextField();
+        TelefoneLabel = new javax.swing.JLabel();
+        TelefoneText = new javax.swing.JTextField();
+        CEPLabel = new javax.swing.JLabel();
+        CEPText = new javax.swing.JTextField();
+        NacionalidadeLabel = new javax.swing.JLabel();
+        NacionalidadeText = new javax.swing.JTextField();
+        BairroLabel = new javax.swing.JLabel();
+        BairroText = new javax.swing.JTextField();
+        EnderecoLabel = new javax.swing.JLabel();
+        EnderecoText = new javax.swing.JTextField();
+        BtnCadastrar = new javax.swing.JButton();
+        UFLabel = new javax.swing.JLabel();
+        UFText = new javax.swing.JTextField();
+        EmailLabel = new javax.swing.JLabel();
+        EmailText = new javax.swing.JTextField();
+        NumeroClienteLabel = new javax.swing.JLabel();
+        NumeroClienteText = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        BtnCancelar = new javax.swing.JButton();
+        BtnRetornar = new javax.swing.JButton();
+
+        PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
+        PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
+        PainelCentral.setToolTipText("");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("/Home/Clientes/Cadastrar");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Imobils, Sistema Imobiliário");
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        IdClienteLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        IdClienteLabel.setText("IdCliente:");
+
+        IdClienteText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        IdClienteText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IdClienteTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                IdClienteTextKeyTyped(evt);
+            }
+        });
+
+        NomeClienteLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NomeClienteLabel.setText("Nome Cliente:");
+
+        NomeClienteText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        NomeClienteText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomeClienteTextActionPerformed(evt);
+            }
+        });
+        NomeClienteText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NomeClienteTextKeyPressed(evt);
+            }
+        });
+
+        DDNLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DDNLabel.setText("DDN");
+
+        DDNText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        DDNText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DDNTextActionPerformed(evt);
+            }
+        });
+        DDNText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DDNTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DDNTextKeyTyped(evt);
+            }
+        });
+
+        SituacaoClienteComboLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SituacaoClienteComboLabel.setText("Situação:");
+
+        SituaçãoClienteComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "É Locador", "Não é Locador" }));
+
+        CelularLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CelularLabel.setText("Celular:");
+
+        CelularText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        CelularText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CelularTextActionPerformed(evt);
+            }
+        });
+        CelularText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CelularTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CelularTextKeyTyped(evt);
+            }
+        });
+
+        TelefoneLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TelefoneLabel.setText("Telefone:");
+
+        TelefoneText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        TelefoneText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TelefoneTextActionPerformed(evt);
+            }
+        });
+        TelefoneText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TelefoneTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TelefoneTextKeyTyped(evt);
+            }
+        });
+
+        CEPLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CEPLabel.setText("CEP Cliente:");
+
+        CEPText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        CEPText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CEPTextActionPerformed(evt);
+            }
+        });
+        CEPText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CEPTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CEPTextKeyTyped(evt);
+            }
+        });
+
+        NacionalidadeLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NacionalidadeLabel.setText("Nacionalidade:");
+
+        NacionalidadeText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        NacionalidadeText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NacionalidadeTextActionPerformed(evt);
+            }
+        });
+        NacionalidadeText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NacionalidadeTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NacionalidadeTextKeyTyped(evt);
+            }
+        });
+
+        BairroLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        BairroLabel.setText("Bairro");
+
+        BairroText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        BairroText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BairroTextActionPerformed(evt);
+            }
+        });
+        BairroText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BairroTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                BairroTextKeyTyped(evt);
+            }
+        });
+
+        EnderecoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        EnderecoLabel.setText("Endereço");
+
+        EnderecoText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        EnderecoText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnderecoTextActionPerformed(evt);
+            }
+        });
+        EnderecoText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                EnderecoTextKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                EnderecoTextKeyTyped(evt);
+            }
+        });
+
+        BtnCadastrar.setBackground(new java.awt.Color(30, 122, 206));
+        BtnCadastrar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
+        BtnCadastrar.setText("Cadastrar Novo Cliente");
+        BtnCadastrar.setBorderPainted(false);
+        BtnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCadastrarActionPerformed(evt);
+            }
+        });
+
+        UFLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        UFLabel.setText("UF");
+
+        UFText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        UFText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UFTextActionPerformed(evt);
+            }
+        });
+        UFText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                UFTextKeyPressed(evt);
+            }
+        });
+
+        EmailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        EmailLabel.setText("Email:");
+
+        EmailText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        EmailText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailTextActionPerformed(evt);
+            }
+        });
+        EmailText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                EmailTextKeyPressed(evt);
+            }
+        });
+
+        NumeroClienteLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NumeroClienteLabel.setText("Num. Cliente");
+
+        NumeroClienteText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        NumeroClienteText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumeroClienteTextActionPerformed(evt);
+            }
+        });
+        NumeroClienteText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NumeroClienteTextKeyPressed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Cadastro Cliente");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Aqui é possível cadastrar os clientes");
+
+        BtnCancelar.setBackground(new java.awt.Color(30, 122, 206));
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Close.png"))); // NOI18N
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.setBorderPainted(false);
+        BtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
+
+        BtnRetornar.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        BtnRetornar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/U Turn to Left_1.png"))); // NOI18N
+        BtnRetornar.setText("Retornar");
+        BtnRetornar.setAlignmentY(0.0F);
+        BtnRetornar.setBorderPainted(false);
+        BtnRetornar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRetornar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        BtnRetornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRetornarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(BtnRetornar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SituacaoClienteComboLabel)
+                                    .addComponent(SituaçãoClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CelularLabel)
+                                    .addComponent(CelularText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TelefoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TelefoneLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CEPLabel)
+                                    .addComponent(CEPText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(NacionalidadeLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
+                                    .addComponent(NacionalidadeText)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BairroLabel)
+                                    .addComponent(BairroText, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(EnderecoLabel)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(EnderecoText)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(IdClienteLabel)
+                                            .addComponent(IdClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(NomeClienteLabel)
+                                                .addGap(0, 290, Short.MAX_VALUE))
+                                            .addComponent(NomeClienteText))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(DDNLabel)
+                                            .addComponent(DDNText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(51, 51, 51))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UFLabel)
+                            .addComponent(UFText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EmailLabel)
+                            .addComponent(EmailText))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NumeroClienteLabel)
+                            .addComponent(NumeroClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(214, 214, 214))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(BtnRetornar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(IdClienteLabel)
+                                            .addComponent(NomeClienteLabel))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(IdClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(NomeClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(DDNLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(DDNText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(SituaçãoClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(CelularLabel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(CelularText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(TelefoneLabel)
+                                                    .addComponent(CEPLabel))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(TelefoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(CEPText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(SituacaoClienteComboLabel)
+                                                    .addComponent(NacionalidadeLabel))
+                                                .addGap(32, 32, 32))))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(NacionalidadeText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BairroLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BairroText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(EnderecoLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EnderecoText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(UFLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(UFText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(EmailLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(NumeroClienteLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NumeroClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
+        );
+
+        javax.swing.GroupLayout PainelCentralLayout = new javax.swing.GroupLayout(PainelCentral);
+        PainelCentral.setLayout(PainelCentralLayout);
+        PainelCentralLayout.setHorizontalGroup(
+            PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelCentralLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        PainelCentralLayout.setVerticalGroup(
+            PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelCentralLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 811, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void EmailTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmailTextKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmailTextKeyPressed
+
+    private void EmailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmailTextActionPerformed
+
+    private void NomeClienteTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeClienteTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            EmailText.requestFocus();
+        }
+    }//GEN-LAST:event_NomeClienteTextKeyPressed
+
+    private void NomeClienteTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeClienteTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomeClienteTextActionPerformed
+
+    private void BairroTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BairroTextKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BairroTextKeyTyped
+
+    private void BairroTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BairroTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            EnderecoText.requestFocus();
+        }
+    }//GEN-LAST:event_BairroTextKeyPressed
+
+    private void BairroTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BairroTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BairroTextActionPerformed
+
+    private void DDNTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DDNTextKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DDNTextKeyTyped
+
+    private void DDNTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DDNTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            CelularText.requestFocus();
+        }
+    }//GEN-LAST:event_DDNTextKeyPressed
+
+    private void DDNTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DDNTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DDNTextActionPerformed
+
+    private void NacionalidadeTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NacionalidadeTextKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NacionalidadeTextKeyTyped
+
+    private void NacionalidadeTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NacionalidadeTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            Outros.requestFocus();
+        }
+    }//GEN-LAST:event_NacionalidadeTextKeyPressed
+
+    private void NacionalidadeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NacionalidadeTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NacionalidadeTextActionPerformed
+
+    private void CEPTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CEPTextKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CEPTextKeyTyped
+
+    private void CEPTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CEPTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            NacionalidadeText.requestFocus();
+        }
+    }//GEN-LAST:event_CEPTextKeyPressed
+
+    private void CEPTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CEPTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CEPTextActionPerformed
+
+    private void CelularTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CelularTextKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CelularTextKeyTyped
+
+    private void CelularTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CelularTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            Agua.requestFocus();
+        }
+    }//GEN-LAST:event_CelularTextKeyPressed
+
+    private void CelularTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CelularTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CelularTextActionPerformed
+
+    private void EnderecoTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnderecoTextKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EnderecoTextKeyTyped
+
+    private void EnderecoTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnderecoTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            NomeClienteText.requestFocus();
+        }
+    }//GEN-LAST:event_EnderecoTextKeyPressed
+
+    private void EnderecoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnderecoTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EnderecoTextActionPerformed
+
+    private void BtnRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetornarActionPerformed
+        // TODO add your handling code here:
+        Financeiro FinanceiroPrincipal = new Financeiro();
+        ShowPanel(FinanceiroPrincipal);
+    }//GEN-LAST:event_BtnRetornarActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        // TODO add your handling code here:
+        String[] options = {"Sim", "Cancelar"};
+        int resposta = JOptionPane.showOptionDialog(
+            this,
+            "Esta ação apagará todos os campos, tem certeza?",
+            "Confirmação",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+        if (resposta == 0) {
+
+        } else {
+            BtnCancelar.requestFocus();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void IdClienteTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdClienteTextKeyTyped
+        // TODO add your handling code here:
+        char keyPress = evt.getKeyChar();
+        if(!Character.isDigit(keyPress)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_IdClienteTextKeyTyped
+
+    private void IdClienteTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdClienteTextKeyPressed
+        // TODO add your handling code here:
+        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+            ValorAbono.requestFocus();
+        }
+    }//GEN-LAST:event_IdClienteTextKeyPressed
+
+    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+        // TODO add your handling code here:
+        String CheckNome = NomeContrato.getText();
+        if(NomeContrato.getText().isEmpty() && IdClienteText.getText().isEmpty() && ValorAbono.getText().isEmpty() && ValorParcela.getText().isEmpty()
+            && NParcelas.getText().isEmpty() && ComissaoImobil.getText().isEmpty()
+            && DDNText.getText().isEmpty() && CelularText.getText().isEmpty() && Agua.getText().isEmpty() && Luz.getText().isEmpty() && CEPText.getText().isEmpty()
+            && NacionalidadeText.getText().isEmpty() && Outros.getText().isEmpty() && BairroText.getText().isEmpty() && EnderecoText.getText().isEmpty() && NomeClienteText.getText().isEmpty()
+            && EmailText.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O nome do imóvel não pode estar vazio!");
+        }else{
+            String[] options = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(
+                this,
+                "Cadastro Registrado!"+ "\n" +
+                "Nome do Contrato: " + NomeContrato.getText() + "\n" +
+                "IdImóvel: " + IdClienteText.getText() + "\n" +
+                "Locador: " + NomeClienteText.getText() + "\n" +
+                "Locatário: " + EmailText.getText() + "\n" +
+                "IPTU: " + DDNText.getText() + "\n" +
+                "Energia: " + CelularText.getText() + "\n" +
+                "Água: " + Agua.getText() + "\n" +
+                "Luz: " + Luz.getText() + "\n" +
+                "Lixo: " + CEPText.getText() + "\n" +
+                "Gás: " + NacionalidadeText.getText() + "\n" +
+                "Condomínio: " + BairroText.getText() + "\n" +
+                "Outros: " + Outros.getText() + "\n\n\n" +
+                "Valor Parcela: " + ValorParcela.getText() + "\n" +
+                "Número Parcelas: " + NParcelas.getText() + "\n" +
+                "Valor Abono: " + ValorAbono.getText() + "\n" +
+                "Comissão Imobiliária: " + ComissaoImobil.getText() + "\n" +
+                "Valor Total: " + EnderecoText.getText() + "\n" +
+                "Situação: " + SituaçãoClienteComboBox.getSelectedItem() + "\n\n\n" +
+                "Cadastrar novo Contrato?" +"\n",
+                "Confirmação de Cadastro",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                options,
+                options[0]);
+            if (resposta == 1) {
+            }else{
+                NomeContrato.setText("");
+                IdClienteText.setText("");
+                NomeClienteText.setText("");
+                EmailText.setText("");
+                DDNText.setText("");
+                CelularText.setText("");
+                Agua.setText("");
+                Luz.setText("");
+                CEPText.setText("");
+                NacionalidadeText.setText("");
+                BairroText.setText("");
+                ValorParcela.setText("");
+                NParcelas.setText("");
+                ValorAbono.setText("");
+                ComissaoImobil.setText("");
+                EnderecoText.setText("");
+                Outros.setText("");
+
+                SituaçãoClienteComboBox.setSelectedIndex(-1);
+                NomeContrato.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_BtnCadastrarActionPerformed
+
+    private void TelefoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefoneTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TelefoneTextActionPerformed
+
+    private void TelefoneTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefoneTextKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TelefoneTextKeyPressed
+
+    private void TelefoneTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefoneTextKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TelefoneTextKeyTyped
+
+    private void UFTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UFTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UFTextActionPerformed
+
+    private void UFTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UFTextKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UFTextKeyPressed
+
+    private void NumeroClienteTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroClienteTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroClienteTextActionPerformed
+
+    private void NumeroClienteTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroClienteTextKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroClienteTextKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BairroLabel;
+    private javax.swing.JTextField BairroText;
+    private javax.swing.JButton BtnCadastrar;
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnRetornar;
+    private javax.swing.JLabel CEPLabel;
+    private javax.swing.JTextField CEPText;
+    private javax.swing.JLabel CelularLabel;
+    private javax.swing.JTextField CelularText;
+    private javax.swing.JLabel DDNLabel;
+    private javax.swing.JTextField DDNText;
+    private javax.swing.JLabel EmailLabel;
+    private javax.swing.JTextField EmailText;
+    private javax.swing.JLabel EnderecoLabel;
+    private javax.swing.JTextField EnderecoText;
+    private javax.swing.JLabel IdClienteLabel;
+    private javax.swing.JTextField IdClienteText;
+    private javax.swing.JLabel NacionalidadeLabel;
+    private javax.swing.JTextField NacionalidadeText;
+    private javax.swing.JLabel NomeClienteLabel;
+    private javax.swing.JTextField NomeClienteText;
+    private javax.swing.JLabel NumeroClienteLabel;
+    private javax.swing.JTextField NumeroClienteText;
+    private javax.swing.JPanel PainelCentral;
+    private javax.swing.JLabel SituacaoClienteComboLabel;
+    private javax.swing.JComboBox<String> SituaçãoClienteComboBox;
+    private javax.swing.JLabel TelefoneLabel;
+    private javax.swing.JTextField TelefoneText;
+    private javax.swing.JLabel UFLabel;
+    private javax.swing.JTextField UFText;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
