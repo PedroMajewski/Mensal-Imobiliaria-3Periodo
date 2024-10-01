@@ -4,6 +4,8 @@
  */
 package Clientes;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gm
@@ -583,7 +585,7 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private void NacionalidadeTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NacionalidadeTextKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            Outros.requestFocus();
+            NacionalidadeText.requestFocus();
         }
     }//GEN-LAST:event_NacionalidadeTextKeyPressed
 
@@ -613,7 +615,7 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private void CelularTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CelularTextKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            Agua.requestFocus();
+            CelularText.requestFocus();
         }
     }//GEN-LAST:event_CelularTextKeyPressed
 
@@ -638,8 +640,8 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
 
     private void BtnRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetornarActionPerformed
         // TODO add your handling code here:
-        Financeiro FinanceiroPrincipal = new Financeiro();
-        ShowPanel(FinanceiroPrincipal);
+        ClientesImovel ClientesPrincipal = new ClientesImovel();
+        ShowPanel(ClientesPrincipal);
     }//GEN-LAST:event_BtnRetornarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -673,17 +675,15 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private void IdClienteTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdClienteTextKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            ValorAbono.requestFocus();
+            IdClienteText.requestFocus();
         }
     }//GEN-LAST:event_IdClienteTextKeyPressed
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
-        String CheckNome = NomeContrato.getText();
-        if(NomeContrato.getText().isEmpty() && IdClienteText.getText().isEmpty() && ValorAbono.getText().isEmpty() && ValorParcela.getText().isEmpty()
-            && NParcelas.getText().isEmpty() && ComissaoImobil.getText().isEmpty()
-            && DDNText.getText().isEmpty() && CelularText.getText().isEmpty() && Agua.getText().isEmpty() && Luz.getText().isEmpty() && CEPText.getText().isEmpty()
-            && NacionalidadeText.getText().isEmpty() && Outros.getText().isEmpty() && BairroText.getText().isEmpty() && EnderecoText.getText().isEmpty() && NomeClienteText.getText().isEmpty()
+        String CheckNome = NomeClienteText.getText();
+        if(NomeClienteText.getText().isEmpty() && IdClienteText.getText().isEmpty() && DDNText.getText().isEmpty() && CelularText.getText().isEmpty() && CEPText.getText().isEmpty()
+            && NacionalidadeText.getText().isEmpty() && BairroText.getText().isEmpty() && EnderecoText.getText().isEmpty() && NomeClienteText.getText().isEmpty()
             && EmailText.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O nome do imóvel não pode estar vazio!");
         }else{
@@ -691,22 +691,14 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
             int resposta = JOptionPane.showOptionDialog(
                 this,
                 "Cadastro Registrado!"+ "\n" +
-                "Nome do Contrato: " + NomeContrato.getText() + "\n" +
                 "IdImóvel: " + IdClienteText.getText() + "\n" +
                 "Locador: " + NomeClienteText.getText() + "\n" +
                 "Locatário: " + EmailText.getText() + "\n" +
                 "IPTU: " + DDNText.getText() + "\n" +
                 "Energia: " + CelularText.getText() + "\n" +
-                "Água: " + Agua.getText() + "\n" +
-                "Luz: " + Luz.getText() + "\n" +
                 "Lixo: " + CEPText.getText() + "\n" +
                 "Gás: " + NacionalidadeText.getText() + "\n" +
                 "Condomínio: " + BairroText.getText() + "\n" +
-                "Outros: " + Outros.getText() + "\n\n\n" +
-                "Valor Parcela: " + ValorParcela.getText() + "\n" +
-                "Número Parcelas: " + NParcelas.getText() + "\n" +
-                "Valor Abono: " + ValorAbono.getText() + "\n" +
-                "Comissão Imobiliária: " + ComissaoImobil.getText() + "\n" +
                 "Valor Total: " + EnderecoText.getText() + "\n" +
                 "Situação: " + SituaçãoClienteComboBox.getSelectedItem() + "\n\n\n" +
                 "Cadastrar novo Contrato?" +"\n",
@@ -718,26 +710,18 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
                 options[0]);
             if (resposta == 1) {
             }else{
-                NomeContrato.setText("");
                 IdClienteText.setText("");
                 NomeClienteText.setText("");
                 EmailText.setText("");
                 DDNText.setText("");
                 CelularText.setText("");
-                Agua.setText("");
-                Luz.setText("");
                 CEPText.setText("");
                 NacionalidadeText.setText("");
                 BairroText.setText("");
-                ValorParcela.setText("");
-                NParcelas.setText("");
-                ValorAbono.setText("");
-                ComissaoImobil.setText("");
                 EnderecoText.setText("");
-                Outros.setText("");
 
                 SituaçãoClienteComboBox.setSelectedIndex(-1);
-                NomeContrato.requestFocus();
+                NomeClienteText.requestFocus();
             }
         }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
@@ -808,4 +792,8 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    private void ShowPanel(ClientesImovel ClientesPrincipal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
