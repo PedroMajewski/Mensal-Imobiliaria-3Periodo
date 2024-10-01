@@ -103,6 +103,14 @@ public class CadastroImovel extends javax.swing.JPanel {
         NumeroLabel = new javax.swing.JLabel();
         UF = new javax.swing.JTextField();
         UFLabel = new javax.swing.JLabel();
+        Locador1 = new javax.swing.JTextField();
+        LocadorLabel1 = new javax.swing.JLabel();
+        Locador3 = new javax.swing.JTextField();
+        LocadorLabel3 = new javax.swing.JLabel();
+        LocadorLabel4 = new javax.swing.JLabel();
+        Locador4 = new javax.swing.JTextField();
+        Locador5 = new javax.swing.JTextField();
+        LocadorLabel5 = new javax.swing.JLabel();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -322,6 +330,58 @@ public class CadastroImovel extends javax.swing.JPanel {
         UFLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         UFLabel.setText("UF");
 
+        Locador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        Locador1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Locador1KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Locador1KeyTyped(evt);
+            }
+        });
+
+        LocadorLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LocadorLabel1.setText("Contador Agua");
+
+        Locador3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        Locador3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Locador3KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Locador3KeyTyped(evt);
+            }
+        });
+
+        LocadorLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LocadorLabel3.setText("Contador Luz");
+
+        LocadorLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LocadorLabel4.setText("Inscrição Imobiliaria");
+
+        Locador4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        Locador4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Locador4KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Locador4KeyTyped(evt);
+            }
+        });
+
+        Locador5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        Locador5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Locador5KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Locador5KeyTyped(evt);
+            }
+        });
+
+        LocadorLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LocadorLabel5.setText("Matricula Imovel");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -376,24 +436,43 @@ public class CadastroImovel extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LocatarioLabel)
                             .addComponent(Locatario)))
-                    .addComponent(jLabel3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                            .addComponent(NomeImovelLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NomeImovel, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NumeroRegistroLabel)
-                            .addComponent(NumeroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SituacaoComboLabel)
-                            .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LocadorLabel1)
+                                    .addComponent(Locador1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LocadorLabel3)
+                                    .addComponent(Locador3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LocadorLabel4)
+                                    .addComponent(Locador4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LocadorLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Locador5)))
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                                    .addComponent(NomeImovelLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NomeImovel, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NumeroRegistroLabel)
+                                    .addComponent(NumeroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SituacaoComboLabel)
+                                    .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(39, 39, 39))
         );
         jPanel3Layout.setVerticalGroup(
@@ -464,11 +543,29 @@ public class CadastroImovel extends javax.swing.JPanel {
                         .addComponent(LocatarioLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Locatario, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(LocadorLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Locador5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(LocadorLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Locador1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(LocadorLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Locador3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(LocadorLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Locador4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PainelCentralLayout = new javax.swing.GroupLayout(PainelCentral);
@@ -735,6 +832,38 @@ public class CadastroImovel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_PrecoKeyPressed
 
+    private void Locador1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador1KeyPressed
+
+    private void Locador1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador1KeyTyped
+
+    private void Locador3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador3KeyPressed
+
+    private void Locador3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador3KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador3KeyTyped
+
+    private void Locador4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador4KeyPressed
+
+    private void Locador4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador4KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador4KeyTyped
+
+    private void Locador5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador5KeyPressed
+
+    private void Locador5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Locador5KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Locador5KeyTyped
+
     
     private void ShowPanel(JPanel p){
     p.setSize(799, 700);
@@ -760,7 +889,15 @@ public class CadastroImovel extends javax.swing.JPanel {
     private javax.swing.JTextField Endereco;
     private javax.swing.JLabel EnderecoLabel;
     private javax.swing.JTextField Locador;
+    private javax.swing.JTextField Locador1;
+    private javax.swing.JTextField Locador3;
+    private javax.swing.JTextField Locador4;
+    private javax.swing.JTextField Locador5;
     private javax.swing.JLabel LocadorLabel;
+    private javax.swing.JLabel LocadorLabel1;
+    private javax.swing.JLabel LocadorLabel3;
+    private javax.swing.JLabel LocadorLabel4;
+    private javax.swing.JLabel LocadorLabel5;
     private javax.swing.JTextField Locatario;
     private javax.swing.JLabel LocatarioLabel;
     private javax.swing.JTextField NomeImovel;
