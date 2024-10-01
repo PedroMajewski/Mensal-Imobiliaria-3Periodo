@@ -103,12 +103,12 @@ public class ClientesImovel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(21, 21, 21)
-                .addComponent(BtnImovel)
-                .addGap(18, 18, 18)
+                .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -146,9 +146,8 @@ public class ClientesImovel extends javax.swing.JPanel {
 
     private void BtnImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImovelActionPerformed
         // TODO add your handling code here:
-        CadastroClientesImovel CdImovel = new CadastroClientesImovel();
-        ShowPanel(CdImovel);
-
+        CadastroClientesImovel CadastroClientes = new CadastroClientesImovel();
+        ShowPanel(CadastroClientes);
     }//GEN-LAST:event_BtnImovelActionPerformed
 
 
