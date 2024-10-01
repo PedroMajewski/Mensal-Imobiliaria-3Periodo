@@ -126,9 +126,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Neighbor.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Principal"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -149,9 +146,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Home_1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Im&#xf3;vel"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -174,9 +168,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Person_2.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Clientes"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -198,15 +189,15 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Terms and Conditions.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Contratos"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnContratoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnFinanceiro">
           <Properties>
@@ -218,9 +209,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Cash_1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Financeiro"/>
             <Property name="borderPainted" type="boolean" value="false"/>
