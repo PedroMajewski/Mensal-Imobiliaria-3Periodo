@@ -4,7 +4,9 @@
  */
 package Clientes;
 
+import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -28,7 +30,8 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PainelCentral = new javax.swing.JPanel();
+        SistemaContent = new javax.swing.JPanel();
+        PainelCadastro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -64,9 +67,22 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
         BtnCancelar = new javax.swing.JButton();
         BtnRetornar = new javax.swing.JButton();
 
-        PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
-        PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
-        PainelCentral.setToolTipText("");
+        setPreferredSize(new java.awt.Dimension(799, 700));
+
+        javax.swing.GroupLayout SistemaContentLayout = new javax.swing.GroupLayout(SistemaContent);
+        SistemaContent.setLayout(SistemaContentLayout);
+        SistemaContentLayout.setHorizontalGroup(
+            SistemaContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
+        SistemaContentLayout.setVerticalGroup(
+            SistemaContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        PainelCadastro.setBackground(new java.awt.Color(36, 114, 221));
+        PainelCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        PainelCadastro.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -483,33 +499,33 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
                         .addComponent(NumeroClienteLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(NumeroClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
-        javax.swing.GroupLayout PainelCentralLayout = new javax.swing.GroupLayout(PainelCentral);
-        PainelCentral.setLayout(PainelCentralLayout);
-        PainelCentralLayout.setHorizontalGroup(
-            PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelCentralLayout.createSequentialGroup()
+        javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
+        PainelCadastro.setLayout(PainelCadastroLayout);
+        PainelCadastroLayout.setHorizontalGroup(
+            PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelCadastroLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        PainelCentralLayout.setVerticalGroup(
-            PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelCentralLayout.createSequentialGroup()
+        PainelCadastroLayout.setVerticalGroup(
+            PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelCadastroLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -517,15 +533,19 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 811, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(355, 355, 355)
+                .addComponent(SistemaContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(PainelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PainelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SistemaContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -663,7 +683,7 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
             BtnCancelar.requestFocus();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_BtnCancelarActionPerformed
-
+       
     private void IdClienteTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdClienteTextKeyTyped
         // TODO add your handling code here:
         char keyPress = evt.getKeyChar();
@@ -754,7 +774,17 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroClienteTextKeyPressed
 
-
+    
+    private void ShowPanel(JPanel p){
+    p.setSize(799, 700);
+    p.setLocation(0, 0);
+    
+    SistemaContent.removeAll();
+    PainelCadastro.add(p, BorderLayout.CENTER); 
+    PainelCadastro.revalidate();
+    PainelCadastro.repaint();    
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BairroLabel;
     private javax.swing.JTextField BairroText;
@@ -779,7 +809,8 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private javax.swing.JTextField NomeClienteText;
     private javax.swing.JLabel NumeroClienteLabel;
     private javax.swing.JTextField NumeroClienteText;
-    private javax.swing.JPanel PainelCentral;
+    private javax.swing.JPanel PainelCadastro;
+    private javax.swing.JPanel SistemaContent;
     private javax.swing.JLabel SituacaoClienteComboLabel;
     private javax.swing.JComboBox<String> SituaçãoClienteComboBox;
     private javax.swing.JLabel TelefoneLabel;
@@ -792,8 +823,5 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
-
-    private void ShowPanel(ClientesImovel ClientesPrincipal) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }
