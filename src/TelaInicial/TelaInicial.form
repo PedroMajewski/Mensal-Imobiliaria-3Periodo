@@ -127,7 +127,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/Neighbor.png"/>
+              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Neighbor.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Principal"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -151,7 +151,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/Home_1.png"/>
+              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Home_1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Im&#xf3;vel"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -175,7 +175,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/Person_2.png"/>
+              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Person_2.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Clientes"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -199,7 +199,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/Terms and Conditions.png"/>
+              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Terms and Conditions.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Contratos"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -220,7 +220,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/Cash_1.png"/>
+              <Image iconType="2" name="C:\Users\gabri\Documents\NetBeansProjects\Mensal-Imobiliaria-3Periodo\src\Imagens\Cash_1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Financeiro"/>
             <Property name="borderPainted" type="boolean" value="false"/>

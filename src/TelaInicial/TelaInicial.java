@@ -102,7 +102,7 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnPrincipal.setBackground(new java.awt.Color(30, 122, 206));
         BtnPrincipal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnPrincipal.setForeground(new java.awt.Color(255, 255, 255));
-        BtnPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Neighbor.png"))); // NOI18N
+        BtnPrincipal.setIcon(new javax.swing.ImageIcon("C:\\Users\\gabri\\Documents\\NetBeansProjects\\Mensal-Imobiliaria-3Periodo\\src\\Imagens\\Neighbor.png")); // NOI18N
         BtnPrincipal.setText("Principal");
         BtnPrincipal.setBorderPainted(false);
         BtnPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -115,7 +115,7 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnImovel.setBackground(new java.awt.Color(30, 122, 206));
         BtnImovel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnImovel.setForeground(new java.awt.Color(255, 255, 255));
-        BtnImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Home_1.png"))); // NOI18N
+        BtnImovel.setIcon(new javax.swing.ImageIcon("C:\\Users\\gabri\\Documents\\NetBeansProjects\\Mensal-Imobiliaria-3Periodo\\src\\Imagens\\Home_1.png")); // NOI18N
         BtnImovel.setText("Imóvel");
         BtnImovel.setBorderPainted(false);
         BtnImovel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -128,7 +128,7 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnClientes.setBackground(new java.awt.Color(30, 122, 206));
         BtnClientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnClientes.setForeground(new java.awt.Color(255, 255, 255));
-        BtnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Person_2.png"))); // NOI18N
+        BtnClientes.setIcon(new javax.swing.ImageIcon("C:\\Users\\gabri\\Documents\\NetBeansProjects\\Mensal-Imobiliaria-3Periodo\\src\\Imagens\\Person_2.png")); // NOI18N
         BtnClientes.setText("Clientes");
         BtnClientes.setBorderPainted(false);
         BtnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -141,7 +141,7 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnContrato.setBackground(new java.awt.Color(30, 122, 206));
         BtnContrato.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnContrato.setForeground(new java.awt.Color(255, 255, 255));
-        BtnContrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Terms and Conditions.png"))); // NOI18N
+        BtnContrato.setIcon(new javax.swing.ImageIcon("C:\\Users\\gabri\\Documents\\NetBeansProjects\\Mensal-Imobiliaria-3Periodo\\src\\Imagens\\Terms and Conditions.png")); // NOI18N
         BtnContrato.setText("Contratos");
         BtnContrato.setBorderPainted(false);
         BtnContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -149,7 +149,7 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnFinanceiro.setBackground(new java.awt.Color(30, 122, 206));
         BtnFinanceiro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnFinanceiro.setForeground(new java.awt.Color(255, 255, 255));
-        BtnFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Cash_1.png"))); // NOI18N
+        BtnFinanceiro.setIcon(new javax.swing.ImageIcon("C:\\Users\\gabri\\Documents\\NetBeansProjects\\Mensal-Imobiliaria-3Periodo\\src\\Imagens\\Cash_1.png")); // NOI18N
         BtnFinanceiro.setText("Financeiro");
         BtnFinanceiro.setBorderPainted(false);
         BtnFinanceiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
