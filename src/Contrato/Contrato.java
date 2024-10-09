@@ -233,7 +233,7 @@ public class Contrato extends javax.swing.JPanel {
     }//GEN-LAST:event_ComboBoxFiltrarActionPerformed
 
  private void ShowPanel(JPanel p){
-        p.setSize(799, 700);
+        p.setSize(799, 806);
         p.setLocation(0,0);
         
         PainelCentral.removeAll();
