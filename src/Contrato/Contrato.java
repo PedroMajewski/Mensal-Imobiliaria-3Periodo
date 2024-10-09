@@ -224,8 +224,6 @@ public class Contrato extends javax.swing.JPanel {
 
     private void ButtonCadastroContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastroContratoActionPerformed
         // TODO add your handling code here:
-        //CadastroContrato ContratoCadastrar = new CadastroContrato();
-        //ShowPanel(ContratoPrincipal);
         CadastroContrato ContratoCadastrar = new CadastroContrato();
         ShowPanel(ContratoCadastrar);
     }//GEN-LAST:event_ButtonCadastroContratoActionPerformed
@@ -235,7 +233,7 @@ public class Contrato extends javax.swing.JPanel {
     }//GEN-LAST:event_ComboBoxFiltrarActionPerformed
 
  private void ShowPanel(JPanel p){
-        p.setSize(799, 700);
+        p.setSize(799, 806);
         p.setLocation(0,0);
         
         PainelCentral.removeAll();
