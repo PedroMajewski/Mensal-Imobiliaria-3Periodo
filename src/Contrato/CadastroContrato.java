@@ -123,7 +123,7 @@ public class CadastroContrato extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
         jLabel7.setText("Situação");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contrato Ativo", "Contrato Inativo", "Contrato Pendente" }));
 
         jLabel8.setText("Comissão Imobiliária");
 
@@ -157,14 +157,65 @@ public class CadastroContrato extends javax.swing.JPanel {
             }
         });
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jFormattedTextField1KeyTyped(evt);
             }
         });
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
+        jFormattedTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField2KeyTyped(evt);
+            }
+        });
+
+        try {
+            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField3KeyTyped(evt);
+            }
+        });
+
+        try {
+            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField4KeyTyped(evt);
+            }
+        });
+
+        try {
+            jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("%##.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField5KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -213,7 +264,7 @@ public class CadastroContrato extends javax.swing.JPanel {
                                             .addComponent(jFormattedTextField3)))
                                     .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,6 +351,38 @@ public class CadastroContrato extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField1KeyTyped
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+      
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
+    private void jFormattedTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyTyped
+            char c = evt.getKeyChar();
+            if (!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField2KeyTyped
+
+    private void jFormattedTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField3KeyTyped
+            char c = evt.getKeyChar();
+            if (!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField3KeyTyped
+
+    private void jFormattedTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField4KeyTyped
+            char c = evt.getKeyChar();
+            if (!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField4KeyTyped
+
+    private void jFormattedTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField5KeyTyped
+            char c = evt.getKeyChar();
+            if (!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField5KeyTyped
      private void ShowPanel(JPanel p){
         p.setSize(799, 806);
         p.setLocation(0,0);
