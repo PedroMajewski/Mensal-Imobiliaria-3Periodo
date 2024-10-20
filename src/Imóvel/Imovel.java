@@ -127,11 +127,7 @@ public class Imovel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "IdImovel", "Nome", "Descricao", "Locador", "Locatario", "IdRegistro", "Preço", "CEP", "Ação"
@@ -294,6 +290,9 @@ public class Imovel extends javax.swing.JPanel {
     PainelCentral.repaint();    
 }
    
+     public void MostrarTabela(){
+         
+     }
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnImovel;

@@ -8,13 +8,13 @@ package Model;
  *
  * @author pedro
  */
-public class CadastroImovel {
+public class CadastroImovelModel {
     private int idImovel;                  // idimovelPrimária
     private int idClienteImovel;           // idcliente_imovelÍndice
     private String situacao;               // situacao
     private String nomeImovel;             // nomeimovel
     private String descricao;              // descricao
-    private float valorPreco;              // valorpreco
+    private String valorPreco;              // valorpreco
     private String cepImovel;              // CEPImovel
     private String bairroImovel;           // BairroImovel
     private String enderecoImovel;         // EnderecoImovel
@@ -24,16 +24,18 @@ public class CadastroImovel {
     private String matriculaImovel;        // Matriculaimovel (pode ser nulo)
     private String aguaContrato;           // AguaContrato (pode ser nulo)
     private String energiaContrato;        // EnergiaContrato (pode ser nulo)
-    private String iptu;                   // IPTU
+    private String iptu;  
+    private String locador;
+    private String locatario;// IPTU
 
-    public CadastroImovel(){
+    public CadastroImovelModel(){
         
     }
     
     //Inserir Dados na tabela - CREATE
-    public CadastroImovel(int idClienteImovel, String situacao, String nomeImovel, String descricao, float valorPreco, String cepImovel
+    public CadastroImovelModel(int idClienteImovel, String situacao, String nomeImovel, String descricao, String valorPreco, String cepImovel
     , String bairroImovel, String enderecoImovel, String numeroImovel, String ufImovel, String inscricaoImobiliaria, String matriculaImovel
-    , String aguaContrato, String energiaContrato, String iptu){
+    , String aguaContrato, String energiaContrato, String iptu, String locador, String locatario){
         this.idClienteImovel = idClienteImovel;
         this.situacao = situacao;
         this.nomeImovel = nomeImovel;
@@ -49,13 +51,15 @@ public class CadastroImovel {
         this.aguaContrato = aguaContrato;
         this.energiaContrato = energiaContrato;
         this.iptu = iptu;
+        this.locador = locador;
+        this.locatario = locatario;
         
     }
     
     //Inserir Dados na tabela - UPDATE
-    public CadastroImovel(int idImovel,int idClienteImovel, String situacao, String nomeImovel, String descricao, float valorPreco, String cepImovel
+    public CadastroImovelModel(int idImovel,int idClienteImovel, String situacao, String nomeImovel, String descricao, String valorPreco, String cepImovel
     , String bairroImovel, String enderecoImovel, String numeroImovel, String ufImovel, String inscricaoImobiliaria, String matriculaImovel
-    , String aguaContrato, String energiaContrato, String iptu){
+    , String aguaContrato, String energiaContrato, String iptu, String locador, String locatario){
         this.idImovel = idImovel;
         this.idClienteImovel = idClienteImovel;
         this.situacao = situacao;
@@ -72,6 +76,8 @@ public class CadastroImovel {
         this.aguaContrato = aguaContrato;
         this.energiaContrato = energiaContrato;
         this.iptu = iptu;
+        this.locador = locador;
+        this.locatario = locatario;
         
     }
     // Getters e Setters
@@ -91,6 +97,7 @@ public class CadastroImovel {
     public void setIdClienteImovel(int idClienteImovel) {
         this.idClienteImovel = idClienteImovel;
     }
+    
 
     public String getSituacao() {
         return situacao;
@@ -115,12 +122,28 @@ public class CadastroImovel {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    public String getLocatario() {
+        return locatario;
+    }
 
-    public float getValorPreco() {
+    public void setLocatario(String locatario) {
+        this.locatario = locatario;
+    }
+    
+    public String getLocador() {
+        return locador;
+    }
+
+    public void setLocador(String locador) {
+        this.locador = locador;
+    }
+
+    public String getValorPreco() {
         return valorPreco;
     }
 
-    public void setValorPreco(float valorPreco) {
+    public void setValorPreco(String valorPreco) {
         this.valorPreco = valorPreco;
     }
 

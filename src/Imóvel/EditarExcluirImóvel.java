@@ -87,7 +87,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         UF = new javax.swing.JTextField();
         NomeImovel = new javax.swing.JTextField();
         Bairro = new javax.swing.JTextField();
-        NumeroRegistro = new javax.swing.JTextField();
+        IPTU = new javax.swing.JTextField();
         DescricaoText = new javax.swing.JScrollPane();
         DescricaoTextArea = new javax.swing.JTextArea();
         BairroLabel = new javax.swing.JLabel();
@@ -162,7 +162,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         });
 
         NumeroRegistroLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        NumeroRegistroLabel.setText("Número Registro:");
+        NumeroRegistroLabel.setText("IPTU");
 
         LocatarioLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LocatarioLabel.setText("Nome Locatário");
@@ -220,13 +220,13 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
             }
         });
 
-        NumeroRegistro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        NumeroRegistro.addKeyListener(new java.awt.event.KeyAdapter() {
+        IPTU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        IPTU.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                NumeroRegistroKeyPressed(evt);
+                IPTUKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                NumeroRegistroKeyTyped(evt);
+                IPTUKeyTyped(evt);
             }
         });
 
@@ -411,7 +411,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(NumeroRegistroLabel)
-                                            .addComponent(NumeroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(SituacaoComboLabel)
@@ -449,7 +449,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                                 .addComponent(NumeroRegistroLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(NumeroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,7 +551,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                 "Descrição: " + DescricaoTextArea.getText() + "\n" +
                 "Locador: " + Locador.getText() + "\n" +
                 "Locatário: " + Locatario.getText() + "\n" +
-                "NumeroRegistro: " + NumeroRegistro.getText() + "\n" +
+                "NumeroRegistro: " + IPTU.getText() + "\n" +
                 "CEP: " + CEP.getText() + "\n" +
                 "Bairro: " + Bairro.getText() + "\n" +
                 "Endereço: " + Endereco.getText() + "\n" +
@@ -576,7 +576,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                 DescricaoTextArea.setText("");
                 Locador.setText("");
                 Locatario.setText("");
-                NumeroRegistro.setText("");
+                IPTU.setText("");
                 CEP.setText("");
                 Preco.setText("");
                 SituacaoCombo.setSelectedIndex(-1);
@@ -653,7 +653,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
     private void NomeImovelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeImovelKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            NumeroRegistro.requestFocus();
+            IPTU.requestFocus();
         }
     }//GEN-LAST:event_NomeImovelKeyPressed
 
@@ -668,20 +668,20 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_BairroKeyTyped
 
-    private void NumeroRegistroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroRegistroKeyPressed
+    private void IPTUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IPTUKeyPressed
         // TODO add your handling code here:
         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
             DescricaoTextArea.requestFocus();
         }
-    }//GEN-LAST:event_NumeroRegistroKeyPressed
+    }//GEN-LAST:event_IPTUKeyPressed
 
-    private void NumeroRegistroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroRegistroKeyTyped
+    private void IPTUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IPTUKeyTyped
         // TODO add your handling code here:
         char keyPress = evt.getKeyChar();
         if(!Character.isDigit(keyPress)){
             evt.consume();
         }
-    }//GEN-LAST:event_NumeroRegistroKeyTyped
+    }//GEN-LAST:event_IPTUKeyTyped
 
     private void DescricaoTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DescricaoTextAreaKeyPressed
         // TODO add your handling code here:
@@ -806,6 +806,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
     private javax.swing.JLabel DescricaoTextLabel1;
     private javax.swing.JTextField Endereco;
     private javax.swing.JLabel EnderecoLabel;
+    private javax.swing.JTextField IPTU;
     private javax.swing.JTextField Locador;
     private javax.swing.JLabel LocadorLabel;
     private javax.swing.JTextField Locatario;
@@ -814,7 +815,6 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
     private javax.swing.JLabel NomeImovelLabel;
     private javax.swing.JTextField Numero;
     private javax.swing.JLabel NumeroLabel;
-    private javax.swing.JTextField NumeroRegistro;
     private javax.swing.JLabel NumeroRegistroLabel;
     private javax.swing.JPanel PainelCentral;
     private javax.swing.JTextField Preco;

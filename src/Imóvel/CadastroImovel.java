@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 import Imóvel.Imovel;
 import javax.swing.JOptionPane;
+
 import DAO.JBDCCadastroImovel;
+import Model.CadastroImovelModel;
 /**
  *
  * @author pedro
@@ -214,7 +216,7 @@ public class CadastroImovel extends javax.swing.JPanel {
         SituacaoComboLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SituacaoComboLabel.setText("Situação:");
 
-        SituacaoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Venda", "Aluguel" }));
+        SituacaoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VENDA", "ALUGUEL" }));
 
         CEPLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CEPLabel.setText("CEP");
@@ -792,7 +794,7 @@ public class CadastroImovel extends javax.swing.JPanel {
                 "Descrição: " + DescricaoTextArea.getText() + "\n" +
                 "Locador: " + Locador.getText() + "\n" +
                 "Locatário: " + Locatario.getText() + "\n" +
-                "NumeroRegistro: " + IPTU.getText() + "\n" +
+                "IPTU: " + IPTU.getText() + "\n" +
                 "CEP: " + CEP.getText() + "\n" +
                 "Bairro: " + Bairro.getText() + "\n" +
                 "Endereço: " + Endereco.getText() + "\n" +
@@ -807,8 +809,30 @@ public class CadastroImovel extends javax.swing.JPanel {
                 null,
                 options,
                 options[0]);
-            if (resposta == 1) {
-            }else{
+            if (resposta == 0) {
+                
+                CadastroImovelModel CadastroModelImovel = new CadastroImovelModel();
+                
+                CadastroModelImovel.setNomeImovel(NomeImovel.getText());
+                CadastroModelImovel.setDescricao(DescricaoTextArea.getText());
+                CadastroModelImovel.setLocador(Locador.getText());
+                CadastroModelImovel.setLocatario(Locatario.getText());
+                CadastroModelImovel.setIptu(IPTU.getText());
+                CadastroModelImovel.setCepImovel(CEP.getText());
+                CadastroModelImovel.setBairroImovel(Bairro.getText());
+                CadastroModelImovel.setEnderecoImovel(Endereco.getText());
+                CadastroModelImovel.setNumeroImovel(Numero.getText());
+                CadastroModelImovel.setUfImovel(UF.getText());
+                CadastroModelImovel.setValorPreco(Preco.getText());
+                CadastroModelImovel.setSituacao((String) SituacaoCombo.getSelectedItem());
+                CadastroModelImovel.setAguaContrato(ContadorAgua.getText());
+                CadastroModelImovel.setEnergiaContrato(ContadorLuz.getText());
+                CadastroModelImovel.setInscricaoImobiliaria(InscricaoImobiliaria.getText());
+                CadastroModelImovel.setMatriculaImovel(MatriculaImovel.getText());
+                
+                JBDCCadastroImovel InserirFunction = new JBDCCadastroImovel();
+            InserirFunction.InserirImovel(CadastroModelImovel);
+                
                 NomeImovel.setText("");
                 Bairro.setText("");
                 Endereco.setText("");
@@ -820,7 +844,13 @@ public class CadastroImovel extends javax.swing.JPanel {
                 IPTU.setText("");
                 CEP.setText("");
                 SituacaoCombo.setSelectedIndex(-1);
-                NomeImovel.requestFocus();
+                Preco.setText("");
+                ContadorAgua.setText("");
+                ContadorLuz.setText("");
+                InscricaoImobiliaria.setText("");
+                MatriculaImovel.setText("");
+            }else{
+                
             }
         }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
