@@ -4,6 +4,7 @@
  */
 package Imóvel;
 
+import DAO.JBDCCadastroImovel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -17,6 +18,9 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import Imóvel.CadastroImovel;
 import Imóvel.EditarExcluirImóvel;
+import Model.CadastroImovelModel;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,6 +37,8 @@ public class Imovel extends javax.swing.JPanel {
   
     public Imovel() {
         initComponents();
+        MostrarTarefasTabela();
+        
         JButton [] btns = {BtnImovel, BtnPesquisa};
        for(JButton btn : btns){
            btn.setBackground(new Color(30,122,206));
@@ -85,7 +91,7 @@ public class Imovel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaImovel = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         FiltroCombo = new javax.swing.JComboBox<>();
@@ -125,30 +131,29 @@ public class Imovel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Aqui é possível acessar e visualziar as opções para os imóveis");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaImovel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "IdImovel", "Nome", "Descricao", "Locador", "Locatario", "IdRegistro", "Preço", "CEP", "Ação"
+                "IdImovel", "Nome", "Locador", "Locátario", "Inscrição Imobiliaria", "Matrícula Imóvel", "Preço", "CEP", "Número", "UF", "Situação", "Ação"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        ));
+        jScrollPane1.setViewportView(TabelaImovel);
+        if (TabelaImovel.getColumnModel().getColumnCount() > 0) {
+            TabelaImovel.getColumnModel().getColumn(0).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(1).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(2).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(3).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(4).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(5).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(6).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(7).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(8).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(9).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(10).setResizable(false);
+            TabelaImovel.getColumnModel().getColumn(11).setResizable(false);
+        }
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Pesquisar");
@@ -290,15 +295,42 @@ public class Imovel extends javax.swing.JPanel {
     PainelCentral.repaint();    
 }
    
-     public void MostrarTabela(){
-         
-     }
+     public void MostrarTarefasTabela(){
+         JBDCCadastroImovel ListaImovel = new JBDCCadastroImovel();
+        ArrayList<CadastroImovelModel> listaimovel =  ListaImovel.ConsultarImovel();
+        
+        DefaultTableModel model = (DefaultTableModel)TabelaImovel.getModel();
+
+        
+        Object[] row = new Object[11];
+        for(int i = 0;i < listaimovel.size();i++){
+            row[0] = listaimovel.get(i).getIdImovel();
+            row[1] = listaimovel.get(i).getNomeImovel();
+            row[2] = listaimovel.get(i).getLocador();
+            row[3] = listaimovel.get(i).getLocatario();
+            row[4] = listaimovel.get(i).getInscricaoImobiliaria();
+            row[5] = listaimovel.get(i).getMatriculaImovel();
+            row[6] = listaimovel.get(i).getValorPreco();
+            row[7] = listaimovel.get(i).getCepImovel();
+            row[8] = listaimovel.get(i).getNumeroImovel();
+            row[9] = listaimovel.get(i).getUfImovel();
+            row[10] = listaimovel.get(i).getSituacao();
+            
+
+            model.addRow(row);
+
+        }
+       
+    }
+     
+     
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnImovel;
     private javax.swing.JButton BtnPesquisa;
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JPanel PainelCentral;
+    private javax.swing.JTable TabelaImovel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -307,7 +339,6 @@ public class Imovel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
