@@ -59,7 +59,7 @@ public class JBDCCadastroImovel {
                 ConexaoSentenca.setString(12,cadastro.getIptu());
                 ConexaoSentenca.setString(13,cadastro.getLocador());
                 ConexaoSentenca.setString(14,cadastro.getLocatario());
-                    ConexaoSentenca.setString(15,cadastro.getCidade());
+                ConexaoSentenca.setString(15,cadastro.getCidade());
                 
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença

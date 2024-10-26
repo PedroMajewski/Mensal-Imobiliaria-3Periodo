@@ -39,22 +39,22 @@ public class CadastroContrato extends javax.swing.JPanel {
         sistemaimobiliario1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        TempoContrato = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Situação = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Observações = new javax.swing.JTextField();
+        Cadastrar = new javax.swing.JButton();
+        Excluir = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
+        InicioContrato = new javax.swing.JFormattedTextField();
+        FimContrato = new javax.swing.JFormattedTextField();
+        DataLocação = new javax.swing.JFormattedTextField();
+        DataPagamento = new javax.swing.JFormattedTextField();
+        Comissão = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -123,26 +123,31 @@ public class CadastroContrato extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
         jLabel7.setText("Situação");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contrato Ativo", "Contrato Inativo", "Contrato Pendente" }));
+        Situação.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contrato Ativo", "Contrato Inativo", "Contrato Pendente" }));
 
         jLabel8.setText("Comissão Imobiliária");
 
         jLabel9.setText("Observações");
 
-        jButton1.setBackground(new java.awt.Color(36, 114, 221));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
-        jButton1.setText("Cadastrar");
-
-        jButton2.setBackground(new java.awt.Color(36, 114, 221));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Close.png"))); // NOI18N
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Cadastrar.setBackground(new java.awt.Color(36, 114, 221));
+        Cadastrar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
+        Cadastrar.setText("Cadastrar");
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CadastrarActionPerformed(evt);
+            }
+        });
+
+        Excluir.setBackground(new java.awt.Color(36, 114, 221));
+        Excluir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        Excluir.setForeground(new java.awt.Color(255, 255, 255));
+        Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Close.png"))); // NOI18N
+        Excluir.setText("Excluir");
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
             }
         });
 
@@ -157,63 +162,60 @@ public class CadastroContrato extends javax.swing.JPanel {
             }
         });
 
-        try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        InicioContrato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##/##/####"))));
+        InicioContrato.setText("  /   /");
+        InicioContrato.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextField1KeyTyped(evt);
+                InicioContratoKeyTyped(evt);
             }
         });
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            FimContrato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+        FimContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
+                FimContratoActionPerformed(evt);
             }
         });
-        jFormattedTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        FimContrato.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextField2KeyTyped(evt);
-            }
-        });
-
-        try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextField3KeyTyped(evt);
+                FimContratoKeyTyped(evt);
             }
         });
 
         try {
-            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            DataLocação.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        DataLocação.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextField4KeyTyped(evt);
+                DataLocaçãoKeyTyped(evt);
             }
         });
 
         try {
-            jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("%##.##")));
+            DataPagamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        DataPagamento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextField5KeyTyped(evt);
+                DataPagamentoKeyTyped(evt);
+            }
+        });
+
+        try {
+            Comissão.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("%##.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        Comissão.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ComissãoKeyTyped(evt);
             }
         });
 
@@ -225,9 +227,9 @@ public class CadastroContrato extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,15 +242,15 @@ public class CadastroContrato extends javax.swing.JPanel {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel6)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(InicioContrato, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(sistemaimobiliario1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(DataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(31, 31, 31)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel7)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jFormattedTextField2))))
+                                            .addComponent(Situação, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(FimContrato))))
                                 .addGap(32, 32, 32)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,14 +258,14 @@ public class CadastroContrato extends javax.swing.JPanel {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField3))
+                                                .addComponent(TempoContrato))
                                             .addComponent(jLabel8))
                                         .addGap(45, 45, 45)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jFormattedTextField3)))
-                                    .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(DataLocação)))
+                                    .addComponent(Comissão, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(Observações, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -283,10 +285,10 @@ public class CadastroContrato extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TempoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InicioContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FimContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DataLocação, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -294,17 +296,17 @@ public class CadastroContrato extends javax.swing.JPanel {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Situação, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Comissão, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Observações, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
 
@@ -341,48 +343,52 @@ public class CadastroContrato extends javax.swing.JPanel {
         ShowPanel(Retorna);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ExcluirActionPerformed
 
-    private void jFormattedTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyTyped
-            char c = evt.getKeyChar();
-            if(!Character.isDigit((c))){
+    private void InicioContratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InicioContratoKeyTyped
+             char c = evt.getKeyChar();
+            if (!Character.isDigit(c)){
             evt.consume();
         }
-    }//GEN-LAST:event_jFormattedTextField1KeyTyped
+    }//GEN-LAST:event_InicioContratoKeyTyped
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+    private void FimContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FimContratoActionPerformed
       
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_FimContratoActionPerformed
 
-    private void jFormattedTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyTyped
+    private void FimContratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FimContratoKeyTyped
             char c = evt.getKeyChar();
             if (!Character.isDigit(c)){
             evt.consume();
         }
-    }//GEN-LAST:event_jFormattedTextField2KeyTyped
+    }//GEN-LAST:event_FimContratoKeyTyped
 
-    private void jFormattedTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField3KeyTyped
+    private void DataLocaçãoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DataLocaçãoKeyTyped
             char c = evt.getKeyChar();
             if (!Character.isDigit(c)){
             evt.consume();
         }
-    }//GEN-LAST:event_jFormattedTextField3KeyTyped
+    }//GEN-LAST:event_DataLocaçãoKeyTyped
 
-    private void jFormattedTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField4KeyTyped
+    private void DataPagamentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DataPagamentoKeyTyped
             char c = evt.getKeyChar();
             if (!Character.isDigit(c)){
             evt.consume();
         }
-    }//GEN-LAST:event_jFormattedTextField4KeyTyped
+    }//GEN-LAST:event_DataPagamentoKeyTyped
 
-    private void jFormattedTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField5KeyTyped
+    private void ComissãoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComissãoKeyTyped
             char c = evt.getKeyChar();
             if (!Character.isDigit(c)){
             evt.consume();
         }
-    }//GEN-LAST:event_jFormattedTextField5KeyTyped
+    }//GEN-LAST:event_ComissãoKeyTyped
+
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CadastrarActionPerformed
      private void ShowPanel(JPanel p){
         p.setSize(799, 806);
         p.setLocation(0,0);
@@ -394,17 +400,19 @@ public class CadastroContrato extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cadastrar;
+    private javax.swing.JFormattedTextField Comissão;
+    private javax.swing.JFormattedTextField DataLocação;
+    private javax.swing.JFormattedTextField DataPagamento;
+    private javax.swing.JButton Excluir;
+    private javax.swing.JFormattedTextField FimContrato;
+    private javax.swing.JFormattedTextField InicioContrato;
+    private javax.swing.JTextField Observações;
     private javax.swing.JPanel PainelCentrar2;
+    private javax.swing.JComboBox<String> Situação;
+    private javax.swing.JTextField TempoContrato;
     private javax.swing.JLabel homecontrato;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -416,8 +424,6 @@ public class CadastroContrato extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel sistemaimobiliario;
     private javax.swing.JLabel sistemaimobiliario1;
     // End of variables declaration//GEN-END:variables
