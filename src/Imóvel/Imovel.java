@@ -68,7 +68,62 @@ public class Imovel extends javax.swing.JPanel {
            });
            }
        
-
+           BtnEditar.setBackground(new Color(249,193,51));
+           BtnEditar.setUI(new BasicButtonUI());
+           BtnEditar.addMouseListener(new MouseListener(){
+               @Override
+               public void mouseClicked(MouseEvent e){
+                   
+               }
+               @Override
+               public void mousePressed(MouseEvent e){
+                   
+               }
+               @Override 
+                public void mouseReleased(MouseEvent e){
+                   
+               }
+               @Override
+               public void mouseEntered(MouseEvent e){
+                   
+                   BtnEditar.setBackground(new Color(238,204,118));
+               }
+               @Override
+               public void mouseExited(MouseEvent e){
+                   
+                   BtnEditar.setBackground(new Color(249,193,51));
+               }
+           
+           });
+       
+           BtnExcluir.setBackground(new Color(153,0,51));
+           BtnExcluir.setUI(new BasicButtonUI());
+           BtnExcluir.addMouseListener(new MouseListener(){
+               @Override
+               public void mouseClicked(MouseEvent e){
+                   
+               }
+               @Override
+               public void mousePressed(MouseEvent e){
+                   
+               }
+               @Override 
+                public void mouseReleased(MouseEvent e){
+                   
+               }
+               @Override
+               public void mouseEntered(MouseEvent e){
+                   
+                   BtnExcluir.setBackground(new Color(179,21,74));
+               }
+               @Override
+               public void mouseExited(MouseEvent e){
+                   
+                   BtnExcluir.setBackground(new Color(153,0,51));
+               }
+           
+           });
+           
 // Adiciona o SistemaContent ao novo JPanel ou à outra parte da interface
        
     }
@@ -97,6 +152,8 @@ public class Imovel extends javax.swing.JPanel {
         FiltroCombo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         BtnPesquisa = new javax.swing.JButton();
+        BtnEditar = new javax.swing.JButton();
+        BtnExcluir = new javax.swing.JButton();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,7 +172,7 @@ public class Imovel extends javax.swing.JPanel {
         BtnImovel.setBackground(new java.awt.Color(30, 122, 206));
         BtnImovel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnImovel.setForeground(new java.awt.Color(255, 255, 255));
-        BtnImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
+        BtnImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Terms and Conditions.png"))); // NOI18N
         BtnImovel.setText("Cadastrar Novo Imóvel");
         BtnImovel.setBorderPainted(false);
         BtnImovel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -180,6 +237,32 @@ public class Imovel extends javax.swing.JPanel {
         BtnPesquisa.setBorderPainted(false);
         BtnPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        BtnEditar.setBackground(new java.awt.Color(249, 193, 51));
+        BtnEditar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnEditar.setForeground(new java.awt.Color(27, 27, 27));
+        BtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
+        BtnEditar.setText("Editar Imóvel");
+        BtnEditar.setBorderPainted(false);
+        BtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarActionPerformed(evt);
+            }
+        });
+
+        BtnExcluir.setBackground(new java.awt.Color(153, 0, 51));
+        BtnExcluir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        BtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Close.png"))); // NOI18N
+        BtnExcluir.setText("Excluir Imóvel");
+        BtnExcluir.setBorderPainted(false);
+        BtnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -190,12 +273,16 @@ public class Imovel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addGap(155, 155, 155))
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -216,7 +303,10 @@ public class Imovel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -284,6 +374,14 @@ public class Imovel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEditarActionPerformed
+
+    private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnExcluirActionPerformed
+
 
      private void ShowPanel(JPanel p){
     p.setSize(799, 700);
@@ -326,6 +424,8 @@ public class Imovel extends javax.swing.JPanel {
      
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEditar;
+    private javax.swing.JButton BtnExcluir;
     private javax.swing.JButton BtnImovel;
     private javax.swing.JButton BtnPesquisa;
     private javax.swing.JComboBox<String> FiltroCombo;

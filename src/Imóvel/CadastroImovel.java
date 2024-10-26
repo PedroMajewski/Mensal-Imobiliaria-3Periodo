@@ -701,7 +701,21 @@ public class CadastroImovel extends javax.swing.JPanel {
             options[0]
         );
         if (resposta == 0) {
-
+            NomeImovel.setText("");
+                Bairro.setText("");
+                Endereco.setText("");
+                Numero.setText("");
+                UF.setText("");
+                DescricaoTextArea.setText("");
+                Locador.setText("");
+                Locatario.setText("");
+                IPTU.setText("");
+                CEP.setText("");
+                SituacaoCombo.setSelectedIndex(-1);
+                Preco.setText("");
+                InscricaoImobiliaria.setText("");
+                MatriculaImovel.setText("");
+                Cidade.setText("");
         } else {
             BtnCancelar.requestFocus();
         }        // TODO add your handling code here:
@@ -944,6 +958,10 @@ public class CadastroImovel extends javax.swing.JPanel {
             LocadorLabel.setText("Nome do Vendedor");
             Locatario.setEditable(false);
             Locatario.setBackground(new Color(238,238,238));
+        }else if(SituacaoAtual == "ALUGUEL"){
+            LocadorLabel.setText("Nome do Locador");
+            Locatario.setEditable(true);
+            Locatario.setBackground(Color.white);
         }
     }//GEN-LAST:event_SituacaoComboActionPerformed
 
