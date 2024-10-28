@@ -26,6 +26,8 @@ public class CadastroImovelModel {
     private String locador;
     private String locatario;// IPTU
     private String cidade;
+    private String valorconsulta; //Retorna o filtro selecionado na parte da lista de Imóveis;
+    private String itempesquisar; //o Que ser pesquisado no filtro de busca
 
     public CadastroImovelModel(){
         
@@ -34,7 +36,7 @@ public class CadastroImovelModel {
     //Inserir Dados na tabela - CREATE
     public CadastroImovelModel(int idClienteImovel, String situacao, String nomeImovel, String descricao, String valorPreco, String cepImovel
     , String bairroImovel, String enderecoImovel, String numeroImovel, String ufImovel, String inscricaoImobiliaria, String matriculaImovel
-    , String iptu, String locador, String locatario, String cidade){
+    , String iptu, String locador, String locatario, String cidade, String valorconsulta,String itempesquisar){
         this.idClienteImovel = idClienteImovel;
         this.situacao = situacao;
         this.nomeImovel = nomeImovel;
@@ -51,13 +53,15 @@ public class CadastroImovelModel {
         this.locador = locador;
         this.locatario = locatario;
         this.cidade = cidade;
+        this.valorconsulta = valorconsulta;
+        this.itempesquisar = itempesquisar;
         
     }
     
     //Inserir Dados na tabela - UPDATE
     public CadastroImovelModel(int idImovel,int idClienteImovel, String situacao, String nomeImovel, String descricao, String valorPreco, String cepImovel
     , String bairroImovel, String enderecoImovel, String numeroImovel, String ufImovel, String inscricaoImobiliaria, String matriculaImovel
-    , String iptu, String locador, String locatario, String cidade){
+    , String iptu, String locador, String locatario, String cidade, String valorconsulta,String itempesquisar){
         this.idImovel = idImovel;
         this.idClienteImovel = idClienteImovel;
         this.situacao = situacao;
@@ -75,10 +79,29 @@ public class CadastroImovelModel {
         this.locador = locador;
         this.locatario = locatario;
          this.cidade = cidade;
+        this.valorconsulta = valorconsulta;
+        this.itempesquisar = itempesquisar;
         
     }
     // Getters e Setters
 
+    
+    public String getValorConsulta(){
+        return valorconsulta;
+    }
+    
+    public void setValorConsulta(String valorconsulta){
+        this.valorconsulta = valorconsulta;
+    }
+    
+    public String getItemPesquisar(){
+        return itempesquisar;
+    }
+    
+    public void setItemPesquisar(String itempesquisar){
+        this.itempesquisar = itempesquisar;
+    }
+    
     public int getIdImovel() {
         return idImovel;
     }

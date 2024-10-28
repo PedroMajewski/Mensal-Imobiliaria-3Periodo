@@ -13,6 +13,7 @@ import DAO.JBDCConnect;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import Model.CadastroImovelModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author pedro
@@ -137,6 +138,74 @@ public class JBDCCadastroImovel {
             }
 
             return listaImovel;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    
+     
+    public ArrayList <CadastroImovelModel> FiltrarImovel(CadastroImovelModel cadastro) {
+
+        ArrayList<CadastroImovelModel> ListaImovel = new ArrayList<CadastroImovelModel>();
+        String ValorConsulta = cadastro.getValorConsulta();
+        String ColunaSelecionada = ValorConsulta;
+        String sql = "SELECT i.idimovel, s.situacao_atual, i.nome_imovel, i.descricao, i.valor_preco, i.cep_imovel, i.bairro_imovel, i.endereco_imovel, i.numero_imovel, i.uf_imovel, i.inscricao_imobiliaria, i.inscricao_imobiliaria, i.iptu, i.locador_imovel, i.locatario_imovel, i.cidade FROM imovel as i WHERE " + "i." + ColunaSelecionada + " = ? ORDER BY i.idimovel";
+        try {
+            if (this.conexao.conectar()) {
+
+                PreparedStatement sentenca = this.conexao.getConnection().prepareStatement(sql);
+                
+                
+                //idImovel, Nome, Locador, Locatário, CEP, MatrículaImóvel, Preço
+                
+               if(ValorConsulta == "idimovel"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }else if(ValorConsulta == "nome_imovel"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }else if(ValorConsulta == "locador_imovel"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }else if(ValorConsulta == "locatario_imovel"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }else if(ValorConsulta == "cep_imovel"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }else if(ValorConsulta == "matricula_imovel"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }else if(ValorConsulta == "valor_preco"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }else if(ValorConsulta == "Situação"){
+                   sentenca.setString(1,cadastro.getItemPesquisar());
+               }
+
+                
+
+                //recebe o resultado da consulta
+                ResultSet resultadoSentenca = sentenca.executeQuery();
+
+                //percorrer cada linha do resultado
+                while (resultadoSentenca.next()) {
+                    CadastroImovelModel imovel = new CadastroImovelModel();
+                    //resgata o valor de cada linha, selecionando pelo nome de cada coluna da tabela 
+                    imovel.setIdImovel(resultadoSentenca.getInt("idimovel"));
+                    imovel.setNomeImovel(resultadoSentenca.getString("nome_imovel"));
+                    imovel.setLocador(resultadoSentenca.getString("locador_imovel"));
+                    imovel.setLocatario(resultadoSentenca.getString("locatario_imovel"));
+                    imovel.setInscricaoImobiliaria(resultadoSentenca.getString("inscricao_imobiliaria"));
+                    imovel.setMatriculaImovel(resultadoSentenca.getString("inscricao_imobiliaria"));
+                    imovel.setValorPreco(resultadoSentenca.getString("valor_preco"));
+                    imovel.setCepImovel(resultadoSentenca.getString("cep_imovel"));
+                    imovel.setNumeroImovel(resultadoSentenca.getString("numero_imovel"));
+                    imovel.setSituacao(resultadoSentenca.getString("situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao)"));
+                    imovel.setDescricao(resultadoSentenca.getString("descricao"));
+
+                    ListaImovel.add(imovel);
+                }
+
+                sentenca.close();
+                this.conexao.getConnection().close();
+            }
+
+            JOptionPane.showMessageDialog(null, "Top passou");
+            return ListaImovel;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

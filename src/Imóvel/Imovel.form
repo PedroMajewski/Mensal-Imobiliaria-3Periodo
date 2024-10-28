@@ -125,7 +125,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="PesquisarText" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -162,7 +162,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="PesquisarText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="FiltroCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -240,7 +240,7 @@
                         <Column editable="true" title="N&#xfa;mero" type="java.lang.Object"/>
                         <Column editable="true" title="UF" type="java.lang.Object"/>
                         <Column editable="true" title="Situa&#xe7;&#xe3;o" type="java.lang.Object"/>
-                        <Column editable="true" title="A&#xe7;&#xe3;o" type="java.lang.Object"/>
+                        <Column editable="true" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -322,7 +322,7 @@
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="PesquisarText">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -333,20 +333,21 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PesquisarTextActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="FiltroCombo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="7">
-                    <StringItem index="0" value="IdImovel"/>
-                    <StringItem index="1" value="Nome"/>
-                    <StringItem index="2" value="Descricao"/>
-                    <StringItem index="3" value="Proprietario"/>
-                    <StringItem index="4" value="Valor"/>
-                    <StringItem index="5" value="IdRegistro"/>
-                    <StringItem index="6" value="idLocalizacao"/>
+                  <StringArray count="8">
+                    <StringItem index="0" value="idimovel"/>
+                    <StringItem index="1" value="nome_imovel"/>
+                    <StringItem index="2" value="locador_imovel"/>
+                    <StringItem index="3" value="locatario_imovel"/>
+                    <StringItem index="4" value="cep_imovel"/>
+                    <StringItem index="5" value="matricula_imovel"/>
+                    <StringItem index="6" value="valor_preco"/>
+                    <StringItem index="7" value=" "/>
                   </StringArray>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -386,6 +387,9 @@
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPesquisaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="BtnEditar">
               <Properties>

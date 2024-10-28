@@ -834,8 +834,9 @@ public class CadastroImovel extends javax.swing.JPanel {
                 CadastroModelImovel.setCidade(Cidade.getText());
                 
                 
+                
                 JBDCCadastroImovel InserirFunction = new JBDCCadastroImovel();
-            InserirFunction.InserirImovel(CadastroModelImovel);
+                InserirFunction.InserirImovel(CadastroModelImovel);
                 
                 NomeImovel.setText("");
                 Bairro.setText("");

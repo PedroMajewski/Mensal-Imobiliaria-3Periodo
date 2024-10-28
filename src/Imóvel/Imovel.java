@@ -86,7 +86,7 @@ public class Imovel extends javax.swing.JPanel {
                @Override
                public void mouseEntered(MouseEvent e){
                    
-                   BtnEditar.setBackground(new Color(238,204,118));
+                   BtnEditar.setBackground(new Color(255,197,52));
                }
                @Override
                public void mouseExited(MouseEvent e){
@@ -148,7 +148,7 @@ public class Imovel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaImovel = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        PesquisarText = new javax.swing.JTextField();
         FiltroCombo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         BtnPesquisa = new javax.swing.JButton();
@@ -193,7 +193,7 @@ public class Imovel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "IdImovel", "Nome", "Locador", "Locátario", "Inscrição Imobiliaria", "Matrícula Imóvel", "Preço", "CEP", "Número", "UF", "Situação", "Ação"
+                "IdImovel", "Nome", "Locador", "Locátario", "Inscrição Imobiliaria", "Matrícula Imóvel", "Preço", "CEP", "Número", "UF", "Situação", "Descrição"
             }
         ));
         jScrollPane1.setViewportView(TabelaImovel);
@@ -215,14 +215,14 @@ public class Imovel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Pesquisar");
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        PesquisarText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        PesquisarText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                PesquisarTextActionPerformed(evt);
             }
         });
 
-        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImovel", "Nome", "Descricao", "Proprietario", "Valor", "IdRegistro", "idLocalizacao" }));
+        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "idimovel", "nome_imovel", "locador_imovel", "locatario_imovel", "cep_imovel", "matricula_imovel", "valor_preco", " " }));
         FiltroCombo.setBorder(null);
         FiltroCombo.setLightWeightPopupEnabled(false);
 
@@ -236,6 +236,11 @@ public class Imovel extends javax.swing.JPanel {
         BtnPesquisa.setText("Pesquisar");
         BtnPesquisa.setBorderPainted(false);
         BtnPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPesquisaActionPerformed(evt);
+            }
+        });
 
         BtnEditar.setBackground(new java.awt.Color(249, 193, 51));
         BtnEditar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -287,7 +292,7 @@ public class Imovel extends javax.swing.JPanel {
                                 .addGap(155, 155, 155))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PesquisarText, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(16, 16, 16)
@@ -315,7 +320,7 @@ public class Imovel extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PesquisarText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -370,9 +375,9 @@ public class Imovel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_BtnImovelActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void PesquisarTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_PesquisarTextActionPerformed
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         // TODO add your handling code here:
@@ -381,6 +386,37 @@ public class Imovel extends javax.swing.JPanel {
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnExcluirActionPerformed
+
+    private void BtnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisaActionPerformed
+        // TODO add your handling code here:
+        
+        JBDCCadastroImovel ListaDeImóveis = new JBDCCadastroImovel();
+        CadastroImovelModel ListadoModel = new CadastroImovelModel();
+        ListadoModel.setValorConsulta((String) FiltroCombo.getSelectedItem());
+        ListadoModel.setItemPesquisar(PesquisarText.getText());
+         ArrayList<CadastroImovelModel> ListaImoveis = ListaDeImóveis.FiltrarImovel(ListadoModel);
+         
+        DefaultTableModel modelo = (DefaultTableModel) TabelaImovel.getModel();
+        modelo.setRowCount(0);
+
+    for (CadastroImovelModel Imovel : ListaImoveis) {
+        modelo.addRow(new Object[] {
+            Imovel.getIdImovel(),
+            Imovel.getNomeImovel(),
+            Imovel.getLocador(),
+            Imovel.getLocatario(),
+            Imovel.getInscricaoImobiliaria(),
+            Imovel.getMatriculaImovel(),
+            Imovel.getInscricaoImobiliaria(),
+            Imovel.getValorPreco(),
+            Imovel.getCepImovel(),
+            Imovel.getNumeroImovel(),
+            Imovel.getUfImovel(),
+            Imovel.getSituacao(),
+            Imovel.getDescricao()
+        });
+    }
+    }//GEN-LAST:event_BtnPesquisaActionPerformed
 
 
      private void ShowPanel(JPanel p){
@@ -430,6 +466,7 @@ public class Imovel extends javax.swing.JPanel {
     private javax.swing.JButton BtnPesquisa;
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JPanel PainelCentral;
+    private javax.swing.JTextField PesquisarText;
     private javax.swing.JTable TabelaImovel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -439,6 +476,5 @@ public class Imovel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
