@@ -26,7 +26,7 @@ public class CadastroImovelModel {
     private String locador;
     private String locatario;// IPTU
     private String cidade;
-    private String valorconsulta; //Retorna o filtro selecionado na parte da lista de Imóveis;
+    private int valorconsulta; //Retorna o filtro selecionado na parte da lista de Imóveis;
     private String itempesquisar; //o Que ser pesquisado no filtro de busca
 
     public CadastroImovelModel(){
@@ -36,7 +36,7 @@ public class CadastroImovelModel {
     //Inserir Dados na tabela - CREATE
     public CadastroImovelModel(int idClienteImovel, String situacao, String nomeImovel, String descricao, String valorPreco, String cepImovel
     , String bairroImovel, String enderecoImovel, String numeroImovel, String ufImovel, String inscricaoImobiliaria, String matriculaImovel
-    , String iptu, String locador, String locatario, String cidade, String valorconsulta,String itempesquisar){
+    , String iptu, String locador, String locatario, String cidade, int valorconsulta,String itempesquisar){
         this.idClienteImovel = idClienteImovel;
         this.situacao = situacao;
         this.nomeImovel = nomeImovel;
@@ -61,7 +61,7 @@ public class CadastroImovelModel {
     //Inserir Dados na tabela - UPDATE
     public CadastroImovelModel(int idImovel,int idClienteImovel, String situacao, String nomeImovel, String descricao, String valorPreco, String cepImovel
     , String bairroImovel, String enderecoImovel, String numeroImovel, String ufImovel, String inscricaoImobiliaria, String matriculaImovel
-    , String iptu, String locador, String locatario, String cidade, String valorconsulta,String itempesquisar){
+    , String iptu, String locador, String locatario, String cidade, int valorconsulta,String itempesquisar){
         this.idImovel = idImovel;
         this.idClienteImovel = idClienteImovel;
         this.situacao = situacao;
@@ -86,11 +86,11 @@ public class CadastroImovelModel {
     // Getters e Setters
 
     
-    public String getValorConsulta(){
+    public int getValorConsulta(){
         return valorconsulta;
     }
     
-    public void setValorConsulta(String valorconsulta){
+    public void setValorConsulta(int valorconsulta){
         this.valorconsulta = valorconsulta;
     }
     

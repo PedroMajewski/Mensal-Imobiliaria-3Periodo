@@ -392,7 +392,7 @@ public class Imovel extends javax.swing.JPanel {
         
         JBDCCadastroImovel ListaDeImóveis = new JBDCCadastroImovel();
         CadastroImovelModel ListadoModel = new CadastroImovelModel();
-        ListadoModel.setValorConsulta((String) FiltroCombo.getSelectedItem());
+        ListadoModel.setValorConsulta(FiltroCombo.getSelectedIndex());
         ListadoModel.setItemPesquisar(PesquisarText.getText());
          ArrayList<CadastroImovelModel> ListaImoveis = ListaDeImóveis.FiltrarImovel(ListadoModel);
          
@@ -407,7 +407,6 @@ public class Imovel extends javax.swing.JPanel {
             Imovel.getLocatario(),
             Imovel.getInscricaoImobiliaria(),
             Imovel.getMatriculaImovel(),
-            Imovel.getInscricaoImobiliaria(),
             Imovel.getValorPreco(),
             Imovel.getCepImovel(),
             Imovel.getNumeroImovel(),
@@ -436,7 +435,7 @@ public class Imovel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)TabelaImovel.getModel();
 
         
-        Object[] row = new Object[11];
+        Object[] row = new Object[12];
         for(int i = 0;i < listaimovel.size();i++){
             row[0] = listaimovel.get(i).getIdImovel();
             row[1] = listaimovel.get(i).getNomeImovel();
@@ -449,6 +448,7 @@ public class Imovel extends javax.swing.JPanel {
             row[8] = listaimovel.get(i).getNumeroImovel();
             row[9] = listaimovel.get(i).getUfImovel();
             row[10] = listaimovel.get(i).getSituacao();
+            row[11] = listaimovel.get(i).getDescricao();
             
 
             model.addRow(row);
