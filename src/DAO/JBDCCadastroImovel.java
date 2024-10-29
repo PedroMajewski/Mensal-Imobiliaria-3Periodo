@@ -147,34 +147,65 @@ public class JBDCCadastroImovel {
     public ArrayList <CadastroImovelModel> FiltrarImovel(CadastroImovelModel cadastro) {
 
         ArrayList<CadastroImovelModel> ListaImovel = new ArrayList<CadastroImovelModel>();
-        String ValorConsulta = cadastro.getValorConsulta();
-        String ColunaSelecionada = ValorConsulta;
-        String sql = "SELECT i.idimovel, s.situacao_atual, i.nome_imovel, i.descricao, i.valor_preco, i.cep_imovel, i.bairro_imovel, i.endereco_imovel, i.numero_imovel, i.uf_imovel, i.inscricao_imobiliaria, i.inscricao_imobiliaria, i.iptu, i.locador_imovel, i.locatario_imovel, i.cidade FROM imovel as i WHERE " + "i." + ColunaSelecionada + " = ? ORDER BY i.idimovel";
+        int ValorConsulta = cadastro.getValorConsulta();
+        String ColunaSelecionada = null;
+        switch(ValorConsulta){
+            case 0:
+                ColunaSelecionada = "idimovel";
+                break;
+            case 1:
+                ColunaSelecionada = "nome_imovel";
+                break;
+            case 2:
+                ColunaSelecionada = "locador_imovel";
+                break;
+            case 3:
+                ColunaSelecionada = "locatario_imovel";
+                break;
+            case 4:
+                ColunaSelecionada = "cep_imovel";
+                break;
+            case 5:
+                ColunaSelecionada = "matricula_imovel";
+                break;
+            case 6:
+                ColunaSelecionada = "valor_preco";
+                break;
+            case 7:
+                ColunaSelecionada = "id_situacao";
+                break;
+        }
+        String sql = "SELECT i.idimovel, i.nome_imovel, i.descricao, i.valor_preco, i.cep_imovel, i.bairro_imovel, i.endereco_imovel, i.numero_imovel, i.uf_imovel, i.inscricao_imobiliaria, i.matricula_imovel, i.iptu, i.locador_imovel, i.locatario_imovel, i.cidade, s.situacao_atual FROM imovel as i LEFT JOIN situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao) WHERE " + "i." + ColunaSelecionada + " = ? ORDER BY i.idimovel";
         try {
             if (this.conexao.conectar()) {
 
                 PreparedStatement sentenca = this.conexao.getConnection().prepareStatement(sql);
                 
-                
+                JOptionPane.showMessageDialog(null, ValorConsulta);
                 //idImovel, Nome, Locador, Locatário, CEP, MatrículaImóvel, Preço
-                
-               if(ValorConsulta == "idimovel"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }else if(ValorConsulta == "nome_imovel"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }else if(ValorConsulta == "locador_imovel"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }else if(ValorConsulta == "locatario_imovel"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }else if(ValorConsulta == "cep_imovel"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }else if(ValorConsulta == "matricula_imovel"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }else if(ValorConsulta == "valor_preco"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }else if(ValorConsulta == "Situação"){
-                   sentenca.setString(1,cadastro.getItemPesquisar());
-               }
+               switch(ValorConsulta){
+            case 0:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+            case 1:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+            case 2:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+            case 3:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+            case 4:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+            case 5:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+            case 6:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+        }
 
                 
 
@@ -190,12 +221,14 @@ public class JBDCCadastroImovel {
                     imovel.setLocador(resultadoSentenca.getString("locador_imovel"));
                     imovel.setLocatario(resultadoSentenca.getString("locatario_imovel"));
                     imovel.setInscricaoImobiliaria(resultadoSentenca.getString("inscricao_imobiliaria"));
-                    imovel.setMatriculaImovel(resultadoSentenca.getString("inscricao_imobiliaria"));
+                    imovel.setMatriculaImovel(resultadoSentenca.getString("matricula_imovel"));
                     imovel.setValorPreco(resultadoSentenca.getString("valor_preco"));
                     imovel.setCepImovel(resultadoSentenca.getString("cep_imovel"));
                     imovel.setNumeroImovel(resultadoSentenca.getString("numero_imovel"));
-                    imovel.setSituacao(resultadoSentenca.getString("situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao)"));
+                    imovel.setUfImovel(resultadoSentenca.getString("uf_imovel"));
+                    imovel.setSituacao(resultadoSentenca.getString("situacao_atual"));
                     imovel.setDescricao(resultadoSentenca.getString("descricao"));
+                    
 
                     ListaImovel.add(imovel);
                 }
