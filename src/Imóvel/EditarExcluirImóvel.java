@@ -221,7 +221,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         SituacaoComboLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SituacaoComboLabel.setText("Situação:");
 
-        SituacaoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALUGUEL", "VENDA" }));
+        SituacaoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALUGUEL", "VENDA", "VENDIDO", "ALUGADO" }));
         SituacaoCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SituacaoComboActionPerformed(evt);
@@ -794,6 +794,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
             LocadorLabel.setText("Nome do Vendedor");
             Locatario.setEditable(false);
             Locatario.setBackground(new Color(238,238,238));
+            
         }else if(SituacaoAtual == "ALUGUEL"){
             LocadorLabel.setText("Nome do Locador");
             Locatario.setEditable(true);
@@ -1037,8 +1038,12 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                
                 if("ALUGUEL".equals(Imovel.getSituacao())){
                   SituacaoCombo.setSelectedIndex(0);
-                }else{
+                }else if("VENDA".equals(Imovel.getSituacao())){
                    SituacaoCombo.setSelectedIndex(1); 
+                }else if("VENDIDO".equals(Imovel.getSituacao())){
+                    SituacaoCombo.setSelectedIndex(2);
+                }else if("ALUGADO".equals(Imovel.getSituacao())){
+                    SituacaoCombo.setSelectedIndex(3);
                 }
         }
     }
