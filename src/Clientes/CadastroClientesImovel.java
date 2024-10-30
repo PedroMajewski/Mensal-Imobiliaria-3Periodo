@@ -750,10 +750,10 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     p.setSize(799, 700);
     p.setLocation(0, 0);
     
-    SistemaContent.removeAll();
-    PainelTItulo.add(p, BorderLayout.CENTER); 
-    PainelTItulo.revalidate();
-    PainelTItulo.repaint();    
+    PainelInfoClientes.removeAll();
+    PainelInfoClientes.add(p, BorderLayout.CENTER); 
+    PainelInfoClientes.revalidate();
+    PainelInfoClientes.repaint();    
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
