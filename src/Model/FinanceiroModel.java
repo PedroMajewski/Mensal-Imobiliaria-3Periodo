@@ -14,7 +14,7 @@ public class FinanceiroModel {
     private int idImovelFinanceiro;    //idImovelFinanceiro Foreign IDIMOVEL
     private String situacaoFinanceiro;
     private String valorParcela;
-    private String com_imobiliaria_financeiro;
+    private String comimobiliariafinanceiro;
     private String iptu;
     private String condominio;
     private String energia;
@@ -27,15 +27,12 @@ public class FinanceiroModel {
     private int Locatario = 0;
 
     //Insere os dados na tabela
-    public FinanceiroModel(int idFinanceiro, int idImovelFinanceiro, String situacaoFinanceiro, String valorParcela,
-            String com_imobiliaria_financeiro, String iptu, String condominio, String energia,
-            String agua, String lixo, String gas, String outros, String abono, String valot_total,
-            int Locador, int Locatario) {
+    public FinanceiroModel(int idFinanceiro, int idImovelFinanceiro, String situacaoFinanceiro, String valorParcela, String comimobiliariafinanceiro, String iptu, String condominio, String energia, String agua, String lixo, String gas, String outros, String abono, String valor_total, int Locatario) {
         this.idFinanceiro = idFinanceiro;
         this.idImovelFinanceiro = idImovelFinanceiro;
         this.situacaoFinanceiro = situacaoFinanceiro;
         this.valorParcela = valorParcela;
-        this.com_imobiliaria_financeiro = com_imobiliaria_financeiro;
+        this.comimobiliariafinanceiro = comimobiliariafinanceiro;
         this.iptu = iptu;
         this.condominio = condominio;
         this.energia = energia;
@@ -47,6 +44,10 @@ public class FinanceiroModel {
         this.valor_total = valor_total;
         this.Locatario = Locatario;
     }
+    public FinanceiroModel() {
+    }
+
+    
 
     public int getIdFinanceiro() {
         return idFinanceiro;
@@ -80,12 +81,12 @@ public class FinanceiroModel {
         this.valorParcela = valorParcela;
     }
 
-    public String getCom_imobiliaria_financeiro() {
-        return com_imobiliaria_financeiro;
+    public String getComimobiliariafinanceiro() {
+        return comimobiliariafinanceiro;
     }
 
-    public void setCom_imobiliaria_financeiro(String com_imobiliaria_financeiro) {
-        this.com_imobiliaria_financeiro = com_imobiliaria_financeiro;
+    public void setComimobiliariafinanceiro(String comimobiliariafinanceiro) {
+        this.comimobiliariafinanceiro = comimobiliariafinanceiro;
     }
 
     public String getIptu() {
