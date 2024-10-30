@@ -20,6 +20,7 @@ import Imóvel.CadastroImovel;
 import Imóvel.EditarExcluirImóvel;
 import Model.CadastroImovelModel;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -400,18 +401,46 @@ public class Imovel extends javax.swing.JPanel {
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         // TODO add your handling code here:
+        CadastroImovelModel ListadeImoveis = new CadastroImovelModel();
+        JBDCCadastroImovel CadastroImovel = new JBDCCadastroImovel();
+        int LinhaSelecionada = TabelaImovel.getSelectedRow();
+        DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaImovel.getModel();
+        int ImovelSelecionado = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getIdImovel();
+        CadastroImovel.ConsultaImovel(ImovelSelecionado);
+        
+        EditarExcluirImóvel EditarImovel = new EditarExcluirImóvel();
+        ShowPanel(EditarImovel);  
     }//GEN-LAST:event_BtnEditarActionPerformed
 
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         // TODO add your handling code here:
         CadastroImovelModel ListadeImoveis = new CadastroImovelModel();
+        JBDCCadastroImovel CadastroImovel = new JBDCCadastroImovel();
         int LinhaSelecionada = TabelaImovel.getSelectedRow();
-        
         DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaImovel.getModel();
-        ListadeImoveis.setIdImovel((int) ModeloTabela.getValueAt(LinhaSelecionada, 0));
+        int ImovelSelecionado = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getIdImovel();
+        String ImovelNome = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getNomeImovel();
+        String LocatarioImovel = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getLocatario();
         
-        JBDCCadastroImovel ExcluirBanco = new JBDCCadastroImovel();
-        ExcluirBanco.ExcluirImovel(ListadeImoveis);
+         String[] options = {"Sim", "Cancelar"};
+         int resposta = JOptionPane.showOptionDialog(
+            this,
+            "Deseja excluir mesmo este imóvel?" + "\n\n"+
+            "Id do Imóvel: " + ImovelSelecionado + "\n" +
+            "Nome do Imóvel: " + ImovelNome+ "\n" +
+            "Locatário: " + LocatarioImovel + "\n\n",
+            "Confirmação",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            options,
+            options[0]);
+        if (resposta == 0) {
+            ListadeImoveis.setIdImovel(ImovelSelecionado);
+            CadastroImovel.ExcluirImovel(ListadeImoveis);
+        } else {
+            JOptionPane.showMessageDialog(null, "Operação Cancelada!");
+        }
     }//GEN-LAST:event_BtnExcluirActionPerformed
 
     private void BtnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisaActionPerformed
@@ -469,7 +498,7 @@ public class Imovel extends javax.swing.JPanel {
    
      public void MostrarImoveisTabela(){
         JBDCCadastroImovel ListaImovel = new JBDCCadastroImovel();
-        ArrayList<CadastroImovelModel> listaimovelcoluna =  ListaImovel.ConsultarImovel();
+        ArrayList<CadastroImovelModel> listaimovelcoluna =  ListaImovel.MostrarListaImovel();
         
         
         DefaultTableModel model = (DefaultTableModel)TabelaImovel.getModel();
