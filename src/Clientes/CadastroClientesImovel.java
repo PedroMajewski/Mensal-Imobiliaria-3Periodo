@@ -31,6 +31,7 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private void initComponents() {
 
         PainelInfoClientes = new javax.swing.JPanel();
+        PainelClientes = new javax.swing.JPanel();
         IdClienteLabel = new javax.swing.JLabel();
         IdClienteText = new javax.swing.JTextField();
         NomeClienteLabel = new javax.swing.JLabel();
@@ -70,8 +71,10 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(799, 724));
         setPreferredSize(new java.awt.Dimension(799, 724));
 
-        PainelInfoClientes.setBackground(new java.awt.Color(255, 255, 255));
-        PainelInfoClientes.setPreferredSize(new java.awt.Dimension(799, 628));
+        PainelInfoClientes.setBackground(new java.awt.Color(30, 122, 206));
+
+        PainelClientes.setBackground(new java.awt.Color(255, 255, 255));
+        PainelClientes.setPreferredSize(new java.awt.Dimension(799, 628));
 
         IdClienteLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         IdClienteLabel.setText("IdCliente:");
@@ -322,164 +325,162 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout PainelInfoClientesLayout = new javax.swing.GroupLayout(PainelInfoClientes);
-        PainelInfoClientes.setLayout(PainelInfoClientesLayout);
-        PainelInfoClientesLayout.setHorizontalGroup(
-            PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+        javax.swing.GroupLayout PainelClientesLayout = new javax.swing.GroupLayout(PainelClientes);
+        PainelClientes.setLayout(PainelClientesLayout);
+        PainelClientesLayout.setHorizontalGroup(
+            PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelClientesLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(BtnRetornar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+            .addGroup(PainelClientesLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelClientesLayout.createSequentialGroup()
+                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelClientesLayout.createSequentialGroup()
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(SituacaoClienteComboLabel)
                                     .addComponent(SituaçãoClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CelularLabel)
                                     .addComponent(CelularText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TelefoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TelefoneLabel))
                                 .addGap(18, 18, 18)
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CEPLabel)
                                     .addComponent(CEPText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                        .addComponent(NacionalidadeLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NacionalidadeLabel)
                                     .addComponent(NacionalidadeText)))
-                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelClientesLayout.createSequentialGroup()
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(BairroLabel)
                                     .addComponent(BairroText, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PainelClientesLayout.createSequentialGroup()
                                         .addComponent(EnderecoLabel)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(EnderecoText)))
-                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelClientesLayout.createSequentialGroup()
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PainelClientesLayout.createSequentialGroup()
+                                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(IdClienteLabel)
                                             .addComponent(IdClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(PainelClientesLayout.createSequentialGroup()
                                                 .addComponent(NomeClienteLabel)
                                                 .addGap(0, 290, Short.MAX_VALUE))
                                             .addComponent(NomeClienteText))
                                         .addGap(18, 18, 18)
-                                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(DDNLabel)
                                             .addComponent(DDNText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                                    .addGroup(PainelClientesLayout.createSequentialGroup()
                                         .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(51, 51, 51))
-                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelClientesLayout.createSequentialGroup()
+                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(UFLabel)
                             .addComponent(UFText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EmailLabel)
                             .addComponent(EmailText))
                         .addGap(18, 18, 18)
-                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NumeroClienteLabel)
                             .addComponent(NumeroClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(214, 214, 214))))
         );
-        PainelInfoClientesLayout.setVerticalGroup(
-            PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+        PainelClientesLayout.setVerticalGroup(
+            PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelClientesLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(BtnRetornar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PainelClientesLayout.createSequentialGroup()
+                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PainelClientesLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(PainelClientesLayout.createSequentialGroup()
+                                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(IdClienteLabel)
                                             .addComponent(NomeClienteLabel))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(IdClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(NomeClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                                    .addGroup(PainelClientesLayout.createSequentialGroup()
                                         .addComponent(DDNLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(DDNText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PainelClientesLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(SituaçãoClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                                            .addGroup(PainelClientesLayout.createSequentialGroup()
                                                 .addComponent(CelularLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(CelularText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addGroup(PainelClientesLayout.createSequentialGroup()
+                                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(TelefoneLabel)
                                                     .addComponent(CEPLabel))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(TelefoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(CEPText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
-                                                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(PainelClientesLayout.createSequentialGroup()
+                                                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(SituacaoClienteComboLabel)
                                                     .addComponent(NacionalidadeLabel))
                                                 .addGap(32, 32, 32))))
-                                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                                    .addGroup(PainelClientesLayout.createSequentialGroup()
                                         .addGap(29, 29, 29)
                                         .addComponent(NacionalidadeText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BairroLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BairroText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                            .addGroup(PainelClientesLayout.createSequentialGroup()
                                 .addComponent(EnderecoLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(EnderecoText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                        .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PainelClientesLayout.createSequentialGroup()
                                 .addComponent(UFLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(UFText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                            .addGroup(PainelClientesLayout.createSequentialGroup()
                                 .addComponent(EmailLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(EmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                    .addGroup(PainelClientesLayout.createSequentialGroup()
                         .addComponent(NumeroClienteLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(NumeroClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
@@ -493,30 +494,48 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Imobils, Sistema Imobiliário");
 
+        javax.swing.GroupLayout PainelInfoClientesLayout = new javax.swing.GroupLayout(PainelInfoClientes);
+        PainelInfoClientes.setLayout(PainelInfoClientesLayout);
+        PainelInfoClientesLayout.setHorizontalGroup(
+            PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelInfoClientesLayout.createSequentialGroup()
+                .addComponent(PainelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 804, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                    .addGap(39, 39, 39)
+                    .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1))
+                    .addContainerGap(526, Short.MAX_VALUE)))
+        );
+        PainelInfoClientesLayout.setVerticalGroup(
+            PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelInfoClientesLayout.createSequentialGroup()
+                .addGap(0, 133, Short.MAX_VALUE)
+                .addComponent(PainelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PainelInfoClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PainelInfoClientesLayout.createSequentialGroup()
+                    .addGap(37, 37, 37)
+                    .addComponent(jLabel1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel2)
+                    .addContainerGap(634, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(PainelInfoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(PainelInfoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(PainelInfoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PainelInfoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -747,7 +766,7 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
        
     
     private void ShowPanel(JPanel p){
-    p.setSize(799, 700);
+    p.setSize(799, 724);
     p.setLocation(0, 0);
     
     PainelInfoClientes.removeAll();
@@ -780,6 +799,7 @@ public class CadastroClientesImovel extends javax.swing.JPanel {
     private javax.swing.JTextField NomeClienteText;
     private javax.swing.JLabel NumeroClienteLabel;
     private javax.swing.JTextField NumeroClienteText;
+    private javax.swing.JPanel PainelClientes;
     private javax.swing.JPanel PainelInfoClientes;
     private javax.swing.JLabel SituacaoClienteComboLabel;
     private javax.swing.JComboBox<String> SituaçãoClienteComboBox;
