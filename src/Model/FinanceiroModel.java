@@ -12,6 +12,7 @@ public class FinanceiroModel {
 
     private int idFinanceiro;          //idFinanceiro PRIMARIA
     private int idImovelFinanceiro;    //idImovelFinanceiro Foreign IDIMOVEL
+    private String nomeContrato;
     private String situacaoFinanceiro;
     private String valorParcela;
     private String comimobiliariafinanceiro;
@@ -27,9 +28,10 @@ public class FinanceiroModel {
     private int Locatario = 0;
 
     //Insere os dados na tabela
-    public FinanceiroModel(int idFinanceiro, int idImovelFinanceiro, String situacaoFinanceiro, String valorParcela, String comimobiliariafinanceiro, String iptu, String condominio, String energia, String agua, String lixo, String gas, String outros, String abono, String valor_total, int Locatario) {
+    public FinanceiroModel(int idFinanceiro, int idImovelFinanceiro,String nomeContrato, String situacaoFinanceiro, String valorParcela, String comimobiliariafinanceiro, String iptu, String condominio, String energia, String agua, String lixo, String gas, String outros, String abono, String valor_total, int Locatario) {
         this.idFinanceiro = idFinanceiro;
         this.idImovelFinanceiro = idImovelFinanceiro;
+        this.nomeContrato = nomeContrato;
         this.situacaoFinanceiro = situacaoFinanceiro;
         this.valorParcela = valorParcela;
         this.comimobiliariafinanceiro = comimobiliariafinanceiro;
@@ -64,7 +66,15 @@ public class FinanceiroModel {
     public void setIdImovelFinanceiro(int idImovelFinanceiro) {
         this.idImovelFinanceiro = idImovelFinanceiro;
     }
-
+    
+    public String getNomeContrato(){
+        return nomeContrato;
+    }
+    
+    public void setNomeContrato(String nomeContrato){
+        this.nomeContrato = nomeContrato;
+    }
+    
     public String getSituacaoFinanceiro() {
         return situacaoFinanceiro;
     }

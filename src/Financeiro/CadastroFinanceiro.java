@@ -4,6 +4,7 @@
  */
 package Financeiro;
 
+import DAO.JBDCCadastroFinanceiro;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import Imóvel.Imovel;
 import javax.swing.JOptionPane;
 import Financeiro.Financeiro;
+import Model.FinanceiroModel;
 
 /**
  *
@@ -26,39 +28,42 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
      */
     public CadastroFinanceiro() {
         initComponents();
-        JButton [] btns = {BtnCadastrar, BtnCancelar,BtnRetornar};
-       for(JButton btn : btns){
-           btn.setBackground(new Color(30,122,206));
-           btn.setUI(new BasicButtonUI());
-           BtnRetornar.setBackground(Color.WHITE);
-           btn.addMouseListener(new MouseListener(){
-               @Override
-               public void mouseClicked(MouseEvent e){
-                   
-               }
-               @Override
-               public void mousePressed(MouseEvent e){
-                   
-               }
-               @Override 
-                public void mouseReleased(MouseEvent e){
-                   
-               }
-               @Override
-               public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(47,141,227));
+        JButton[] btns = {BtnCadastrar, BtnCancelar, BtnRetornar};
+        for (JButton btn : btns) {
+            btn.setBackground(new Color(30, 122, 206));
+            btn.setUI(new BasicButtonUI());
+            BtnRetornar.setBackground(Color.WHITE);
+            btn.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    btn.setBackground(new Color(47, 141, 227));
                     BtnRetornar.setBackground(Color.WHITE);
-               }
-               @Override
-               public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(30,122,206));
-                   BtnRetornar.setBackground(Color.WHITE);
-               }
-           
-           });
-           }
-   
-           
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    btn.setBackground(new Color(30, 122, 206));
+                    BtnRetornar.setBackground(Color.WHITE);
+                }
+
+            });
+        }
+
     }
 
     /**
@@ -78,7 +83,6 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         NomeContratoLabel = new javax.swing.JLabel();
-        NomeContrato = new javax.swing.JTextField();
         ValorTotalLabel = new javax.swing.JLabel();
         IdImovel = new javax.swing.JTextField();
         IdImovelLabel = new javax.swing.JLabel();
@@ -115,6 +119,9 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         NomeLocadorLabel = new javax.swing.JLabel();
         NomeLocatario = new javax.swing.JTextField();
         NomeLocatarioLabel = new javax.swing.JLabel();
+        NomeContratoLabel1 = new javax.swing.JLabel();
+        NomeContrato = new javax.swing.JTextField();
+        IDFinanceiro = new javax.swing.JTextField();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,19 +157,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         jLabel4.setText("Aqui é possível cadastrar os contratos, e registrá-los.");
 
         NomeContratoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        NomeContratoLabel.setText("Nome Contrato:");
-
-        NomeContrato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        NomeContrato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomeContratoActionPerformed(evt);
-            }
-        });
-        NomeContrato.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                NomeContratoKeyPressed(evt);
-            }
-        });
+        NomeContratoLabel.setText("ID ");
 
         ValorTotalLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ValorTotalLabel.setText("Valor Total:");
@@ -472,6 +467,31 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         NomeLocatarioLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         NomeLocatarioLabel.setText("Nome Locatário:");
 
+        NomeContratoLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NomeContratoLabel1.setText("Nome Contrato");
+
+        NomeContrato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        NomeContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomeContratoActionPerformed(evt);
+            }
+        });
+        NomeContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NomeContratoKeyPressed(evt);
+            }
+        });
+
+        IDFinanceiro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        IDFinanceiro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IDFinanceiroKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                IDFinanceiroKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -501,11 +521,19 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                                    .addComponent(NomeContratoLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NomeContrato, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(NomeContratoLabel1)
+                                            .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(NomeContratoLabel)
+                                            .addComponent(IDFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(24, 24, 24))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(IdImovelLabel)
                                     .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -585,18 +613,21 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(NomeContratoLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(SituacaoComboLabel)
                                         .addGap(32, 32, 32))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(IdImovelLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(IdImovelLabel)
+                                            .addComponent(NomeContratoLabel)
+                                            .addComponent(NomeContratoLabel1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(IDFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -729,14 +760,14 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         // TODO add your handling code here:
         String[] options = {"Sim", "Cancelar"};
         int resposta = JOptionPane.showOptionDialog(
-            this,
-            "Esta ação apagará todos os campos, tem certeza?",
-            "Confirmação",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.WARNING_MESSAGE,
-            null,
-            options,
-            options[0]
+                this,
+                "Esta ação apagará todos os campos, tem certeza?",
+                "Confirmação",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                options,
+                options[0]
         );
         if (resposta == 0) {
 
@@ -748,72 +779,90 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
     private void IdImovelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdImovelKeyTyped
         // TODO add your handling code here:
         char keyPress = evt.getKeyChar();
-        if(!Character.isDigit(keyPress)){
+        if (!Character.isDigit(keyPress)) {
             evt.consume();
         }
     }//GEN-LAST:event_IdImovelKeyTyped
 
     private void IdImovelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdImovelKeyPressed
         // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             ValorAbono.requestFocus();
         }
     }//GEN-LAST:event_IdImovelKeyPressed
 
-    private void NomeContratoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeContratoKeyPressed
-        // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
-            IdImovel.requestFocus();
-        }
-    }//GEN-LAST:event_NomeContratoKeyPressed
-
-    private void NomeContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeContratoActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_NomeContratoActionPerformed
-
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
-        String CheckNome = NomeContrato.getText();
-        if(NomeContrato.getText().isEmpty() && IdImovel.getText().isEmpty() && ValorAbono.getText().isEmpty() && ValorParcela.getText().isEmpty()
-            && NParcelas.getText().isEmpty() && ComissaoImobil.getText().isEmpty()
-            && IPTU.getText().isEmpty() && Energia.getText().isEmpty() && Agua.getText().isEmpty() && Luz.getText().isEmpty() && Lixo.getText().isEmpty() 
-            && Gas.getText().isEmpty() && Outros.getText().isEmpty() && Condominio.getText().isEmpty() && ValorTotal.getText().isEmpty() && NomeLocador.getText().isEmpty()
-            && NomeLocatario.getText().isEmpty()){
+        try {
+            int idFinanceiro = Integer.parseInt(IDFinanceiro.getText());
+            int idImovelFinanceiro = Integer.parseInt(IdImovel.getText());
+            String nomeContrato = NomeContrato.getText();
+            String numeroParcelas = NParcelas.getText();
+            String valorParcela = ValorParcela.getText();
+            String comImobiliaria = ComissaoImobil.getText();
+            String iptu = IPTU.getText();
+            String condominio = Condominio.getText();
+            String energia = Energia.getText();
+            String agua = Agua.getText();
+            String lixo = Lixo.getText();
+            String gas = Gas.getText();
+            String outros = Outros.getText();
+            String abono = ValorAbono.getText();
+            String valorTotal = ValorTotal.getText();
+            int locatario = Integer.parseInt(NomeLocatario.getText());
+
+            FinanceiroModel financeiro = new FinanceiroModel(idFinanceiro, idImovelFinanceiro,nomeContrato, numeroParcelas, valorParcela,
+                    comImobiliaria, iptu, condominio, energia, agua, lixo, gas, outros,
+                    abono, valorTotal, locatario);
+
+            JBDCCadastroFinanceiro dao = new JBDCCadastroFinanceiro();
+            dao.inserirContratoFinanceiro(financeiro);
+
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + ex.getMessage());
+        }
+
+        String CheckNome = IDFinanceiro.getText();
+        if (IDFinanceiro.getText().isEmpty() && IdImovel.getText().isEmpty() && ValorAbono.getText().isEmpty() && ValorParcela.getText().isEmpty()
+                && NParcelas.getText().isEmpty() && ComissaoImobil.getText().isEmpty()
+                && IPTU.getText().isEmpty() && Energia.getText().isEmpty() && Agua.getText().isEmpty() && Luz.getText().isEmpty() && Lixo.getText().isEmpty()
+                && Gas.getText().isEmpty() && Outros.getText().isEmpty() && Condominio.getText().isEmpty() && ValorTotal.getText().isEmpty() && NomeLocador.getText().isEmpty()
+                && NomeLocatario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "O nome do imóvel não pode estar vazio!");
-        }else{
+        } else {
             String[] options = {"Sim", "Não"};
             int resposta = JOptionPane.showOptionDialog(
-                this,
-                "Cadastro Registrado!"+ "\n" +
-                "Nome do Contrato: " + NomeContrato.getText() + "\n" +
-                "IdImóvel: " + IdImovel.getText() + "\n" +
-                "Locador: " + NomeLocador.getText() + "\n" +
-                "Locatário: " + NomeLocatario.getText() + "\n" +
-                "IPTU: " + IPTU.getText() + "\n" +
-                "Energia: " + Energia.getText() + "\n" +
-                "Água: " + Agua.getText() + "\n" +
-                "Luz: " + Luz.getText() + "\n" +
-                "Lixo: " + Lixo.getText() + "\n" +
-                "Gás: " + Gas.getText() + "\n" +
-                "Condomínio: " + Condominio.getText() + "\n" +
-                "Outros: " + Outros.getText() + "\n\n\n" +
-                "Valor Parcela: " + ValorParcela.getText() + "\n" +
-                "Número Parcelas: " + NParcelas.getText() + "\n" +
-                "Valor Abono: " + ValorAbono.getText() + "\n" +
-                "Comissão Imobiliária: " + ComissaoImobil.getText() + "\n" +
-                "Valor Total: " + ValorTotal.getText() + "\n" +
-                "Situação: " + SituacaoCombo.getSelectedItem() + "\n\n\n" +
-                "Cadastrar novo Contrato?" +"\n",
-                "Confirmação de Cadastro",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.WARNING_MESSAGE,
-                null,
-                options,
-                options[0]);
+                    this,
+                    "Cadastro Registrado!" + "\n"
+                    + "Nome do Contrato: " + IDFinanceiro.getText() + "\n"
+                    + "IdImóvel: " + IdImovel.getText() + "\n"
+                    + "Locador: " + NomeLocador.getText() + "\n"
+                    + "Locatário: " + NomeLocatario.getText() + "\n"
+                    + "IPTU: " + IPTU.getText() + "\n"
+                    + "Energia: " + Energia.getText() + "\n"
+                    + "Água: " + Agua.getText() + "\n"
+                    + "Luz: " + Luz.getText() + "\n"
+                    + "Lixo: " + Lixo.getText() + "\n"
+                    + "Gás: " + Gas.getText() + "\n"
+                    + "Condomínio: " + Condominio.getText() + "\n"
+                    + "Outros: " + Outros.getText() + "\n\n\n"
+                    + "Valor Parcela: " + ValorParcela.getText() + "\n"
+                    + "Número Parcelas: " + NParcelas.getText() + "\n"
+                    + "Valor Abono: " + ValorAbono.getText() + "\n"
+                    + "Comissão Imobiliária: " + ComissaoImobil.getText() + "\n"
+                    + "Valor Total: " + ValorTotal.getText() + "\n"
+                    + "Situação: " + SituacaoCombo.getSelectedItem() + "\n\n\n"
+                    + "Cadastrar novo Contrato?" + "\n",
+                    "Confirmação de Cadastro",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.WARNING_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
             if (resposta == 1) {
-            }else{
-                NomeContrato.setText("");
+            } else {
+                IDFinanceiro.setText("");
                 IdImovel.setText("");
                 NomeLocador.setText("");
                 NomeLocatario.setText("");
@@ -830,17 +879,16 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 ComissaoImobil.setText("");
                 ValorTotal.setText("");
                 Outros.setText("");
-                
-                
+
                 SituacaoCombo.setSelectedIndex(-1);
-                NomeContrato.requestFocus();
+                IDFinanceiro.requestFocus();
             }
         }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void ValorTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValorTotalKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             NomeLocador.requestFocus();
         }
     }//GEN-LAST:event_ValorTotalKeyPressed
@@ -859,7 +907,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void ValorParcelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValorParcelaKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             NParcelas.requestFocus();
         }
     }//GEN-LAST:event_ValorParcelaKeyPressed
@@ -874,7 +922,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void NParcelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NParcelasKeyPressed
         // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             ComissaoImobil.requestFocus();
         }
     }//GEN-LAST:event_NParcelasKeyPressed
@@ -889,7 +937,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void ComissaoImobilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComissaoImobilKeyPressed
         // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             IPTU.requestFocus();
         }
     }//GEN-LAST:event_ComissaoImobilKeyPressed
@@ -904,7 +952,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void EnergiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnergiaKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             Agua.requestFocus();
         }
     }//GEN-LAST:event_EnergiaKeyPressed
@@ -919,7 +967,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void AguaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AguaKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             Luz.requestFocus();
         }
     }//GEN-LAST:event_AguaKeyPressed
@@ -934,7 +982,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void LuzKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LuzKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             Lixo.requestFocus();
         }
     }//GEN-LAST:event_LuzKeyPressed
@@ -949,7 +997,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void LixoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LixoKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             Gas.requestFocus();
         }
     }//GEN-LAST:event_LixoKeyPressed
@@ -964,7 +1012,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void GasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GasKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             Outros.requestFocus();
         }
     }//GEN-LAST:event_GasKeyPressed
@@ -979,7 +1027,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void IPTUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IPTUKeyPressed
         // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             Energia.requestFocus();
         }
     }//GEN-LAST:event_IPTUKeyPressed
@@ -994,7 +1042,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void OutrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_OutrosKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             Condominio.requestFocus();
         }
     }//GEN-LAST:event_OutrosKeyPressed
@@ -1009,7 +1057,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void CondominioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CondominioKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             ValorTotal.requestFocus();
         }
     }//GEN-LAST:event_CondominioKeyPressed
@@ -1024,7 +1072,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void ValorAbonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValorAbonoKeyPressed
         // TODO add your handling code here:
-        if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             ValorParcela.requestFocus();
         }
     }//GEN-LAST:event_ValorAbonoKeyPressed
@@ -1039,7 +1087,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void NomeLocadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeLocadorKeyPressed
         // TODO add your handling code here:
-         if(evt.getExtendedKeyCode() == evt.VK_ENTER){
+        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
             NomeLocatario.requestFocus();
         }
     }//GEN-LAST:event_NomeLocadorKeyPressed
@@ -1052,16 +1100,31 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_NomeLocatarioKeyPressed
 
-    
-    private void ShowPanel(JPanel p){
-    p.setSize(799, 700);
-    p.setLocation(0, 0);
-    
-    PainelCentral.removeAll();
-    PainelCentral.add(p, BorderLayout.CENTER); 
-    PainelCentral.revalidate();
-    PainelCentral.repaint();    
-}
+    private void NomeContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeContratoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomeContratoActionPerformed
+
+    private void NomeContratoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeContratoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomeContratoKeyPressed
+
+    private void IDFinanceiroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDFinanceiroKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDFinanceiroKeyPressed
+
+    private void IDFinanceiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDFinanceiroKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDFinanceiroKeyTyped
+
+    private void ShowPanel(JPanel p) {
+        p.setSize(799, 700);
+        p.setLocation(0, 0);
+
+        PainelCentral.removeAll();
+        PainelCentral.add(p, BorderLayout.CENTER);
+        PainelCentral.revalidate();
+        PainelCentral.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Agua;
@@ -1077,6 +1140,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
     private javax.swing.JLabel EnergiaLabel;
     private javax.swing.JTextField Gas;
     private javax.swing.JLabel GasLabel;
+    private javax.swing.JTextField IDFinanceiro;
     private javax.swing.JTextField IPTU;
     private javax.swing.JLabel IPTULabel;
     private javax.swing.JTextField IdImovel;
@@ -1089,6 +1153,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
     private javax.swing.JLabel NParcelasLabel;
     private javax.swing.JTextField NomeContrato;
     private javax.swing.JLabel NomeContratoLabel;
+    private javax.swing.JLabel NomeContratoLabel1;
     private javax.swing.JTextField NomeLocador;
     private javax.swing.JLabel NomeLocadorLabel;
     private javax.swing.JTextField NomeLocatario;
