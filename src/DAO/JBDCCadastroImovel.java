@@ -147,7 +147,6 @@ public class JBDCCadastroImovel {
                 ConexaoSentenca.setString(14,cadastro.getLocatario());
                 ConexaoSentenca.setString(15,cadastro.getCidade());
                 ConexaoSentenca.setInt(16,cadastro.getIdImovel());
-                JOptionPane.showMessageDialog(null, cadastro.getIdImovel());
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença
                 this.conexao.getConnection().close(); //fecha a conexão com o banco
