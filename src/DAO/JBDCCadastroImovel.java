@@ -151,37 +151,39 @@ public class JBDCCadastroImovel {
         String ColunaSelecionada = null;
         switch(ValorConsulta){
             case 0:
-                ColunaSelecionada = "idimovel";
+                ColunaSelecionada = "i.idimovel";
                 break;
             case 1:
-                ColunaSelecionada = "nome_imovel";
+                ColunaSelecionada = "i.nome_imovel";
                 break;
             case 2:
-                ColunaSelecionada = "locador_imovel";
+                ColunaSelecionada = "i.locador_imovel";
                 break;
             case 3:
-                ColunaSelecionada = "locatario_imovel";
+                ColunaSelecionada = "i.locatario_imovel";
                 break;
             case 4:
-                ColunaSelecionada = "cep_imovel";
+                ColunaSelecionada = "i.cep_imovel";
                 break;
             case 5:
-                ColunaSelecionada = "matricula_imovel";
+                ColunaSelecionada = "i.inscricao_imobiliaria";
                 break;
             case 6:
-                ColunaSelecionada = "valor_preco";
+                ColunaSelecionada = "i.matricula_imovel";
                 break;
             case 7:
-                ColunaSelecionada = "id_situacao";
+                ColunaSelecionada = "i.valor_preco";
+                break;
+            case 8:
+                ColunaSelecionada = "s.situacao_atual";
                 break;
         }
-        String sql = "SELECT i.idimovel, i.nome_imovel, i.descricao, i.valor_preco, i.cep_imovel, i.bairro_imovel, i.endereco_imovel, i.numero_imovel, i.uf_imovel, i.inscricao_imobiliaria, i.matricula_imovel, i.iptu, i.locador_imovel, i.locatario_imovel, i.cidade, s.situacao_atual FROM imovel as i LEFT JOIN situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao) WHERE " + "i." + ColunaSelecionada + " = ? ORDER BY i.idimovel";
+        String sql = "SELECT i.idimovel, i.nome_imovel, i.descricao, i.valor_preco, i.cep_imovel, i.bairro_imovel, i.endereco_imovel, i.numero_imovel, i.uf_imovel, i.inscricao_imobiliaria, i.matricula_imovel, i.iptu, i.locador_imovel, i.locatario_imovel, i.cidade, s.situacao_atual FROM imovel as i LEFT JOIN situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao) WHERE " + ColunaSelecionada + " = ? ORDER BY i.idimovel";
         try {
             if (this.conexao.conectar()) {
 
                 PreparedStatement sentenca = this.conexao.getConnection().prepareStatement(sql);
                 
-                JOptionPane.showMessageDialog(null, ValorConsulta);
                 //idImovel, Nome, Locador, Locatário, CEP, MatrículaImóvel, Preço
                switch(ValorConsulta){
             case 0:
@@ -205,9 +207,13 @@ public class JBDCCadastroImovel {
             case 6:
                 sentenca.setString(1,cadastro.getItemPesquisar());
                 break;
+            case 7:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
+            case 8:
+                sentenca.setString(1,cadastro.getItemPesquisar());
+                break;
         }
-
-                
 
                 //recebe o resultado da consulta
                 ResultSet resultadoSentenca = sentenca.executeQuery();
@@ -237,10 +243,37 @@ public class JBDCCadastroImovel {
                 this.conexao.getConnection().close();
             }
 
-            JOptionPane.showMessageDialog(null, "Top passou");
+           
             return ListaImovel;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
+    
+     public void ExcluirImovel(CadastroImovelModel CadastroIdImovel) {
+        //string com a consulta que será executada no banco
+        String sql = "DELETE FROM imovel as i WHERE i.idimovel = ?";
+        
+        try
+        {
+            //tenta realizar a conexão, se retornar verdadeiro entra no IF
+            if(this.conexao.conectar())
+            {
+                //prepara a sentença com a consulta da string
+                PreparedStatement ConexaoSentenca = this.conexao.getConnection().prepareStatement(sql);
+                
+                //subtitui as interrograções da consulta, pelo valor específico
+                ConexaoSentenca.setInt(1,CadastroIdImovel.getIdImovel()); //subsitui a primeira ocorrência da interrogação pelo atributo nome
+                
+                ConexaoSentenca.execute(); //executa o comando no banco
+                ConexaoSentenca.close(); //fecha a sentença
+                this.conexao.getConnection().close(); //fecha a conexão com o banco
+            }
+        }
+        catch(SQLException ex)
+        {
+           throw new RuntimeException(ex);
+        }
+    }
+     
 }
