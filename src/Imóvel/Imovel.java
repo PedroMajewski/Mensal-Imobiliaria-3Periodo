@@ -20,6 +20,7 @@ import Imóvel.CadastroImovel;
 import Imóvel.EditarExcluirImóvel;
 import Model.CadastroImovelModel;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,9 +38,9 @@ public class Imovel extends javax.swing.JPanel {
   
     public Imovel() {
         initComponents();
-        MostrarTarefasTabela();
+        MostrarImoveisTabela();
         
-        JButton [] btns = {BtnImovel, BtnPesquisa};
+        JButton [] btns = {BtnImovel, BtnPesquisa,BtnRecarregar};
        for(JButton btn : btns){
            btn.setBackground(new Color(30,122,206));
            btn.setUI(new BasicButtonUI());
@@ -154,6 +155,7 @@ public class Imovel extends javax.swing.JPanel {
         BtnPesquisa = new javax.swing.JButton();
         BtnEditar = new javax.swing.JButton();
         BtnExcluir = new javax.swing.JButton();
+        BtnRecarregar = new javax.swing.JButton();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -196,6 +198,11 @@ public class Imovel extends javax.swing.JPanel {
                 "IdImovel", "Nome", "Locador", "Locátario", "Inscrição Imobiliaria", "Matrícula Imóvel", "Preço", "CEP", "Número", "UF", "Situação", "Descrição"
             }
         ));
+        TabelaImovel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelaImovelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TabelaImovel);
         if (TabelaImovel.getColumnModel().getColumnCount() > 0) {
             TabelaImovel.getColumnModel().getColumn(0).setResizable(false);
@@ -222,7 +229,7 @@ public class Imovel extends javax.swing.JPanel {
             }
         });
 
-        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "idimovel", "nome_imovel", "locador_imovel", "locatario_imovel", "cep_imovel", "matricula_imovel", "valor_preco", " " }));
+        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImóvel", "Nome do Imóvel", "Locador", "Locatário", "CEP", "Inscrição Imobiliária", "Matrícula do Imóvel", "Preço", "Siutação" }));
         FiltroCombo.setBorder(null);
         FiltroCombo.setLightWeightPopupEnabled(false);
 
@@ -268,6 +275,18 @@ public class Imovel extends javax.swing.JPanel {
             }
         });
 
+        BtnRecarregar.setBackground(new java.awt.Color(30, 122, 206));
+        BtnRecarregar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnRecarregar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnRecarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Search.png"))); // NOI18N
+        BtnRecarregar.setBorderPainted(false);
+        BtnRecarregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRecarregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRecarregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -282,21 +301,21 @@ public class Imovel extends javax.swing.JPanel {
                         .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(155, 155, 155))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(PesquisarText, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(16, 16, 16)
-                                .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(PesquisarText, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel5))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))))
         );
@@ -311,7 +330,8 @@ public class Imovel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -381,15 +401,52 @@ public class Imovel extends javax.swing.JPanel {
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         // TODO add your handling code here:
+        CadastroImovelModel ListadeImoveis = new CadastroImovelModel();
+        JBDCCadastroImovel CadastroImovel = new JBDCCadastroImovel();
+        int LinhaSelecionada = TabelaImovel.getSelectedRow();
+        DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaImovel.getModel();
+        int ImovelSelecionado = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getIdImovel();
+        CadastroImovel.ConsultaImovel(ImovelSelecionado);
+        
+        EditarExcluirImóvel EditarImovel = new EditarExcluirImóvel();
+        ShowPanel(EditarImovel);  
     }//GEN-LAST:event_BtnEditarActionPerformed
 
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         // TODO add your handling code here:
+        CadastroImovelModel ListadeImoveis = new CadastroImovelModel();
+        JBDCCadastroImovel CadastroImovel = new JBDCCadastroImovel();
+        int LinhaSelecionada = TabelaImovel.getSelectedRow();
+        DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaImovel.getModel();
+        int ImovelSelecionado = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getIdImovel();
+        String ImovelNome = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getNomeImovel();
+        String LocatarioImovel = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getLocatario();
+        
+         String[] options = {"Sim", "Cancelar"};
+         int resposta = JOptionPane.showOptionDialog(
+            this,
+            "Deseja excluir mesmo este imóvel?" + "\n\n"+
+            "Id do Imóvel: " + ImovelSelecionado + "\n" +
+            "Nome do Imóvel: " + ImovelNome+ "\n" +
+            "Locatário: " + LocatarioImovel + "\n\n",
+            "Confirmação",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            options,
+            options[0]);
+        if (resposta == 0) {
+            ListadeImoveis.setIdImovel(ImovelSelecionado);
+            CadastroImovel.ExcluirImovel(ListadeImoveis);
+        } else {
+            JOptionPane.showMessageDialog(null, "Operação Cancelada!");
+        }
     }//GEN-LAST:event_BtnExcluirActionPerformed
 
     private void BtnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisaActionPerformed
         // TODO add your handling code here:
         
+        RecarregarImoveisTabela();
         JBDCCadastroImovel ListaDeImóveis = new JBDCCadastroImovel();
         CadastroImovelModel ListadoModel = new CadastroImovelModel();
         ListadoModel.setValorConsulta(FiltroCombo.getSelectedIndex());
@@ -417,6 +474,17 @@ public class Imovel extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_BtnPesquisaActionPerformed
 
+    private void TabelaImovelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaImovelMouseClicked
+        // TODO add your handling code here:
+        CadastroImovelModel ListadeImoveis = new CadastroImovelModel();
+        
+    }//GEN-LAST:event_TabelaImovelMouseClicked
+
+    private void BtnRecarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRecarregarActionPerformed
+        // TODO add your handling code here:
+        RecarregarImoveisTabela();
+    }//GEN-LAST:event_BtnRecarregarActionPerformed
+
 
      private void ShowPanel(JPanel p){
     p.setSize(799, 700);
@@ -428,35 +496,43 @@ public class Imovel extends javax.swing.JPanel {
     PainelCentral.repaint();    
 }
    
-     public void MostrarTarefasTabela(){
-         JBDCCadastroImovel ListaImovel = new JBDCCadastroImovel();
-        ArrayList<CadastroImovelModel> listaimovel =  ListaImovel.ConsultarImovel();
+     public void MostrarImoveisTabela(){
+        JBDCCadastroImovel ListaImovel = new JBDCCadastroImovel();
+        ArrayList<CadastroImovelModel> listaimovelcoluna =  ListaImovel.MostrarListaImovel();
+        
         
         DefaultTableModel model = (DefaultTableModel)TabelaImovel.getModel();
-
+         model.setRowCount(0);
+         model.setColumnCount(12);
         
         Object[] row = new Object[12];
-        for(int i = 0;i < listaimovel.size();i++){
-            row[0] = listaimovel.get(i).getIdImovel();
-            row[1] = listaimovel.get(i).getNomeImovel();
-            row[2] = listaimovel.get(i).getLocador();
-            row[3] = listaimovel.get(i).getLocatario();
-            row[4] = listaimovel.get(i).getInscricaoImobiliaria();
-            row[5] = listaimovel.get(i).getMatriculaImovel();
-            row[6] = listaimovel.get(i).getValorPreco();
-            row[7] = listaimovel.get(i).getCepImovel();
-            row[8] = listaimovel.get(i).getNumeroImovel();
-            row[9] = listaimovel.get(i).getUfImovel();
-            row[10] = listaimovel.get(i).getSituacao();
-            row[11] = listaimovel.get(i).getDescricao();
+        for(int i = 0;i < listaimovelcoluna.size();i++){
+            row[0] = listaimovelcoluna.get(i).getIdImovel();
+            row[1] = listaimovelcoluna.get(i).getNomeImovel();
+            row[2] = listaimovelcoluna.get(i).getLocador();
+            row[3] = listaimovelcoluna.get(i).getLocatario();
+            row[4] = listaimovelcoluna.get(i).getInscricaoImobiliaria();
+            row[5] = listaimovelcoluna.get(i).getMatriculaImovel();
+            row[6] = listaimovelcoluna.get(i).getValorPreco();
+            row[7] = listaimovelcoluna.get(i).getCepImovel();
+            row[8] = listaimovelcoluna.get(i).getNumeroImovel();
+            row[9] = listaimovelcoluna.get(i).getUfImovel();
+            row[10] = listaimovelcoluna.get(i).getSituacao();
+            row[11] = listaimovelcoluna.get(i).getDescricao();
             
 
-            model.addRow(row);
+            model.addRow(row.clone());
 
         }
        
     }
      
+     public void RecarregarImoveisTabela() {
+    DefaultTableModel model = (DefaultTableModel) TabelaImovel.getModel();
+    model.setRowCount(0);
+    model.setColumnCount(12);
+    MostrarImoveisTabela();
+}
      
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -464,6 +540,7 @@ public class Imovel extends javax.swing.JPanel {
     private javax.swing.JButton BtnExcluir;
     private javax.swing.JButton BtnImovel;
     private javax.swing.JButton BtnPesquisa;
+    private javax.swing.JButton BtnRecarregar;
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JPanel PainelCentral;
     private javax.swing.JTextField PesquisarText;
