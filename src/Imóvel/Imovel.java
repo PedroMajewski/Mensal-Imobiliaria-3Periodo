@@ -22,6 +22,7 @@ import Model.CadastroImovelModel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Imóvel.DetalharImovel;
 
 /**
  *
@@ -40,7 +41,7 @@ public class Imovel extends javax.swing.JPanel {
         initComponents();
         MostrarImoveisTabela();
         
-        JButton [] btns = {BtnImovel, BtnPesquisa,BtnRecarregar};
+        JButton [] btns = {BtnImovel, BtnPesquisa,BtnRecarregar,BtnDetalhar};
        for(JButton btn : btns){
            btn.setBackground(new Color(30,122,206));
            btn.setUI(new BasicButtonUI());
@@ -156,6 +157,7 @@ public class Imovel extends javax.swing.JPanel {
         BtnEditar = new javax.swing.JButton();
         BtnExcluir = new javax.swing.JButton();
         BtnRecarregar = new javax.swing.JButton();
+        BtnDetalhar = new javax.swing.JButton();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -278,12 +280,24 @@ public class Imovel extends javax.swing.JPanel {
         BtnRecarregar.setBackground(new java.awt.Color(30, 122, 206));
         BtnRecarregar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         BtnRecarregar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnRecarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Search.png"))); // NOI18N
+        BtnRecarregar.setText("Recarregar");
         BtnRecarregar.setBorderPainted(false);
         BtnRecarregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnRecarregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRecarregarActionPerformed(evt);
+            }
+        });
+
+        BtnDetalhar.setBackground(new java.awt.Color(30, 122, 206));
+        BtnDetalhar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnDetalhar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnDetalhar.setText("Detalhar");
+        BtnDetalhar.setBorderPainted(false);
+        BtnDetalhar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnDetalhar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDetalharActionPerformed(evt);
             }
         });
 
@@ -296,15 +310,6 @@ public class Imovel extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(PesquisarText, javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,9 +320,19 @@ public class Imovel extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnDetalhar, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))
+                .addGap(13, 13, 13))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,7 +346,8 @@ public class Imovel extends javax.swing.JPanel {
                     .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnDetalhar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -485,6 +501,19 @@ public class Imovel extends javax.swing.JPanel {
         RecarregarImoveisTabela();
     }//GEN-LAST:event_BtnRecarregarActionPerformed
 
+    private void BtnDetalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDetalharActionPerformed
+        // TODO add your handling code here    
+        CadastroImovelModel ListadeImoveis = new CadastroImovelModel();
+        JBDCCadastroImovel CadastroImovel = new JBDCCadastroImovel();
+        int LinhaSelecionada = TabelaImovel.getSelectedRow();
+        DefaultTableModel ModeloTabela = (DefaultTableModel) TabelaImovel.getModel();
+        int ImovelSelecionado = CadastroImovel.MostrarListaImovel().get(LinhaSelecionada).getIdImovel();
+        CadastroImovel.ConsultaImovel(ImovelSelecionado);
+        
+        DetalharImovel DetalhesImóvel = new DetalharImovel();
+        DetalhesImóvel.setVisible(true);
+    }//GEN-LAST:event_BtnDetalharActionPerformed
+
 
      private void ShowPanel(JPanel p){
     p.setSize(799, 700);
@@ -536,6 +565,7 @@ public class Imovel extends javax.swing.JPanel {
      
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnDetalhar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnExcluir;
     private javax.swing.JButton BtnImovel;

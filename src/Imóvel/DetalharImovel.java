@@ -1,70 +1,28 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Imóvel;
 
-import java.awt.BorderLayout;
+import DAO.JBDCCadastroImovel;
+import Model.CadastroImovelModel;
+import br.com.parg.viacep.ViaCEP;
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicButtonUI;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-import br.com.parg.viacep.ViaCEP;
-import Model.CadastroImovelModel;
-import DAO.JBDCCadastroImovel;
-import java.util.ArrayList;
-import DAO.JBDCCadastroImovel.GuardarImovelSelecionado;
 /**
  *
  * @author pedro
  */
-public class EditarExcluirImóvel extends javax.swing.JPanel {
+public class DetalharImovel extends javax.swing.JFrame {
 
     /**
-     * Creates new form CadastroImovel
+     * Creates new form DetalharImovel
      */
-    public EditarExcluirImóvel() {
+    public DetalharImovel() {
         initComponents();
         PuxarItensSelecionados();
-        
-        JButton [] btns = {BtnCadastrar, BtnCancelar,BtnRetornar};
-       for(JButton btn : btns){
-           btn.setBackground(new Color(30,122,206));
-           btn.setUI(new BasicButtonUI());
-           BtnRetornar.setBackground(Color.WHITE);
-           btn.addMouseListener(new MouseListener(){
-               @Override
-               public void mouseClicked(MouseEvent e){
-                   
-               }
-               @Override
-               public void mousePressed(MouseEvent e){
-                   
-               }
-               @Override 
-                public void mouseReleased(MouseEvent e){
-                   
-               }
-               @Override
-               public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(47,141,227));
-                    BtnRetornar.setBackground(Color.WHITE);
-                   
-               }
-               @Override
-               public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(30,122,206));
-                   BtnRetornar.setBackground(Color.WHITE);
-               }
-           
-           });
-           }
-   
-           
     }
 
     /**
@@ -80,7 +38,6 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        BtnCadastrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         NomeImovelLabel = new javax.swing.JLabel();
@@ -100,7 +57,6 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         BtnCancelar = new javax.swing.JButton();
         PrecoLabel = new javax.swing.JLabel();
         Preco = new javax.swing.JTextField();
-        BtnRetornar = new javax.swing.JButton();
         Bairro = new javax.swing.JTextField();
         BairroLabel = new javax.swing.JLabel();
         Endereco = new javax.swing.JTextField();
@@ -119,6 +75,8 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         IdImovel = new javax.swing.JTextField();
         NomeImovelLabel1 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
         PainelCentral.setToolTipText("");
@@ -133,24 +91,11 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        BtnCadastrar.setBackground(new java.awt.Color(30, 122, 206));
-        BtnCadastrar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        BtnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Edit_1.png"))); // NOI18N
-        BtnCadastrar.setText("Atualizar Imóvel Antigo");
-        BtnCadastrar.setBorderPainted(false);
-        BtnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrarActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Editar Imóvel");
+        jLabel3.setText("Detalhes do Imóvel");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Aqui é possível editar os imóveis, e atualizá-los.");
+        jLabel4.setText("Aqui é possível visualizar os dados completos do Imóvel");
 
         NomeImovelLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         NomeImovelLabel.setText("Nome Imóvel:");
@@ -259,19 +204,6 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 PrecoKeyTyped(evt);
-            }
-        });
-
-        BtnRetornar.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
-        BtnRetornar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/U Turn to Left_1.png"))); // NOI18N
-        BtnRetornar.setText("Retornar");
-        BtnRetornar.setAlignmentY(0.0F);
-        BtnRetornar.setBorderPainted(false);
-        BtnRetornar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnRetornar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        BtnRetornar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRetornarActionPerformed(evt);
             }
         });
 
@@ -400,7 +332,6 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
             }
         });
 
-        IdImovel.setBackground(new java.awt.Color(227, 227, 227));
         IdImovel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         IdImovel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,101 +352,102 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(BtnRetornar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LocadorLabel4)
-                            .addComponent(InscricaoImobiliaria, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LocadorLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MatriculaImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 15, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(NumeroLabel1)
-                                .addGap(287, 287, 287))
-                            .addComponent(Cidade)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DescricaoTextLabel)
-                            .addComponent(DescricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EnderecoLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(UFLabel)
-                                    .addComponent(UF, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(PrecoLabel)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(Preco)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CEPLabel)
-                                    .addComponent(CEP, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BairroLabel)
-                                    .addComponent(Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(NumeroLabel)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(Numero)))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LocadorLabel)
-                            .addComponent(Locador, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LocatarioLabel)
-                            .addComponent(Locatario)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IPTUlLabel)
-                            .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SituacaoComboLabel)
-                            .addComponent(SituacaoCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NomeImovelLabel)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(NomeImovelLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IdImovel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(NomeImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(39, 39, 39))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(LocadorLabel4)
+                                .addComponent(InscricaoImobiliaria, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(LocadorLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(MatriculaImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(NumeroLabel1)
+                                    .addGap(287, 287, 287))
+                                .addComponent(Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(DescricaoTextLabel)
+                                .addComponent(DescricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(12, 12, 12)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(EnderecoLabel))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(UFLabel)
+                                        .addComponent(UF, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(PrecoLabel)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(Preco)))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CEPLabel)
+                                        .addComponent(CEP, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(BairroLabel)
+                                        .addComponent(Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(NumeroLabel)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(Numero)))))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(LocadorLabel)
+                                .addComponent(Locador, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(LocatarioLabel)
+                                .addComponent(Locatario)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(602, 602, 602)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(SituacaoComboLabel)
+                                .addComponent(SituacaoCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(NomeImovelLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(IdImovel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(NomeImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(NomeImovelLabel)
+                                    .addGap(337, 337, 337)
+                                    .addComponent(IPTUlLabel))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(422, 422, 422)
+                                    .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(0, 0, Short.MAX_VALUE))))
+                .addGap(37, 37, 37))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(BtnRetornar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -530,21 +462,20 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(NomeImovelLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(NomeImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(SituacaoComboLabel)
-                                        .addGap(32, 32, 32))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(IPTUlLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
+                                .addComponent(NomeImovelLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(NomeImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(SituacaoComboLabel)
+                                .addGap(32, 32, 32))
+                            .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(IPTUlLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(DescricaoTextLabel)
@@ -585,7 +516,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                                 .addComponent(LocadorLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Locador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(LocatarioLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Locatario, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -603,11 +534,9 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                         .addComponent(NumeroLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73))
         );
 
         javax.swing.GroupLayout PainelCentralLayout = new javax.swing.GroupLayout(PainelCentral);
@@ -619,7 +548,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                 .addGroup(PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(466, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         PainelCentralLayout.setVerticalGroup(
@@ -629,12 +558,12 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 799, Short.MAX_VALUE)
@@ -647,84 +576,9 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
-        // TODO add your handling code here:
-        String CheckNome = NomeImovel.getText();
-        if(NomeImovel.getText().isEmpty() && DescricaoTextArea.getText().isEmpty() && Locador.getText().isEmpty() && Locatario.getText().isEmpty()
-            && IPTU.getText().isEmpty() && CEP.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "O nome do imóvel não pode estar vazio!");
-        }else{
-            String[] options = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(
-                this,
-                "Cadastro Novo Registrado!"+ "\n" +
-                "Nome do Imóvel: " + NomeImovel.getText() + "\n" +
-                "Descrição: " + DescricaoTextArea.getText() + "\n" +
-                "Locador: " + Locador.getText() + "\n" +
-                "Locatário: " + Locatario.getText() + "\n" +
-                "IPTU: " + IPTU.getText() + "\n" +
-                "CEP: " + CEP.getText() + "\n" +
-                "Bairro: " + Bairro.getText() + "\n" +
-                "Endereço: " + Endereco.getText() + "\n" +
-                "Numero: " + Numero.getText() + "\n" +
-                "UF: " + UF.getText() + "\n" +
-                "Preço: " + Preco.getText() + "\n\n" +
-                "Numero Agua: " + Preco.getText() + "\n" +
-                "Situação: " + SituacaoCombo.getSelectedItem() + "\n\n\n" +
-                "Atualizar Imóvel?" +"\n",
-                "Confirmação de Atualização",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.WARNING_MESSAGE,
-                null,
-                options,
-                options[0]);
-            if (resposta == 0) {
-
-                CadastroImovelModel AtualizarImovel = new CadastroImovelModel();
-
-                int idImovel = Integer.parseInt(IdImovel.getText());
-                AtualizarImovel.setIdImovel(idImovel);
-                AtualizarImovel.setNomeImovel(NomeImovel.getText());
-                AtualizarImovel.setDescricao(DescricaoTextArea.getText());
-                AtualizarImovel.setLocador(Locador.getText());
-                AtualizarImovel.setLocatario(Locatario.getText());
-                AtualizarImovel.setIptu(IPTU.getText());
-                AtualizarImovel.setCepImovel(CEP.getText());
-                AtualizarImovel.setBairroImovel(Bairro.getText());
-                AtualizarImovel.setEnderecoImovel(Endereco.getText());
-                AtualizarImovel.setNumeroImovel(Numero.getText());
-                AtualizarImovel.setUfImovel(UF.getText());
-                AtualizarImovel.setValorPreco(Preco.getText());
-                AtualizarImovel.setSituacao((String) SituacaoCombo.getSelectedItem());
-                AtualizarImovel.setInscricaoImobiliaria(InscricaoImobiliaria.getText());
-                AtualizarImovel.setMatriculaImovel(MatriculaImovel.getText());
-                AtualizarImovel.setCidade(Cidade.getText());
-
-                JBDCCadastroImovel AtualziarImovel = new JBDCCadastroImovel();
-                AtualziarImovel.AtualizarImovel(AtualizarImovel);
-
-                NomeImovel.setText("");
-                Bairro.setText("");
-                Endereco.setText("");
-                Numero.setText("");
-                UF.setText("");
-                DescricaoTextArea.setText("");
-                Locador.setText("");
-                Locatario.setText("");
-                IPTU.setText("");
-                CEP.setText("");
-                SituacaoCombo.setSelectedIndex(-1);
-                Preco.setText("");
-                InscricaoImobiliaria.setText("");
-                MatriculaImovel.setText("");
-                Cidade.setText("");
-            }else{
-
-            }
-        }
-    }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void NomeImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeImovelActionPerformed
         // TODO add your handling code here:
@@ -806,7 +660,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         String[] options = {"Sim", "Cancelar"};
         int resposta = JOptionPane.showOptionDialog(
             this,
-            "Esta ação apagará todos os campos, tem certeza?",
+            "Deseja Retornar?",
             "Confirmação",
             JOptionPane.DEFAULT_OPTION,
             JOptionPane.WARNING_MESSAGE,
@@ -815,23 +669,9 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
             options[0]
         );
         if (resposta == 0) {
-            NomeImovel.setText("");
-            Bairro.setText("");
-            Endereco.setText("");
-            Numero.setText("");
-            UF.setText("");
-            DescricaoTextArea.setText("");
-            Locador.setText("");
-            Locatario.setText("");
-            IPTU.setText("");
-            CEP.setText("");
-            SituacaoCombo.setSelectedIndex(-1);
-            Preco.setText("");
-            InscricaoImobiliaria.setText("");
-            MatriculaImovel.setText("");
-            Cidade.setText("");
+            setVisible(false);
         } else {
-            BtnCancelar.requestFocus();
+            
         }        // TODO add your handling code here:
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
@@ -854,12 +694,6 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_PrecoKeyTyped
-
-    private void BtnRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetornarActionPerformed
-        // TODO add your handling code here:
-        Imovel Imovel = new Imovel();
-        ShowPanel(Imovel);
-    }//GEN-LAST:event_BtnRetornarActionPerformed
 
     private void BairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BairroActionPerformed
         // TODO add your handling code here:
@@ -1004,37 +838,89 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_IdImovelKeyPressed
 
-    
-    private void ShowPanel(JPanel p){
-    p.setSize(799, 700);
-    p.setLocation(0, 0);
-    
-    PainelCentral.removeAll();
-    PainelCentral.add(p, BorderLayout.CENTER); 
-    PainelCentral.revalidate();
-    PainelCentral.repaint();    
-}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DetalharImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DetalharImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DetalharImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DetalharImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DetalharImovel().setVisible(true);
+            }
+        });
+    }
     
     public void PuxarItensSelecionados(){
-        ArrayList<CadastroImovelModel> ImovelSelecionadoTabela = GuardarImovelSelecionado.getImovelSelecionado();
+        ArrayList<CadastroImovelModel> ImovelSelecionadoTabela = JBDCCadastroImovel.GuardarImovelSelecionado.getImovelSelecionado();
         for(CadastroImovelModel Imovel : ImovelSelecionadoTabela){
             IdImovel.setText(String.valueOf(Imovel.getIdImovel()));
-            IdImovel.setEditable(false);
-            NomeImovel.setText(Imovel.getNomeImovel());
-                Bairro.setText(Imovel.getBairroImovel());
-                Endereco.setText(Imovel.getEnderecoImovel());
-                Numero.setText(Imovel.getNumeroImovel());
-                UF.setText(Imovel.getUfImovel());
-                DescricaoTextArea.setText(Imovel.getDescricao());
-                Locador.setText(Imovel.getLocador());
-                Locatario.setText(Imovel.getLocatario());
-                IPTU.setText(Imovel.getIptu());
-                CEP.setText(Imovel.getCepImovel());
-                Preco.setText(Imovel.getValorPreco());
-                InscricaoImobiliaria.setText(Imovel.getInscricaoImobiliaria());
-                MatriculaImovel.setText(Imovel.getMatriculaImovel());
-                Cidade.setText(Imovel.getCidade());
-               
+IdImovel.setEditable(false);
+
+NomeImovel.setText(Imovel.getNomeImovel());
+NomeImovel.setEditable(false);
+
+Bairro.setText(Imovel.getBairroImovel());
+Bairro.setEditable(false);
+
+Endereco.setText(Imovel.getEnderecoImovel());
+Endereco.setEditable(false);
+
+Numero.setText(Imovel.getNumeroImovel());
+Numero.setEditable(false);
+
+UF.setText(Imovel.getUfImovel());
+UF.setEditable(false);
+
+DescricaoTextArea.setText(Imovel.getDescricao());
+DescricaoTextArea.setEditable(false);
+
+Locador.setText(Imovel.getLocador());
+Locador.setEditable(false);
+
+Locatario.setText(Imovel.getLocatario());
+Locatario.setEditable(false);
+
+IPTU.setText(Imovel.getIptu());
+IPTU.setEditable(false);
+
+CEP.setText(Imovel.getCepImovel());
+CEP.setEditable(false);
+
+Preco.setText(Imovel.getValorPreco());
+Preco.setEditable(false);
+
+InscricaoImobiliaria.setText(Imovel.getInscricaoImobiliaria());
+InscricaoImobiliaria.setEditable(false);
+
+MatriculaImovel.setText(Imovel.getMatriculaImovel());
+MatriculaImovel.setEditable(false);
+
+Cidade.setText(Imovel.getCidade());
+Cidade.setEditable(false);
+SituacaoCombo.setEditable(false);
                 if("ALUGUEL".equals(Imovel.getSituacao())){
                   SituacaoCombo.setSelectedIndex(0);
                 }else{
@@ -1046,9 +932,7 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Bairro;
     private javax.swing.JLabel BairroLabel;
-    private javax.swing.JButton BtnCadastrar;
     private javax.swing.JButton BtnCancelar;
-    private javax.swing.JButton BtnRetornar;
     private javax.swing.JFormattedTextField CEP;
     private javax.swing.JLabel CEPLabel;
     private javax.swing.JTextField Cidade;
