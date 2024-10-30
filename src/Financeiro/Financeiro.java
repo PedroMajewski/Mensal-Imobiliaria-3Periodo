@@ -159,7 +159,7 @@ public class Financeiro extends javax.swing.JPanel {
 
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImovel", "Nome", "Descricao", "Proprietario", "Valor", "IdRegistro", "idLocalizacao" }));
+        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImovel", "Nome", "Descricao", "Proprietario", "Valor", " " }));
         FiltroCombo.setBorder(null);
         FiltroCombo.setLightWeightPopupEnabled(false);
 
