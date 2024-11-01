@@ -9,55 +9,39 @@ package Model;
  * @author Patryk
  */
 public class FinanceiroModel {
-
-    private int idFinanceiro;          //idFinanceiro PRIMARIA
+          
     private int idImovelFinanceiro;    //idImovelFinanceiro Foreign IDIMOVEL
     private String nomeContrato;
-    private String situacaoFinanceiro;
+    private String situacaoComboFinanceiro;
+    private String numeroParcelas;
     private String valorParcela;
-    private String comimobiliariafinanceiro;
-    private String iptu;
-    private String condominio;
-    private String energia;
-    private String agua;
-    private String lixo;
-    private String gas;
-    private String outros;
-    private String abono;
     private String valor_total;
-    private int Locatario = 0;
+    private String Locatario;
+    private String Locador;
 
     //Insere os dados na tabela
-    public FinanceiroModel(int idFinanceiro, int idImovelFinanceiro,String nomeContrato, String situacaoFinanceiro, String valorParcela, String comimobiliariafinanceiro, String iptu, String condominio, String energia, String agua, String lixo, String gas, String outros, String abono, String valor_total, int Locatario) {
-        this.idFinanceiro = idFinanceiro;
+    public FinanceiroModel(int idImovelFinanceiro,String nomeContrato,String situacaoComboFinanceiro,String numeroParcelas, String valorParcela, String valor_total, String Locatario, String Locador) {
+  
         this.idImovelFinanceiro = idImovelFinanceiro;
         this.nomeContrato = nomeContrato;
-        this.situacaoFinanceiro = situacaoFinanceiro;
+        this.situacaoComboFinanceiro = situacaoComboFinanceiro;
         this.valorParcela = valorParcela;
-        this.comimobiliariafinanceiro = comimobiliariafinanceiro;
-        this.iptu = iptu;
-        this.condominio = condominio;
-        this.energia = energia;
-        this.agua = agua;
-        this.lixo = lixo;
-        this.gas = gas;
-        this.outros = outros;
-        this.abono = abono;
+        this.numeroParcelas = numeroParcelas;
         this.valor_total = valor_total;
         this.Locatario = Locatario;
+        this.Locador = Locador;
+    }
+
+    public void setSituacaoComboFinanceiro(String SituacaoComboFinanceiro) {
+        this.situacaoComboFinanceiro = SituacaoComboFinanceiro;
+    }
+
+    public String getSituacaoComboFinanceiro() {
+        return situacaoComboFinanceiro;
     }
     public FinanceiroModel() {
     }
 
-    
-
-    public int getIdFinanceiro() {
-        return idFinanceiro;
-    }
-
-    public void setIdFinanceiro(int idFinanceiro) {
-        this.idFinanceiro = idFinanceiro;
-    }
 
     public int getIdImovelFinanceiro() {
         return idImovelFinanceiro;
@@ -75,92 +59,22 @@ public class FinanceiroModel {
         this.nomeContrato = nomeContrato;
     }
     
-    public String getSituacaoFinanceiro() {
-        return situacaoFinanceiro;
-    }
 
-    public void setSituacaoFinanceiro(String situacaoFinanceiro) {
-        this.situacaoFinanceiro = situacaoFinanceiro;
+    
+    public String getNumeroParcelas(){
+        return numeroParcelas;
     }
-
+    
+    public void setNumeroParcelas (String numeroParcelas) {
+        this.numeroParcelas = numeroParcelas;
+    }
+    
     public String getValorParcela() {
         return valorParcela;
     }
 
     public void setValorParcela(String valorParcela) {
         this.valorParcela = valorParcela;
-    }
-
-    public String getComimobiliariafinanceiro() {
-        return comimobiliariafinanceiro;
-    }
-
-    public void setComimobiliariafinanceiro(String comimobiliariafinanceiro) {
-        this.comimobiliariafinanceiro = comimobiliariafinanceiro;
-    }
-
-    public String getIptu() {
-        return iptu;
-    }
-
-    public void setIptu(String iptu) {
-        this.iptu = iptu;
-    }
-
-    public String getCondominio() {
-        return condominio;
-    }
-
-    public void setCondominio(String condominio) {
-        this.condominio = condominio;
-    }
-
-    public String getEnergia() {
-        return energia;
-    }
-
-    public void setEnergia(String energia) {
-        this.energia = energia;
-    }
-
-    public String getAgua() {
-        return agua;
-    }
-
-    public void setAgua(String agua) {
-        this.agua = agua;
-    }
-
-    public String getLixo() {
-        return lixo;
-    }
-
-    public void setLixo(String lixo) {
-        this.lixo = lixo;
-    }
-
-    public String getGas() {
-        return gas;
-    }
-
-    public void setGas(String gas) {
-        this.gas = gas;
-    }
-
-    public String getOutros() {
-        return outros;
-    }
-
-    public void setOutros(String outros) {
-        this.outros = outros;
-    }
-
-    public String getAbono() {
-        return abono;
-    }
-
-    public void setAbono(String abono) {
-        this.abono = abono;
     }
 
     public String getValor_total() {
@@ -171,12 +85,19 @@ public class FinanceiroModel {
         this.valor_total = valor_total;
     }
 
-    public int getLocatario() {
+    public String getLocatario() {
         return Locatario;
     }
 
-    public void setLocatario(int Locatario) {
+    public void setLocatario(String Locatario) {
         this.Locatario = Locatario;
     }
+    
+    public String getLocador() {
+        return Locador;
+    }
 
+    public void setLocador(String Locador) {
+        this.Locador = Locador;
+    }
 }

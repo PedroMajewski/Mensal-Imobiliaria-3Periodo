@@ -27,29 +27,22 @@ public class JBDCCadastroFinanceiro {
     }
 
     public void inserirContratoFinanceiro(FinanceiroModel cadastroContrato) {
-        String sql = "INSERT INTO financeiro (idFinanceiro, idImovelFinanceiro, situacaoFinanceiro, valorParcela, "
-                + "comimobiliariafinanceiro, iptu, condominio, energia, agua, lixo, gas, outros, abono, valor_total, Locatario) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO financeiro (idimovel_financeiro, nomeContrato, situacao_financeiro, valor_parcela, "
+                + "numeroParcelas, valor_total, locatario, locador) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             if (this.conexao.conectar()) {
                 Connection conn = this.conexao.getConnection();
                 PreparedStatement statement = conn.prepareStatement(sql);
 
-                statement.setInt(1, cadastroContrato.getIdFinanceiro());
-                statement.setInt(2, cadastroContrato.getIdImovelFinanceiro());
-                statement.setString(3, cadastroContrato.getSituacaoFinanceiro());
+                statement.setInt(1, cadastroContrato.getIdImovelFinanceiro());
+                statement.setString(2, cadastroContrato.getNomeContrato());
+                statement.setString(3, cadastroContrato.getSituacaoComboFinanceiro());
                 statement.setString(4, cadastroContrato.getValorParcela());
-                statement.setString(5, cadastroContrato.getComimobiliariafinanceiro());
-                statement.setString(6, cadastroContrato.getIptu());
-                statement.setString(7, cadastroContrato.getCondominio());
-                statement.setString(8, cadastroContrato.getEnergia());
-                statement.setString(9, cadastroContrato.getAgua());
-                statement.setString(10, cadastroContrato.getLixo());
-                statement.setString(11, cadastroContrato.getGas());
-                statement.setString(12, cadastroContrato.getOutros());
-                statement.setString(13, cadastroContrato.getAbono());
-                statement.setString(14, cadastroContrato.getValor_total());
-                statement.setInt(15, cadastroContrato.getLocatario());
+                statement.setString(5, cadastroContrato.getNumeroParcelas());
+                statement.setString(6, cadastroContrato.getValor_total());
+                statement.setString(7, cadastroContrato.getLocatario());
+                statement.setString(8, cadastroContrato.getLocador());
 
                 statement.execute();
                 statement.close();
@@ -74,21 +67,15 @@ public class JBDCCadastroFinanceiro {
 
                     FinanceiroModel financeiro = new FinanceiroModel();
 
-                    financeiro.setIdFinanceiro(resultado.getInt("idFinanceiro"));
+                    
                     financeiro.setIdImovelFinanceiro(resultado.getInt("idImovelFinanceiro"));
-                    financeiro.setSituacaoFinanceiro(resultado.getString("situacaoFinanceiro"));
+                    financeiro.setNomeContrato(resultado.getString("nomeContrato"));
+                    financeiro.setSituacaoComboFinanceiro(resultado.getString("situacaoFinanceiro"));
                     financeiro.setValorParcela(resultado.getString("valorParcela"));
-                    financeiro.setComimobiliariafinanceiro(resultado.getString("comimobiliariafinanceiro"));
-                    financeiro.setIptu(resultado.getString("iptu"));
-                    financeiro.setCondominio(resultado.getString("condominio"));
-                    financeiro.setEnergia(resultado.getString("energia"));
-                    financeiro.setAgua(resultado.getString("agua"));
-                    financeiro.setLixo(resultado.getString("lixo"));
-                    financeiro.setGas(resultado.getString("gas"));
-                    financeiro.setOutros(resultado.getString("outros"));
-                    financeiro.setAbono(resultado.getString("abono"));
+                    financeiro.setNumeroParcelas(resultado.getString("numeroParcelas"));
                     financeiro.setValor_total(resultado.getString("valor_total"));
-                    financeiro.setLocatario(resultado.getInt("Locatario"));
+                    financeiro.setLocatario(resultado.getString("Locatario"));
+                    financeiro.setLocatario(resultado.getString("Locador"));
 
                     listaFinanceiro.add(financeiro);
                 }

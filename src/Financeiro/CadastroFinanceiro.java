@@ -5,6 +5,7 @@
 package Financeiro;
 
 import DAO.JBDCCadastroFinanceiro;
+import DAO.JBDCCadastroImovel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ import Imóvel.Imovel;
 import javax.swing.JOptionPane;
 import Financeiro.Financeiro;
 import Model.FinanceiroModel;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,6 +30,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
      */
     public CadastroFinanceiro() {
         initComponents();
+        carregarIdsImoveis();
         JButton[] btns = {BtnCadastrar, BtnCancelar, BtnRetornar};
         for (JButton btn : btns) {
             btn.setBackground(new Color(30, 122, 206));
@@ -64,7 +67,18 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
             });
         }
 
+    }   
+    public void carregarIdsImoveis() {
+    JBDCCadastroImovel imovelDAO = new JBDCCadastroImovel();
+    ArrayList<Integer> idsImoveis = imovelDAO.buscarIdsImoveis();
+
+    idimoveisFinanceiro.removeAllItems();
+
+    for (Integer id : idsImoveis) {
+        idimoveisFinanceiro.addItem(id.toString()); 
     }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,12 +96,9 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         BtnCadastrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        NomeContratoLabel = new javax.swing.JLabel();
         ValorTotalLabel = new javax.swing.JLabel();
-        IdImovel = new javax.swing.JTextField();
         IdImovelLabel = new javax.swing.JLabel();
         SituacaoComboLabel = new javax.swing.JLabel();
-        SituacaoCombo = new javax.swing.JComboBox<>();
         BtnCancelar = new javax.swing.JButton();
         BtnRetornar = new javax.swing.JButton();
         ValorTotal = new javax.swing.JTextField();
@@ -95,33 +106,16 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         ValorParcelaLabel = new javax.swing.JLabel();
         NParcelas = new javax.swing.JTextField();
         NParcelasLabel = new javax.swing.JLabel();
-        ComissaoImobil = new javax.swing.JTextField();
-        ComissaoImobilLabel = new javax.swing.JLabel();
-        IPTULabel = new javax.swing.JLabel();
-        Energia = new javax.swing.JTextField();
-        EnergiaLabel = new javax.swing.JLabel();
-        Agua = new javax.swing.JTextField();
-        AguaLabel = new javax.swing.JLabel();
-        Luz = new javax.swing.JTextField();
-        LuzLabel = new javax.swing.JLabel();
-        Lixo = new javax.swing.JTextField();
-        LixoLabel = new javax.swing.JLabel();
-        Gas = new javax.swing.JTextField();
-        GasLabel = new javax.swing.JLabel();
-        IPTU = new javax.swing.JTextField();
-        Outros = new javax.swing.JTextField();
-        OutrosLabel = new javax.swing.JLabel();
-        Condominio = new javax.swing.JTextField();
-        CondominioLabel = new javax.swing.JLabel();
-        ValorAbono = new javax.swing.JTextField();
-        ValorAbonoLabel = new javax.swing.JLabel();
         NomeLocador = new javax.swing.JTextField();
         NomeLocadorLabel = new javax.swing.JLabel();
         NomeLocatario = new javax.swing.JTextField();
         NomeLocatarioLabel = new javax.swing.JLabel();
         NomeContratoLabel1 = new javax.swing.JLabel();
         NomeContrato = new javax.swing.JTextField();
-        IDFinanceiro = new javax.swing.JTextField();
+        idimoveisFinanceiro = new javax.swing.JComboBox<>();
+        IdImovelLabel1 = new javax.swing.JLabel();
+        nomeImovelFinanceiro = new javax.swing.JTextField();
+        situacaoComboFinanceiro = new javax.swing.JComboBox<>();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,29 +150,14 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Aqui é possível cadastrar os contratos, e registrá-los.");
 
-        NomeContratoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        NomeContratoLabel.setText("ID ");
-
         ValorTotalLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ValorTotalLabel.setText("Valor Total:");
-
-        IdImovel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        IdImovel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                IdImovelKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                IdImovelKeyTyped(evt);
-            }
-        });
 
         IdImovelLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         IdImovelLabel.setText("IdImóvel:");
 
         SituacaoComboLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SituacaoComboLabel.setText("Situação:");
-
-        SituacaoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Atrasado", "Pendente" }));
 
         BtnCancelar.setBackground(new java.awt.Color(30, 122, 206));
         BtnCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -257,186 +236,6 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         NParcelasLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         NParcelasLabel.setText("N° Parcelas:");
 
-        ComissaoImobil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        ComissaoImobil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComissaoImobilActionPerformed(evt);
-            }
-        });
-        ComissaoImobil.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ComissaoImobilKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ComissaoImobilKeyTyped(evt);
-            }
-        });
-
-        ComissaoImobilLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ComissaoImobilLabel.setText("Comissão Imobiliária:");
-
-        IPTULabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        IPTULabel.setText("IPTU:");
-
-        Energia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Energia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnergiaActionPerformed(evt);
-            }
-        });
-        Energia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                EnergiaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                EnergiaKeyTyped(evt);
-            }
-        });
-
-        EnergiaLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        EnergiaLabel.setText("Energia:");
-
-        Agua.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Agua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AguaActionPerformed(evt);
-            }
-        });
-        Agua.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                AguaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                AguaKeyTyped(evt);
-            }
-        });
-
-        AguaLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        AguaLabel.setText("Água:");
-
-        Luz.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Luz.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LuzActionPerformed(evt);
-            }
-        });
-        Luz.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                LuzKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                LuzKeyTyped(evt);
-            }
-        });
-
-        LuzLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        LuzLabel.setText("Luz:");
-
-        Lixo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Lixo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LixoActionPerformed(evt);
-            }
-        });
-        Lixo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                LixoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                LixoKeyTyped(evt);
-            }
-        });
-
-        LixoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        LixoLabel.setText("Lixo:");
-
-        Gas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Gas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GasActionPerformed(evt);
-            }
-        });
-        Gas.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                GasKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                GasKeyTyped(evt);
-            }
-        });
-
-        GasLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        GasLabel.setText("Gás:");
-
-        IPTU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        IPTU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IPTUActionPerformed(evt);
-            }
-        });
-        IPTU.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                IPTUKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                IPTUKeyTyped(evt);
-            }
-        });
-
-        Outros.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Outros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OutrosActionPerformed(evt);
-            }
-        });
-        Outros.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                OutrosKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                OutrosKeyTyped(evt);
-            }
-        });
-
-        OutrosLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        OutrosLabel.setText("Outros:");
-
-        Condominio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Condominio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CondominioActionPerformed(evt);
-            }
-        });
-        Condominio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CondominioKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CondominioKeyTyped(evt);
-            }
-        });
-
-        CondominioLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CondominioLabel.setText("Condomínio:");
-
-        ValorAbono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        ValorAbono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ValorAbonoActionPerformed(evt);
-            }
-        });
-        ValorAbono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ValorAbonoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ValorAbonoKeyTyped(evt);
-            }
-        });
-
-        ValorAbonoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ValorAbonoLabel.setText("Valor Abono:");
-
         NomeLocador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         NomeLocador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,15 +281,32 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
             }
         });
 
-        IDFinanceiro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        IDFinanceiro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                IDFinanceiroKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                IDFinanceiroKeyTyped(evt);
+        idimoveisFinanceiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item 1" }));
+        idimoveisFinanceiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idimoveisFinanceiroActionPerformed(evt);
             }
         });
+
+        IdImovelLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        IdImovelLabel1.setText("Nome imovel");
+
+        nomeImovelFinanceiro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        nomeImovelFinanceiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeImovelFinanceiroActionPerformed(evt);
+            }
+        });
+        nomeImovelFinanceiro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nomeImovelFinanceiroKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomeImovelFinanceiroKeyTyped(evt);
+            }
+        });
+
+        situacaoComboFinanceiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Atrasado", "Inativo" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -504,98 +320,48 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(NomeContratoLabel1)
+                        .addGap(310, 310, 310)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NomeLocadorLabel)
-                            .addComponent(NomeLocador, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(NomeLocatarioLabel)
-                                .addGap(273, 276, Short.MAX_VALUE))
-                            .addComponent(NomeLocatario)))
+                            .addComponent(SituacaoComboLabel)
+                            .addComponent(IdImovelLabel1)
+                            .addComponent(nomeImovelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 286, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(NomeContratoLabel1)
-                                            .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(NomeContratoLabel)
-                                            .addComponent(IDFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(24, 24, 24))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(IdImovelLabel)
-                                    .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SituacaoComboLabel)
-                                    .addComponent(SituacaoCombo, 0, 210, Short.MAX_VALUE)
-                                    .addComponent(ComissaoImobilLabel)
-                                    .addComponent(ComissaoImobil)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(IPTULabel)
-                                    .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EnergiaLabel)
-                                    .addComponent(Energia, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AguaLabel)
-                                    .addComponent(Agua, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LuzLabel)
-                                    .addComponent(Luz, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LixoLabel)
-                                    .addComponent(Lixo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(GasLabel)
-                                    .addComponent(Gas)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ValorAbonoLabel)
-                                    .addComponent(ValorAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ValorParcelaLabel)
-                                    .addComponent(ValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NParcelasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(222, 222, 222)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OutrosLabel)
-                            .addComponent(Outros, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CondominioLabel)
-                            .addComponent(Condominio, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(ValorTotalLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(ValorTotal))))
-                .addGap(42, 42, 42))
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(situacaoComboFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(NomeLocatario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                                                .addComponent(NomeLocador, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(ValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(ValorParcelaLabel))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(NParcelasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(ValorTotalLabel)
+                                                        .addComponent(NParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                                        .addComponent(ValorTotal)))))
+                                        .addComponent(NomeLocadorLabel)
+                                        .addComponent(NomeLocatarioLabel))
+                                    .addGap(66, 66, 66)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(IdImovelLabel)
+                                        .addComponent(idimoveisFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,105 +372,39 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(SituacaoComboLabel)
-                                        .addGap(32, 32, 32))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(IdImovelLabel)
-                                            .addComponent(NomeContratoLabel)
-                                            .addComponent(NomeContratoLabel1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(IdImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(SituacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(IDFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(ValorParcelaLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(ValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(NParcelasLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(NParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(ComissaoImobilLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(ComissaoImobil, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(ValorAbonoLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ValorAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(EnergiaLabel)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGap(26, 26, 26)
-                                            .addComponent(Energia, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(IPTULabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(IPTU, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(AguaLabel)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGap(26, 26, 26)
-                                            .addComponent(Agua, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(LuzLabel)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGap(26, 26, 26)
-                                            .addComponent(Luz, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(LixoLabel)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGap(26, 26, 26)
-                                            .addComponent(Lixo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(GasLabel)
-                                        .addGap(32, 32, 32))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Gas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(OutrosLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Outros, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(CondominioLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Condominio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(ValorTotalLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NomeLocadorLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NomeLocador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(NomeLocatarioLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NomeLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(76, 76, 76)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NParcelasLabel)
+                    .addComponent(ValorParcelaLabel)
+                    .addComponent(IdImovelLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idimoveisFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeContratoLabel1)
+                    .addComponent(ValorTotalLabel)
+                    .addComponent(IdImovelLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeImovelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeLocadorLabel)
+                    .addComponent(SituacaoComboLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeLocador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(situacaoComboFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
+                .addComponent(NomeLocatarioLabel)
+                .addGap(14, 14, 14)
+                .addComponent(NomeLocatario, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -730,7 +430,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -738,13 +438,13 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 802, Short.MAX_VALUE)
+            .addGap(0, 888, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGap(0, 773, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -776,44 +476,21 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void IdImovelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdImovelKeyTyped
-        // TODO add your handling code here:
-        char keyPress = evt.getKeyChar();
-        if (!Character.isDigit(keyPress)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_IdImovelKeyTyped
-
-    private void IdImovelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdImovelKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            ValorAbono.requestFocus();
-        }
-    }//GEN-LAST:event_IdImovelKeyPressed
-
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
         try {
-            int idFinanceiro = Integer.parseInt(IDFinanceiro.getText());
-            int idImovelFinanceiro = Integer.parseInt(IdImovel.getText());
-            String nomeContrato = NomeContrato.getText();
-            String numeroParcelas = NParcelas.getText();
-            String valorParcela = ValorParcela.getText();
-            String comImobiliaria = ComissaoImobil.getText();
-            String iptu = IPTU.getText();
-            String condominio = Condominio.getText();
-            String energia = Energia.getText();
-            String agua = Agua.getText();
-            String lixo = Lixo.getText();
-            String gas = Gas.getText();
-            String outros = Outros.getText();
-            String abono = ValorAbono.getText();
-            String valorTotal = ValorTotal.getText();
-            int locatario = Integer.parseInt(NomeLocatario.getText());
 
-            FinanceiroModel financeiro = new FinanceiroModel(idFinanceiro, idImovelFinanceiro,nomeContrato, numeroParcelas, valorParcela,
-                    comImobiliaria, iptu, condominio, energia, agua, lixo, gas, outros,
-                    abono, valorTotal, locatario);
+            int idImovelFinanceiro = Integer.parseInt(idimoveisFinanceiro.getSelectedItem().toString());
+            String nomeContrato = NomeContrato.getText();
+            String situacaoTexto = situacaoComboFinanceiro.getSelectedItem().toString();
+            String valorParcela = ValorParcela.getText();
+            String numeroParcelas = NParcelas.getText();
+            String valorTotal = ValorTotal.getText();
+            String locatario = NomeLocatario.getText();
+            String locador = NomeLocador.getText();
+
+            FinanceiroModel financeiro = new FinanceiroModel(idImovelFinanceiro, nomeContrato, situacaoTexto, valorParcela, numeroParcelas,
+                    valorTotal, locatario, locador);
 
             JBDCCadastroFinanceiro dao = new JBDCCadastroFinanceiro();
             dao.inserirContratoFinanceiro(financeiro);
@@ -823,11 +500,9 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + ex.getMessage());
         }
 
-        String CheckNome = IDFinanceiro.getText();
-        if (IDFinanceiro.getText().isEmpty() && IdImovel.getText().isEmpty() && ValorAbono.getText().isEmpty() && ValorParcela.getText().isEmpty()
-                && NParcelas.getText().isEmpty() && ComissaoImobil.getText().isEmpty()
-                && IPTU.getText().isEmpty() && Energia.getText().isEmpty() && Agua.getText().isEmpty() && Luz.getText().isEmpty() && Lixo.getText().isEmpty()
-                && Gas.getText().isEmpty() && Outros.getText().isEmpty() && Condominio.getText().isEmpty() && ValorTotal.getText().isEmpty() && NomeLocador.getText().isEmpty()
+        String CheckNome = NomeContrato.getText();
+        if (ValorParcela.getText().isEmpty()
+                && NParcelas.getText().isEmpty() && ValorTotal.getText().isEmpty() && NomeLocador.getText().isEmpty()
                 && NomeLocatario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "O nome do imóvel não pode estar vazio!");
         } else {
@@ -835,24 +510,14 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
             int resposta = JOptionPane.showOptionDialog(
                     this,
                     "Cadastro Registrado!" + "\n"
-                    + "Nome do Contrato: " + IDFinanceiro.getText() + "\n"
-                    + "IdImóvel: " + IdImovel.getText() + "\n"
+                    + "Nome do Contrato: " + NomeContrato.getText() + "\n"
+                    + "IdImóvel: " + idimoveisFinanceiro.getSelectedItem() + "\n"
                     + "Locador: " + NomeLocador.getText() + "\n"
                     + "Locatário: " + NomeLocatario.getText() + "\n"
-                    + "IPTU: " + IPTU.getText() + "\n"
-                    + "Energia: " + Energia.getText() + "\n"
-                    + "Água: " + Agua.getText() + "\n"
-                    + "Luz: " + Luz.getText() + "\n"
-                    + "Lixo: " + Lixo.getText() + "\n"
-                    + "Gás: " + Gas.getText() + "\n"
-                    + "Condomínio: " + Condominio.getText() + "\n"
-                    + "Outros: " + Outros.getText() + "\n\n\n"
                     + "Valor Parcela: " + ValorParcela.getText() + "\n"
                     + "Número Parcelas: " + NParcelas.getText() + "\n"
-                    + "Valor Abono: " + ValorAbono.getText() + "\n"
-                    + "Comissão Imobiliária: " + ComissaoImobil.getText() + "\n"
                     + "Valor Total: " + ValorTotal.getText() + "\n"
-                    + "Situação: " + SituacaoCombo.getSelectedItem() + "\n\n\n"
+                    + "Situação: " + situacaoComboFinanceiro.getSelectedItem() + "\n\n\n"
                     + "Cadastrar novo Contrato?" + "\n",
                     "Confirmação de Cadastro",
                     JOptionPane.DEFAULT_OPTION,
@@ -862,26 +527,13 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                     options[0]);
             if (resposta == 1) {
             } else {
-                IDFinanceiro.setText("");
-                IdImovel.setText("");
+                idimoveisFinanceiro.setSelectedIndex(-1);
                 NomeLocador.setText("");
                 NomeLocatario.setText("");
-                IPTU.setText("");
-                Energia.setText("");
-                Agua.setText("");
-                Luz.setText("");
-                Lixo.setText("");
-                Gas.setText("");
-                Condominio.setText("");
                 ValorParcela.setText("");
                 NParcelas.setText("");
-                ValorAbono.setText("");
-                ComissaoImobil.setText("");
                 ValorTotal.setText("");
-                Outros.setText("");
-
-                SituacaoCombo.setSelectedIndex(-1);
-                IDFinanceiro.requestFocus();
+                situacaoComboFinanceiro.setSelectedIndex(-1);
             }
         }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
@@ -922,164 +574,11 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     private void NParcelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NParcelasKeyPressed
         // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            ComissaoImobil.requestFocus();
-        }
     }//GEN-LAST:event_NParcelasKeyPressed
 
     private void NParcelasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NParcelasKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_NParcelasKeyTyped
-
-    private void ComissaoImobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComissaoImobilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComissaoImobilActionPerformed
-
-    private void ComissaoImobilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComissaoImobilKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            IPTU.requestFocus();
-        }
-    }//GEN-LAST:event_ComissaoImobilKeyPressed
-
-    private void ComissaoImobilKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComissaoImobilKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComissaoImobilKeyTyped
-
-    private void EnergiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnergiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnergiaActionPerformed
-
-    private void EnergiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnergiaKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            Agua.requestFocus();
-        }
-    }//GEN-LAST:event_EnergiaKeyPressed
-
-    private void EnergiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnergiaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnergiaKeyTyped
-
-    private void AguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AguaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AguaActionPerformed
-
-    private void AguaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AguaKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            Luz.requestFocus();
-        }
-    }//GEN-LAST:event_AguaKeyPressed
-
-    private void AguaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AguaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AguaKeyTyped
-
-    private void LuzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuzActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LuzActionPerformed
-
-    private void LuzKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LuzKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            Lixo.requestFocus();
-        }
-    }//GEN-LAST:event_LuzKeyPressed
-
-    private void LuzKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LuzKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LuzKeyTyped
-
-    private void LixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LixoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LixoActionPerformed
-
-    private void LixoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LixoKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            Gas.requestFocus();
-        }
-    }//GEN-LAST:event_LixoKeyPressed
-
-    private void LixoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LixoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LixoKeyTyped
-
-    private void GasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GasActionPerformed
-
-    private void GasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GasKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            Outros.requestFocus();
-        }
-    }//GEN-LAST:event_GasKeyPressed
-
-    private void GasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GasKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GasKeyTyped
-
-    private void IPTUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IPTUActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IPTUActionPerformed
-
-    private void IPTUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IPTUKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            Energia.requestFocus();
-        }
-    }//GEN-LAST:event_IPTUKeyPressed
-
-    private void IPTUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IPTUKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IPTUKeyTyped
-
-    private void OutrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OutrosActionPerformed
-
-    private void OutrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_OutrosKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            Condominio.requestFocus();
-        }
-    }//GEN-LAST:event_OutrosKeyPressed
-
-    private void OutrosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_OutrosKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OutrosKeyTyped
-
-    private void CondominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CondominioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CondominioActionPerformed
-
-    private void CondominioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CondominioKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            ValorTotal.requestFocus();
-        }
-    }//GEN-LAST:event_CondominioKeyPressed
-
-    private void CondominioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CondominioKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CondominioKeyTyped
-
-    private void ValorAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorAbonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ValorAbonoActionPerformed
-
-    private void ValorAbonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValorAbonoKeyPressed
-        // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            ValorParcela.requestFocus();
-        }
-    }//GEN-LAST:event_ValorAbonoKeyPressed
-
-    private void ValorAbonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValorAbonoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ValorAbonoKeyTyped
 
     private void NomeLocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeLocadorActionPerformed
         // TODO add your handling code here:
@@ -1108,13 +607,29 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_NomeContratoKeyPressed
 
-    private void IDFinanceiroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDFinanceiroKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IDFinanceiroKeyPressed
+    private void idimoveisFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idimoveisFinanceiroActionPerformed
 
-    private void IDFinanceiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDFinanceiroKeyTyped
+        JBDCCadastroImovel imovelDAO = new JBDCCadastroImovel();
+        ArrayList<Integer> idsImoveis = imovelDAO.buscarIdsImoveis();
+
+        for (Integer id : idsImoveis) {
+            idimoveisFinanceiro.addItem(id.toString());
+        }
+
+
+    }//GEN-LAST:event_idimoveisFinanceiroActionPerformed
+
+    private void nomeImovelFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeImovelFinanceiroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IDFinanceiroKeyTyped
+    }//GEN-LAST:event_nomeImovelFinanceiroActionPerformed
+
+    private void nomeImovelFinanceiroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeImovelFinanceiroKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeImovelFinanceiroKeyPressed
+
+    private void nomeImovelFinanceiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeImovelFinanceiroKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeImovelFinanceiroKeyTyped
 
     private void ShowPanel(JPanel p) {
         p.setSize(799, 700);
@@ -1127,52 +642,32 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Agua;
-    private javax.swing.JLabel AguaLabel;
     private javax.swing.JButton BtnCadastrar;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnRetornar;
-    private javax.swing.JTextField ComissaoImobil;
-    private javax.swing.JLabel ComissaoImobilLabel;
-    private javax.swing.JTextField Condominio;
-    private javax.swing.JLabel CondominioLabel;
-    private javax.swing.JTextField Energia;
-    private javax.swing.JLabel EnergiaLabel;
-    private javax.swing.JTextField Gas;
-    private javax.swing.JLabel GasLabel;
-    private javax.swing.JTextField IDFinanceiro;
-    private javax.swing.JTextField IPTU;
-    private javax.swing.JLabel IPTULabel;
-    private javax.swing.JTextField IdImovel;
     private javax.swing.JLabel IdImovelLabel;
-    private javax.swing.JTextField Lixo;
-    private javax.swing.JLabel LixoLabel;
-    private javax.swing.JTextField Luz;
-    private javax.swing.JLabel LuzLabel;
+    private javax.swing.JLabel IdImovelLabel1;
     private javax.swing.JTextField NParcelas;
     private javax.swing.JLabel NParcelasLabel;
     private javax.swing.JTextField NomeContrato;
-    private javax.swing.JLabel NomeContratoLabel;
     private javax.swing.JLabel NomeContratoLabel1;
     private javax.swing.JTextField NomeLocador;
     private javax.swing.JLabel NomeLocadorLabel;
     private javax.swing.JTextField NomeLocatario;
     private javax.swing.JLabel NomeLocatarioLabel;
-    private javax.swing.JTextField Outros;
-    private javax.swing.JLabel OutrosLabel;
     private javax.swing.JPanel PainelCentral;
-    private javax.swing.JComboBox<String> SituacaoCombo;
     private javax.swing.JLabel SituacaoComboLabel;
-    private javax.swing.JTextField ValorAbono;
-    private javax.swing.JLabel ValorAbonoLabel;
     private javax.swing.JTextField ValorParcela;
     private javax.swing.JLabel ValorParcelaLabel;
     private javax.swing.JTextField ValorTotal;
     private javax.swing.JLabel ValorTotalLabel;
+    private javax.swing.JComboBox<String> idimoveisFinanceiro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField nomeImovelFinanceiro;
+    private javax.swing.JComboBox<String> situacaoComboFinanceiro;
     // End of variables declaration//GEN-END:variables
 }

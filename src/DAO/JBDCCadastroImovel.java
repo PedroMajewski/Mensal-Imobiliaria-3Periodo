@@ -15,177 +15,164 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 import Model.CadastroImovelModel;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author pedro
  */
 public class JBDCCadastroImovel {
-     private JBDCConnect conexao;
+
+    private JBDCConnect conexao;
 
     // Construtor da classe
     public JBDCCadastroImovel() {
         // Inicializa a conexão usando a classe JBDCConnect
         this.conexao = new JBDCConnect();
     }
-    
+
     public void InserirImovel(CadastroImovelModel cadastro) {
         //string com a consulta que será executada no banco
         String sql = "INSERT INTO imovel (id_situacao, nome_imovel, "
                 + "descricao, valor_preco, cep_imovel, bairro_imovel, endereco_imovel, "
                 + "numero_imovel, uf_imovel, inscricao_imobiliaria, matricula_imovel, iptu, locador_imovel, "
                 + "locatario_imovel, cidade) VALUES ((select idsituacaoimovel from situacao_imovel where situacao_atual = ?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        
-        
+
         // INSERT INTO `imovel` (`idimovel`, `idcliente_imovel`, `situacao`, `nomeimovel`, `descricao`, `valorpreco`, `CEPImovel`, `BairroImovel`, `EnderecoImovel`, `NumeroImovel`, `UFImovel`, `InscricaoImobiliaria`,
         //`Matriculaimovel`, `AguaContrato`, `EnergiaContrato`, `IPTU`) VALUES (NULL, '6', 'Venda', 'Casa dos Lagos', 'Casa Top', '1.232.4232', '85428-243', 'Vila A', 'Rua Puma', '231', 'PR', '12331241', '24123142', '31231242', '42312353', '1.521')
-        try
-        {
+        try {
             //tenta realizar a conexão, se retornar verdadeiro entra no IF
-            if(this.conexao.conectar())
-            {
+            if (this.conexao.conectar()) {
                 //prepara a sentença com a consulta da string
                 PreparedStatement ConexaoSentenca = this.conexao.getConnection().prepareStatement(sql);
-                
+
                 //subtitui as interrograções da consulta, pelo valor específico
-                ConexaoSentenca.setString(1,cadastro.getSituacao()); //subsitui a primeira ocorrência da interrogação pelo atributo nome
-                ConexaoSentenca.setString(2,cadastro.getNomeImovel());
-                ConexaoSentenca.setString(3,cadastro.getDescricao()); 
-                ConexaoSentenca.setString(4,cadastro.getValorPreco());
-                ConexaoSentenca.setString(5,cadastro.getCepImovel());
-                ConexaoSentenca.setString(6,cadastro.getBairroImovel());
-                ConexaoSentenca.setString(7,cadastro.getEnderecoImovel());
-                ConexaoSentenca.setString(8,cadastro.getNumeroImovel());
-                ConexaoSentenca.setString(9,cadastro.getUfImovel());
-                ConexaoSentenca.setString(10,cadastro.getInscricaoImobiliaria());
-                ConexaoSentenca.setString(11,cadastro.getMatriculaImovel());
-                ConexaoSentenca.setString(12,cadastro.getIptu());
-                ConexaoSentenca.setString(13,cadastro.getLocador());
-                ConexaoSentenca.setString(14,cadastro.getLocatario());
-                ConexaoSentenca.setString(15,cadastro.getCidade());
-                
+                ConexaoSentenca.setString(1, cadastro.getSituacao()); //subsitui a primeira ocorrência da interrogação pelo atributo nome
+                ConexaoSentenca.setString(2, cadastro.getNomeImovel());
+                ConexaoSentenca.setString(3, cadastro.getDescricao());
+                ConexaoSentenca.setString(4, cadastro.getValorPreco());
+                ConexaoSentenca.setString(5, cadastro.getCepImovel());
+                ConexaoSentenca.setString(6, cadastro.getBairroImovel());
+                ConexaoSentenca.setString(7, cadastro.getEnderecoImovel());
+                ConexaoSentenca.setString(8, cadastro.getNumeroImovel());
+                ConexaoSentenca.setString(9, cadastro.getUfImovel());
+                ConexaoSentenca.setString(10, cadastro.getInscricaoImobiliaria());
+                ConexaoSentenca.setString(11, cadastro.getMatriculaImovel());
+                ConexaoSentenca.setString(12, cadastro.getIptu());
+                ConexaoSentenca.setString(13, cadastro.getLocador());
+                ConexaoSentenca.setString(14, cadastro.getLocatario());
+                ConexaoSentenca.setString(15, cadastro.getCidade());
+
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença
                 this.conexao.getConnection().close(); //fecha a conexão com o banco
             }
-        }
-        catch(SQLException ex)
-        {
-           throw new RuntimeException(ex);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
     }
-    
-     public void ExcluirImovel(CadastroImovelModel CadastroIdImovel) {
+
+    public void ExcluirImovel(CadastroImovelModel CadastroIdImovel) {
         //string com a consulta que será executada no banco
         String sql = "DELETE FROM imovel WHERE imovel.idimovel = ?";
-        
-        try
-        {
-            //tenta realizar a conexão, se retornar verdadeiro entra no IF
-            if(this.conexao.conectar())
-            {
-                //prepara a sentença com a consulta da string
-                PreparedStatement ConexaoSentenca = this.conexao.getConnection().prepareStatement(sql);
-                
-                //subtitui as interrograções da consulta, pelo valor específico
-                ConexaoSentenca.setInt(1,CadastroIdImovel.getIdImovel()); //subsitui a primeira ocorrência da interrogação pelo atributo nome
-                
-                ConexaoSentenca.execute(); //executa o comando no banco
-                ConexaoSentenca.close(); //fecha a sentença
-                this.conexao.getConnection().close(); //fecha a conexão com o banco
-            }
-        }
-        catch(SQLException ex)
-        {
-           throw new RuntimeException(ex);
-        }
-    }
-     
-     public void AtualizarImovel(CadastroImovelModel cadastro) {
-        //string com a consulta que será executada no banco
-        String sql = "UPDATE imovel AS i \n" +
-"JOIN situacao_imovel AS s ON s.situacao_atual = ? \n" +
-"SET \n" +              
-"    i.nome_imovel = ?, \n" +
-"    i.descricao = ?, \n" +
-"    i.valor_preco = ?, \n" +
-"    i.cep_imovel = ?, \n" +
-"    i.bairro_imovel = ?, \n" +
-"    i.endereco_imovel = ?, \n" +
-"    i.numero_imovel = ?, \n" +
-"    i.uf_imovel = ?, \n" +
-"    i.inscricao_imobiliaria = ?, \n" +
-"    i.matricula_imovel = ?, \n" +
-"    i.iptu = ?, \n" +
-"    i.locador_imovel = ?, \n" +
-"    i.locatario_imovel = ?, \n" +
-"    i.cidade = ? \n" +  
-"WHERE i.idimovel = ?";
 
-        
-        try
-        {
+        try {
             //tenta realizar a conexão, se retornar verdadeiro entra no IF
-            if(this.conexao.conectar())
-            {
+            if (this.conexao.conectar()) {
                 //prepara a sentença com a consulta da string
                 PreparedStatement ConexaoSentenca = this.conexao.getConnection().prepareStatement(sql);
-                
+
                 //subtitui as interrograções da consulta, pelo valor específico
-                ConexaoSentenca.setString(1,cadastro.getSituacao());
-                ConexaoSentenca.setString(2,cadastro.getNomeImovel());
-                ConexaoSentenca.setString(3,cadastro.getDescricao()); 
-                ConexaoSentenca.setString(4,cadastro.getValorPreco());
-                ConexaoSentenca.setString(5,cadastro.getCepImovel());
-                ConexaoSentenca.setString(6,cadastro.getBairroImovel());
-                ConexaoSentenca.setString(7,cadastro.getEnderecoImovel());
-                ConexaoSentenca.setString(8,cadastro.getNumeroImovel());
-                ConexaoSentenca.setString(9,cadastro.getUfImovel());
-                ConexaoSentenca.setString(10,cadastro.getInscricaoImobiliaria());
-                ConexaoSentenca.setString(11,cadastro.getMatriculaImovel());
-                ConexaoSentenca.setString(12,cadastro.getIptu());
-                ConexaoSentenca.setString(13,cadastro.getLocador());
-                ConexaoSentenca.setString(14,cadastro.getLocatario());
-                ConexaoSentenca.setString(15,cadastro.getCidade());
-                ConexaoSentenca.setInt(16,cadastro.getIdImovel());
+                ConexaoSentenca.setInt(1, CadastroIdImovel.getIdImovel()); //subsitui a primeira ocorrência da interrogação pelo atributo nome
+
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença
                 this.conexao.getConnection().close(); //fecha a conexão com o banco
             }
-        }
-        catch(SQLException ex)
-        {
-           throw new RuntimeException(ex);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
     }
-    
+
+    public void AtualizarImovel(CadastroImovelModel cadastro) {
+        //string com a consulta que será executada no banco
+        String sql = "UPDATE imovel AS i \n"
+                + "JOIN situacao_imovel AS s ON s.situacao_atual = ? \n"
+                + "SET \n"
+                + "    i.nome_imovel = ?, \n"
+                + "    i.descricao = ?, \n"
+                + "    i.valor_preco = ?, \n"
+                + "    i.cep_imovel = ?, \n"
+                + "    i.bairro_imovel = ?, \n"
+                + "    i.endereco_imovel = ?, \n"
+                + "    i.numero_imovel = ?, \n"
+                + "    i.uf_imovel = ?, \n"
+                + "    i.inscricao_imobiliaria = ?, \n"
+                + "    i.matricula_imovel = ?, \n"
+                + "    i.iptu = ?, \n"
+                + "    i.locador_imovel = ?, \n"
+                + "    i.locatario_imovel = ?, \n"
+                + "    i.cidade = ? \n"
+                + "WHERE i.idimovel = ?";
+
+        try {
+            //tenta realizar a conexão, se retornar verdadeiro entra no IF
+            if (this.conexao.conectar()) {
+                //prepara a sentença com a consulta da string
+                PreparedStatement ConexaoSentenca = this.conexao.getConnection().prepareStatement(sql);
+
+                //subtitui as interrograções da consulta, pelo valor específico
+                ConexaoSentenca.setString(1, cadastro.getSituacao());
+                ConexaoSentenca.setString(2, cadastro.getNomeImovel());
+                ConexaoSentenca.setString(3, cadastro.getDescricao());
+                ConexaoSentenca.setString(4, cadastro.getValorPreco());
+                ConexaoSentenca.setString(5, cadastro.getCepImovel());
+                ConexaoSentenca.setString(6, cadastro.getBairroImovel());
+                ConexaoSentenca.setString(7, cadastro.getEnderecoImovel());
+                ConexaoSentenca.setString(8, cadastro.getNumeroImovel());
+                ConexaoSentenca.setString(9, cadastro.getUfImovel());
+                ConexaoSentenca.setString(10, cadastro.getInscricaoImobiliaria());
+                ConexaoSentenca.setString(11, cadastro.getMatriculaImovel());
+                ConexaoSentenca.setString(12, cadastro.getIptu());
+                ConexaoSentenca.setString(13, cadastro.getLocador());
+                ConexaoSentenca.setString(14, cadastro.getLocatario());
+                ConexaoSentenca.setString(15, cadastro.getCidade());
+                ConexaoSentenca.setInt(16, cadastro.getIdImovel());
+                ConexaoSentenca.execute(); //executa o comando no banco
+                ConexaoSentenca.close(); //fecha a sentença
+                this.conexao.getConnection().close(); //fecha a conexão com o banco
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
     public ArrayList<CadastroImovelModel> MostrarListaImovel() {
 
         ArrayList<CadastroImovelModel> listaImovel = new ArrayList<CadastroImovelModel>();
-        String sql = "SELECT \n" +
-"    i.idimovel, \n" +
-"    i.nome_imovel, \n" +
-"    i.descricao, \n" +
-"    i.valor_preco, \n" +
-"    i.cep_imovel, \n" +
-"    i.bairro_imovel, \n" +
-"    i.endereco_imovel, \n" +
-"    i.numero_imovel, \n" +
-"    i.uf_imovel, \n" +
-"    i.inscricao_imobiliaria, \n" +
-"    i.matricula_imovel, \n" +
-"    i.iptu, \n" +
-"    i.locador_imovel, \n" +
-"    i.locatario_imovel, \n" +
-"    i.cidade,\n" +
-"    s.situacao_atual\n" +
-"FROM \n" +
-"    imovel AS i\n" +
-"LEFT JOIN \n" +
-"    situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao)\n" +
-"ORDER BY \n" +
-"    i.idimovel;";
-        
-        
+        String sql = "SELECT \n"
+                + "    i.idimovel, \n"
+                + "    i.nome_imovel, \n"
+                + "    i.descricao, \n"
+                + "    i.valor_preco, \n"
+                + "    i.cep_imovel, \n"
+                + "    i.bairro_imovel, \n"
+                + "    i.endereco_imovel, \n"
+                + "    i.numero_imovel, \n"
+                + "    i.uf_imovel, \n"
+                + "    i.inscricao_imobiliaria, \n"
+                + "    i.matricula_imovel, \n"
+                + "    i.iptu, \n"
+                + "    i.locador_imovel, \n"
+                + "    i.locatario_imovel, \n"
+                + "    i.cidade,\n"
+                + "    s.situacao_atual\n"
+                + "FROM \n"
+                + "    imovel AS i\n"
+                + "LEFT JOIN \n"
+                + "    situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao)\n"
+                + "ORDER BY \n"
+                + "    i.idimovel;";
+
         try {
             if (this.conexao.conectar()) {
                 PreparedStatement sentenca = this.conexao.getConnection().prepareStatement(sql);
@@ -226,42 +213,40 @@ public class JBDCCadastroImovel {
             throw new RuntimeException(ex);
         }
     }
-    
+
     public ArrayList<CadastroImovelModel> ConsultaImovel(int IdImovel) {
 
         ArrayList<CadastroImovelModel> ImovelSelecionado = new ArrayList<CadastroImovelModel>();
-                String sql = "SELECT \n" +
-"    i.idimovel, \n" +
-"    i.nome_imovel, \n" +
-"    i.descricao, \n" +
-"    i.valor_preco, \n" +
-"    i.cep_imovel, \n" +
-"    i.bairro_imovel, \n" +
-"    i.endereco_imovel, \n" +
-"    i.numero_imovel, \n" +
-"    i.uf_imovel, \n" +
-"    i.inscricao_imobiliaria, \n" +
-"    i.matricula_imovel, \n" +
-"    i.iptu, \n" +
-"    i.locador_imovel, \n" +
-"    i.locatario_imovel, \n" +
-"    i.cidade,\n" +
-"    s.situacao_atual\n" +
-"FROM \n" +
-"    imovel AS i\n" +
-"LEFT JOIN \n" +
-"    situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao) WHERE i.idimovel = ? \n";
-        
-        
-        
+        String sql = "SELECT \n"
+                + "    i.idimovel, \n"
+                + "    i.nome_imovel, \n"
+                + "    i.descricao, \n"
+                + "    i.valor_preco, \n"
+                + "    i.cep_imovel, \n"
+                + "    i.bairro_imovel, \n"
+                + "    i.endereco_imovel, \n"
+                + "    i.numero_imovel, \n"
+                + "    i.uf_imovel, \n"
+                + "    i.inscricao_imobiliaria, \n"
+                + "    i.matricula_imovel, \n"
+                + "    i.iptu, \n"
+                + "    i.locador_imovel, \n"
+                + "    i.locatario_imovel, \n"
+                + "    i.cidade,\n"
+                + "    s.situacao_atual\n"
+                + "FROM \n"
+                + "    imovel AS i\n"
+                + "LEFT JOIN \n"
+                + "    situacao_imovel AS s ON (s.idsituacaoimovel = i.id_situacao) WHERE i.idimovel = ? \n";
+
         try {
             if (this.conexao.conectar()) {
                 PreparedStatement sentenca = this.conexao.getConnection().prepareStatement(sql);
 
                 //recebe o resultado da consulta
-                sentenca.setInt(1,IdImovel);
+                sentenca.setInt(1, IdImovel);
                 ResultSet SentecaImovel = sentenca.executeQuery();
-                
+
                 //percorrer cada linha do resultado
                 while (SentecaImovel.next()) {
                     //resgata o valor de cada linha, selecionando pelo nome de cada coluna da tabela Escola
@@ -286,7 +271,7 @@ public class JBDCCadastroImovel {
                     GuardarImovelSelecionado.setImovelSelecionado(ImovelSelecionado);
                     ImovelSelecionado.add(ImovelModel);
                 }
-                
+
                 sentenca.close();
                 this.conexao.getConnection().close();
             }
@@ -296,26 +281,26 @@ public class JBDCCadastroImovel {
             throw new RuntimeException(ex);
         }
     }
-     
+
     public class GuardarImovelSelecionado {
-    private static ArrayList<CadastroImovelModel> imovelSelecionado = new ArrayList<>();
 
-    public static ArrayList<CadastroImovelModel> getImovelSelecionado() {
-        return imovelSelecionado;
+        private static ArrayList<CadastroImovelModel> imovelSelecionado = new ArrayList<>();
+
+        public static ArrayList<CadastroImovelModel> getImovelSelecionado() {
+            return imovelSelecionado;
+        }
+
+        public static void setImovelSelecionado(ArrayList<CadastroImovelModel> imoveis) {
+            imovelSelecionado = imoveis;
+        }
     }
 
-    public static void setImovelSelecionado(ArrayList<CadastroImovelModel> imoveis) {
-        imovelSelecionado = imoveis;
-    }
-}
-
-    
-    public ArrayList <CadastroImovelModel> FiltrarImovel(CadastroImovelModel cadastro) {
+    public ArrayList<CadastroImovelModel> FiltrarImovel(CadastroImovelModel cadastro) {
 
         ArrayList<CadastroImovelModel> ListaImovel = new ArrayList<CadastroImovelModel>();
         int ValorConsulta = cadastro.getValorConsulta();
         String ColunaSelecionada = null;
-        switch(ValorConsulta){
+        switch (ValorConsulta) {
             case 0:
                 ColunaSelecionada = "i.idimovel";
                 break;
@@ -349,37 +334,37 @@ public class JBDCCadastroImovel {
             if (this.conexao.conectar()) {
 
                 PreparedStatement sentenca = this.conexao.getConnection().prepareStatement(sql);
-                
+
                 //idImovel, Nome, Locador, Locatário, CEP, MatrículaImóvel, Preço
-               switch(ValorConsulta){
-            case 0:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 1:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 2:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 3:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 4:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 5:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 6:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 7:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-            case 8:
-                sentenca.setString(1,cadastro.getItemPesquisar());
-                break;
-        }
+                switch (ValorConsulta) {
+                    case 0:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 1:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 2:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 3:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 4:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 5:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 6:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 7:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                    case 8:
+                        sentenca.setString(1, cadastro.getItemPesquisar());
+                        break;
+                }
 
                 //recebe o resultado da consulta
                 ResultSet resultadoSentenca = sentenca.executeQuery();
@@ -400,7 +385,6 @@ public class JBDCCadastroImovel {
                     imovel.setUfImovel(resultadoSentenca.getString("uf_imovel"));
                     imovel.setSituacao(resultadoSentenca.getString("situacao_atual"));
                     imovel.setDescricao(resultadoSentenca.getString("descricao"));
-                    
 
                     ListaImovel.add(imovel);
                 }
@@ -409,13 +393,34 @@ public class JBDCCadastroImovel {
                 this.conexao.getConnection().close();
             }
 
-           
             return ListaImovel;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
-    
-   
-     
+
+    public ArrayList<Integer> buscarIdsImoveis() {
+        ArrayList<Integer> idsImoveis = new ArrayList<>();
+        String sql = "SELECT idimovel FROM imovel";
+
+        try {
+            if (this.conexao.conectar()) {
+                Connection conn = this.conexao.getConnection();
+                PreparedStatement statement = conn.prepareStatement(sql);
+                ResultSet resultado = statement.executeQuery();
+
+                while (resultado.next()) {
+                    idsImoveis.add(resultado.getInt("idimovel"));
+                }
+
+                statement.close();
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao buscar IDs dos imóveis.", ex);
+        }
+
+        return idsImoveis;
+    }
+
 }
