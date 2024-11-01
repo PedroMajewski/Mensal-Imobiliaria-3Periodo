@@ -923,8 +923,12 @@ Cidade.setEditable(false);
 SituacaoCombo.setEditable(false);
                 if("ALUGUEL".equals(Imovel.getSituacao())){
                   SituacaoCombo.setSelectedIndex(0);
-                }else{
+                }else if("VENDA".equals(Imovel.getSituacao())){
                    SituacaoCombo.setSelectedIndex(1); 
+                }else if("VENDIDO".equals(Imovel.getSituacao())){
+                    SituacaoCombo.setSelectedIndex(2);
+                }else if("ALUGADO".equals(Imovel.getSituacao())){
+                    SituacaoCombo.setSelectedIndex(3);
                 }
         }
     }
