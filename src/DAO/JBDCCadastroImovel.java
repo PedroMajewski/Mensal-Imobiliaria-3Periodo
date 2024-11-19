@@ -95,24 +95,25 @@ public class JBDCCadastroImovel {
 
     public void AtualizarImovel(CadastroImovelModel cadastro) {
         //string com a consulta que será executada no banco
-        String sql = "UPDATE imovel AS i \n"
-                + "JOIN situacao_imovel AS s ON s.situacao_atual = ? \n"
-                + "SET \n"
-                + "    i.nome_imovel = ?, \n"
-                + "    i.descricao = ?, \n"
-                + "    i.valor_preco = ?, \n"
-                + "    i.cep_imovel = ?, \n"
-                + "    i.bairro_imovel = ?, \n"
-                + "    i.endereco_imovel = ?, \n"
-                + "    i.numero_imovel = ?, \n"
-                + "    i.uf_imovel = ?, \n"
-                + "    i.inscricao_imobiliaria = ?, \n"
-                + "    i.matricula_imovel = ?, \n"
-                + "    i.iptu = ?, \n"
-                + "    i.locador_imovel = ?, \n"
-                + "    i.locatario_imovel = ?, \n"
-                + "    i.cidade = ? \n"
-                + "WHERE i.idimovel = ?";
+        String sql = "UPDATE imovel AS i\n" +
+"JOIN situacao_imovel AS si ON si.situacao_atual = ?\n" +
+"SET \n" +
+"    i.id_situacao = si.idsituacaoimovel,\n" +
+"    i.nome_imovel = ?,\n" +
+"    i.descricao = ?,\n" +
+"    i.valor_preco = ?,\n" +
+"    i.cep_imovel = ?,\n" +
+"    i.bairro_imovel = ?,\n" +
+"    i.endereco_imovel = ?,\n" +
+"    i.numero_imovel = ?,\n" +
+"    i.uf_imovel = ?,\n" +
+"    i.inscricao_imobiliaria = ?,\n" +
+"    i.matricula_imovel = ?,\n" +
+"    i.iptu = ?,\n" +
+"    i.locador_imovel = ?,\n" +
+"    i.locatario_imovel = ?,\n" +
+"    i.cidade = ?\n" +
+"WHERE i.idimovel = ?;";
 
         try {
             //tenta realizar a conexão, se retornar verdadeiro entra no IF
@@ -140,6 +141,8 @@ public class JBDCCadastroImovel {
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença
                 this.conexao.getConnection().close(); //fecha a conexão com o banco
+                
+                JOptionPane.showMessageDialog(null, "A situação é " + cadastro.getSituacao());
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);

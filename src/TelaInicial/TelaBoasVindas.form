@@ -142,7 +142,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="24" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Group BY:"/>
+                <Property name="text" type="java.lang.String" value="Grupo:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -150,7 +150,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Quinteto Fodastico - O Melhor da UniAm&#xe9;rica"/>
+                <Property name="text" type="java.lang.String" value="Grupo Imobillls - Sistema Imobili&#xe1;rio"/>
               </Properties>
             </Component>
           </SubComponents>
