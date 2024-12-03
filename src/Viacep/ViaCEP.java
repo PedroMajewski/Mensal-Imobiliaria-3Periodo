@@ -4,7 +4,7 @@
  * 
  * Obtem um CEP no ViaCEP
  */
-package br.com.parg.viacep;
+package Viacep;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
