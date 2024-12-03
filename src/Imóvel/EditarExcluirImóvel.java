@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.JOptionPane;
 
-import br.com.parg.viacep.ViaCEP;
+import Viacep.ViaCEP;
 import Model.CadastroImovelModel;
 import DAO.JBDCCadastroImovel;
 import java.util.ArrayList;

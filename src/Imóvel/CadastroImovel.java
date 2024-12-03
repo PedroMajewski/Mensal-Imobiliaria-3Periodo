@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 import DAO.JBDCCadastroImovel;
 import Model.CadastroImovelModel;
-import br.com.parg.viacep.ViaCEP;
+import Viacep.ViaCEP;
 /**
  *
  * @author pedro
