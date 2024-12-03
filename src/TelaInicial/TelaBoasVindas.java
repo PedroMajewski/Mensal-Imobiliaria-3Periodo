@@ -53,10 +53,10 @@ public class TelaBoasVindas extends javax.swing.JPanel {
         jLabel4.setText("Utilize o menu ao lado para navegar entre as telas.");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Group BY:");
+        jLabel5.setText("Grupo:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Quinteto Fodastico - O Melhor da UniAmérica");
+        jLabel6.setText("Grupo Imobillls - Sistema Imobiliário");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

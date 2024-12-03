@@ -682,28 +682,28 @@ public class EditarExcluirImóvel extends javax.swing.JPanel {
                 options[0]);
             if (resposta == 0) {
 
-                CadastroImovelModel AtualizarImovel = new CadastroImovelModel();
+                JBDCCadastroImovel JBDCBancoImovel = new JBDCCadastroImovel();
+                CadastroImovelModel AtualizarImovelModel = new CadastroImovelModel();
 
                 int idImovel = Integer.parseInt(IdImovel.getText());
-                AtualizarImovel.setIdImovel(idImovel);
-                AtualizarImovel.setNomeImovel(NomeImovel.getText());
-                AtualizarImovel.setDescricao(DescricaoTextArea.getText());
-                AtualizarImovel.setLocador(Locador.getText());
-                AtualizarImovel.setLocatario(Locatario.getText());
-                AtualizarImovel.setIptu(IPTU.getText());
-                AtualizarImovel.setCepImovel(CEP.getText());
-                AtualizarImovel.setBairroImovel(Bairro.getText());
-                AtualizarImovel.setEnderecoImovel(Endereco.getText());
-                AtualizarImovel.setNumeroImovel(Numero.getText());
-                AtualizarImovel.setUfImovel(UF.getText());
-                AtualizarImovel.setValorPreco(Preco.getText());
-                AtualizarImovel.setSituacao((String) SituacaoCombo.getSelectedItem());
-                AtualizarImovel.setInscricaoImobiliaria(InscricaoImobiliaria.getText());
-                AtualizarImovel.setMatriculaImovel(MatriculaImovel.getText());
-                AtualizarImovel.setCidade(Cidade.getText());
+                AtualizarImovelModel.setIdImovel(idImovel);
+                AtualizarImovelModel.setNomeImovel(NomeImovel.getText());
+                AtualizarImovelModel.setDescricao(DescricaoTextArea.getText());
+                AtualizarImovelModel.setLocador(Locador.getText());
+                AtualizarImovelModel.setLocatario(Locatario.getText());
+                AtualizarImovelModel.setIptu(IPTU.getText());
+                AtualizarImovelModel.setCepImovel(CEP.getText());
+                AtualizarImovelModel.setBairroImovel(Bairro.getText());
+                AtualizarImovelModel.setEnderecoImovel(Endereco.getText());
+                AtualizarImovelModel.setNumeroImovel(Numero.getText());
+                AtualizarImovelModel.setUfImovel(UF.getText());
+                AtualizarImovelModel.setValorPreco(Preco.getText());
+                AtualizarImovelModel.setSituacao((String) SituacaoCombo.getSelectedItem());
+                AtualizarImovelModel.setInscricaoImobiliaria(InscricaoImobiliaria.getText());
+                AtualizarImovelModel.setMatriculaImovel(MatriculaImovel.getText());
+                AtualizarImovelModel.setCidade(Cidade.getText());
 
-                JBDCCadastroImovel AtualziarImovel = new JBDCCadastroImovel();
-                AtualziarImovel.AtualizarImovel(AtualizarImovel);
+                JBDCBancoImovel.AtualizarImovel(AtualizarImovelModel);
 
                 NomeImovel.setText("");
                 Bairro.setText("");

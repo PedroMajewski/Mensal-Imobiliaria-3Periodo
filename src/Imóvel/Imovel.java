@@ -23,6 +23,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Imóvel.DetalharImovel;
+import java.text.MessageFormat;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.OrientationRequested;
+import javax.swing.JTable;
 
 /**
  *
@@ -158,6 +163,7 @@ public class Imovel extends javax.swing.JPanel {
         BtnExcluir = new javax.swing.JButton();
         BtnRecarregar = new javax.swing.JButton();
         BtnDetalhar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,7 +203,7 @@ public class Imovel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "IdImovel", "Nome", "Locador", "Locátario", "Inscrição Imobiliaria", "Matrícula Imóvel", "Preço", "CEP", "Número", "UF", "Situação", "Descrição"
+                "IdImovel", "Nome", "Locador", "Locátario", "Preço", "CEP", "Situação"
             }
         ));
         TabelaImovel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,11 +220,6 @@ public class Imovel extends javax.swing.JPanel {
             TabelaImovel.getColumnModel().getColumn(4).setResizable(false);
             TabelaImovel.getColumnModel().getColumn(5).setResizable(false);
             TabelaImovel.getColumnModel().getColumn(6).setResizable(false);
-            TabelaImovel.getColumnModel().getColumn(7).setResizable(false);
-            TabelaImovel.getColumnModel().getColumn(8).setResizable(false);
-            TabelaImovel.getColumnModel().getColumn(9).setResizable(false);
-            TabelaImovel.getColumnModel().getColumn(10).setResizable(false);
-            TabelaImovel.getColumnModel().getColumn(11).setResizable(false);
         }
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -231,7 +232,7 @@ public class Imovel extends javax.swing.JPanel {
             }
         });
 
-        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImóvel", "Nome do Imóvel", "Locador", "Locatário", "CEP", "Inscrição Imobiliária", "Matrícula do Imóvel", "Preço", "Siutação" }));
+        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImóvel", "Nome do Imóvel", "Locador", "Locatário", "CEP", "Preço", "Situação" }));
         FiltroCombo.setBorder(null);
         FiltroCombo.setLightWeightPopupEnabled(false);
 
@@ -301,6 +302,13 @@ public class Imovel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Impressão Tabela");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -316,12 +324,18 @@ public class Imovel extends javax.swing.JPanel {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel5))
-                        .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(168, 168, 168)
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -338,7 +352,9 @@ public class Imovel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
@@ -374,7 +390,7 @@ public class Imovel extends javax.swing.JPanel {
                 .addGroup(PainelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(530, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         PainelCentralLayout.setVerticalGroup(
@@ -384,7 +400,7 @@ public class Imovel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -478,14 +494,9 @@ public class Imovel extends javax.swing.JPanel {
             Imovel.getNomeImovel(),
             Imovel.getLocador(),
             Imovel.getLocatario(),
-            Imovel.getInscricaoImobiliaria(),
-            Imovel.getMatriculaImovel(),
             Imovel.getValorPreco(),
             Imovel.getCepImovel(),
-            Imovel.getNumeroImovel(),
-            Imovel.getUfImovel(),
-            Imovel.getSituacao(),
-            Imovel.getDescricao()
+            Imovel.getSituacao()
         });
     }
     }//GEN-LAST:event_BtnPesquisaActionPerformed
@@ -514,6 +525,20 @@ public class Imovel extends javax.swing.JPanel {
         DetalhesImóvel.setVisible(true);
     }//GEN-LAST:event_BtnDetalharActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MessageFormat header = new MessageFormat("Imobills Sistema Imobiliário");
+        MessageFormat footer = new MessageFormat("Página(0,number,integer)");
+        try{
+            PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
+            set.add(OrientationRequested.LANDSCAPE);
+            TabelaImovel.print(JTable.PrintMode.FIT_WIDTH, header, footer, true,set,true);
+            JOptionPane.showMessageDialog(null, "Impressão Concluida!");
+        }catch(java.awt.print.PrinterException e){
+            JOptionPane.showMessageDialog(null, "Falha");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
      private void ShowPanel(JPanel p){
     p.setSize(799, 700);
@@ -532,22 +557,17 @@ public class Imovel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel)TabelaImovel.getModel();
          model.setRowCount(0);
-         model.setColumnCount(12);
+         model.setColumnCount(7);
         
-        Object[] row = new Object[12];
+        Object[] row = new Object[7];
         for(int i = 0;i < listaimovelcoluna.size();i++){
             row[0] = listaimovelcoluna.get(i).getIdImovel();
             row[1] = listaimovelcoluna.get(i).getNomeImovel();
             row[2] = listaimovelcoluna.get(i).getLocador();
             row[3] = listaimovelcoluna.get(i).getLocatario();
-            row[4] = listaimovelcoluna.get(i).getInscricaoImobiliaria();
-            row[5] = listaimovelcoluna.get(i).getMatriculaImovel();
-            row[6] = listaimovelcoluna.get(i).getValorPreco();
-            row[7] = listaimovelcoluna.get(i).getCepImovel();
-            row[8] = listaimovelcoluna.get(i).getNumeroImovel();
-            row[9] = listaimovelcoluna.get(i).getUfImovel();
-            row[10] = listaimovelcoluna.get(i).getSituacao();
-            row[11] = listaimovelcoluna.get(i).getDescricao();
+            row[4] = listaimovelcoluna.get(i).getValorPreco();
+            row[5] = listaimovelcoluna.get(i).getCepImovel();
+            row[6] = listaimovelcoluna.get(i).getSituacao();
             
 
             model.addRow(row.clone());
@@ -559,7 +579,7 @@ public class Imovel extends javax.swing.JPanel {
      public void RecarregarImoveisTabela() {
     DefaultTableModel model = (DefaultTableModel) TabelaImovel.getModel();
     model.setRowCount(0);
-    model.setColumnCount(12);
+    model.setColumnCount(7);
     MostrarImoveisTabela();
 }
      
@@ -575,6 +595,7 @@ public class Imovel extends javax.swing.JPanel {
     private javax.swing.JPanel PainelCentral;
     private javax.swing.JTextField PesquisarText;
     private javax.swing.JTable TabelaImovel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
