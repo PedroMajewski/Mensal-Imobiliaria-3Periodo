@@ -28,7 +28,7 @@ public class JBDCCadastroFinanceiro {
 
     public void inserirContratoFinanceiro(FinanceiroModel cadastroContrato) {
         String sql = "INSERT INTO financeiro (idimovel_financeiro, nomeContrato, situacao_financeiro, valor_parcela, "
-                + "numeroParcelas, valor_total, locatario, locador) "
+                + "numeroParcelas, valor_total, locador) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             if (this.conexao.conectar()) {
@@ -41,8 +41,7 @@ public class JBDCCadastroFinanceiro {
                 statement.setString(4, cadastroContrato.getValorParcela());
                 statement.setString(5, cadastroContrato.getNumeroParcelas());
                 statement.setString(6, cadastroContrato.getValor_total());
-                statement.setString(7, cadastroContrato.getLocatario());
-                statement.setString(8, cadastroContrato.getLocador());
+                statement.setString(7, cadastroContrato.getLocador());
 
                 statement.execute();
                 statement.close();
@@ -67,15 +66,13 @@ public class JBDCCadastroFinanceiro {
 
                     FinanceiroModel financeiro = new FinanceiroModel();
 
-                    
                     financeiro.setIdImovelFinanceiro(resultado.getInt("idImovelFinanceiro"));
                     financeiro.setNomeContrato(resultado.getString("nomeContrato"));
                     financeiro.setSituacaoComboFinanceiro(resultado.getString("situacaoFinanceiro"));
                     financeiro.setValorParcela(resultado.getString("valorParcela"));
                     financeiro.setNumeroParcelas(resultado.getString("numeroParcelas"));
                     financeiro.setValor_total(resultado.getString("valor_total"));
-                    financeiro.setLocatario(resultado.getString("Locatario"));
-                    financeiro.setLocatario(resultado.getString("Locador"));
+                    financeiro.setLocador(resultado.getString("Locador"));
 
                     listaFinanceiro.add(financeiro);
                 }
@@ -88,4 +85,31 @@ public class JBDCCadastroFinanceiro {
         }
 
     }
+
+    
+    
+    public String nomeImovelPeloID(String id) {
+        String nomeImovel = null;
+        String sql = "SELECT nome_imovel FROM imovel WHERE idimovel = ?";
+
+        try {
+            this.conexao.conectar();
+            Connection conn = this.conexao.getConnection();
+            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                statement.setString(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        nomeImovel = resultSet.getString("nome_imovel");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            this.conexao.fecharConexao();
+        }
+
+        return nomeImovel;
+    }
+
 }

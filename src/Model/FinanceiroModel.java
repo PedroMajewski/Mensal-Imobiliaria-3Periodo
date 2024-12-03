@@ -20,7 +20,7 @@ public class FinanceiroModel {
     private String Locador;
 
     //Insere os dados na tabela
-    public FinanceiroModel(int idImovelFinanceiro,String nomeContrato,String situacaoComboFinanceiro,String numeroParcelas, String valorParcela, String valor_total, String Locatario, String Locador) {
+    public FinanceiroModel(int idImovelFinanceiro,String nomeContrato,String situacaoComboFinanceiro,String numeroParcelas, String valorParcela, String valor_total, String Locador) {
   
         this.idImovelFinanceiro = idImovelFinanceiro;
         this.nomeContrato = nomeContrato;
@@ -28,7 +28,17 @@ public class FinanceiroModel {
         this.valorParcela = valorParcela;
         this.numeroParcelas = numeroParcelas;
         this.valor_total = valor_total;
-        this.Locatario = Locatario;
+        this.Locador = Locador;
+    }
+    
+    public FinanceiroModel( String nomeContrato,String situacaoComboFinanceiro,String numeroParcelas, String valorParcela, String valor_total, String Locador) {
+  
+        
+        this.nomeContrato = nomeContrato;
+        this.situacaoComboFinanceiro = situacaoComboFinanceiro;
+        this.valorParcela = valorParcela;
+        this.numeroParcelas = numeroParcelas;
+        this.valor_total = valor_total;
         this.Locador = Locador;
     }
 
@@ -83,14 +93,6 @@ public class FinanceiroModel {
 
     public void setValor_total(String valor_total) {
         this.valor_total = valor_total;
-    }
-
-    public String getLocatario() {
-        return Locatario;
-    }
-
-    public void setLocatario(String Locatario) {
-        this.Locatario = Locatario;
     }
     
     public String getLocador() {
