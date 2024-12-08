@@ -21,15 +21,15 @@ public class FinanceiroModel {
     private String nome_imovel;
 
     //Insere os dados na tabela
-    public FinanceiroModel(int idImovelFinanceiro,String nomeContrato,String situacaoComboFinanceiro,String numeroParcelas, String valorParcela, String valor_total, String Locador) {
+    public FinanceiroModel(int idImovelFinanceiro,String nomeContrato,String Locador,String valorParcela, String numeroParcelas, String valor_total, String situacaoComboFinanceiro) {
   
         this.idImovelFinanceiro = idImovelFinanceiro;
         this.nomeContrato = nomeContrato;
-        this.situacaoComboFinanceiro = situacaoComboFinanceiro;
-        this.valorParcela = valorParcela;
-        this.numeroParcelas = numeroParcelas;
-        this.valor_total = valor_total;
         this.Locador = Locador;
+        this.numeroParcelas = numeroParcelas;
+        this.valorParcela = valorParcela;
+        this.valor_total = valor_total;
+        this.situacaoComboFinanceiro = situacaoComboFinanceiro;
     }
     
     public FinanceiroModel (String nomeContrato, String situacaoComboFinanceiro, String valorParcela, String numeroParcelas, String valor_total, String Locador, int idImovelFinanceiro){

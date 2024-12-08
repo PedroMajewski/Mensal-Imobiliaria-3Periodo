@@ -88,6 +88,7 @@ public class JBDCCadastroFinanceiro {
 
     }
 
+    //Usado na tela de cadastro de contratos financeiros
     public ArrayList<FinanceiroModel> filtrarImoveisPorNome(String valorPesquisa) {
         ArrayList<FinanceiroModel> listaImoveis = new ArrayList<>();
 
@@ -126,6 +127,7 @@ public class JBDCCadastroFinanceiro {
         return listaImoveis;
     }
 
+    //Usado na tela de cadastro de contratos financeiros
     public ArrayList<FinanceiroModel> filtrarClientesPorNome(String valorPesquisa) {
         ArrayList<FinanceiroModel> listaImoveis = new ArrayList<>();
 
@@ -273,7 +275,7 @@ public class JBDCCadastroFinanceiro {
                         FinanceiroModel financeiro = new FinanceiroModel();
                         financeiro.setIdImovelFinanceiro(rs.getInt("idimovel_financeiro"));
                         financeiro.setNomeContrato(rs.getString("nomeContrato"));
-                        financeiro.setLocador(rs.getString("nomeCliente"));  // Agora pegamos o nome do cliente
+                        financeiro.setLocador(rs.getString("nomeCliente"));  
                         financeiro.setValorParcela(rs.getString("valor_parcela"));
                         financeiro.setNumeroParcelas(rs.getString("numeroParcelas"));
                         financeiro.setValor_total(rs.getString("valor_total"));
@@ -299,10 +301,10 @@ public class JBDCCadastroFinanceiro {
 
         String colunaSQL;
         switch (colunaSelecionada) {
-            case "ID Imóvel":
+            case "ID Imovel":
                 colunaSQL = "f.idimovel_financeiro";
                 break;
-            case "Nome do Contrato":
+            case "Nome Contrato":
                 colunaSQL = "f.nomeContrato";
                 break;
             case "Nome Cliente":
@@ -315,10 +317,12 @@ public class JBDCCadastroFinanceiro {
                 throw new IllegalArgumentException("Coluna inválida: " + colunaSelecionada);
         }
 
-        String sql = "SELECT f.idimovel_financeiro, f.nomeContrato, c.nome_cliente, f.situacao_financeiro, "
-                + "f.valor_parcela, f.numeroParcelas, f.valor_total "
+        String sql = "SELECT f.idimovel_financeiro, f.nomeContrato, c.nome_cliente, f.valor_parcela, "
+                + "f.numeroParcelas, f.valor_total, f.situacao_financeiro "
                 + "FROM financeiro AS f "
                 + "INNER JOIN cliente AS c ON f.locador = c.idcliente "
+                + "INNER JOIN imovel AS i ON f.idimovel_financeiro = i.idimovel "
+                + "INNER JOIN situacao_financeiro AS s ON f.situacao_financeiro = s.situacao_financeiro "
                 + "WHERE " + colunaSQL + " LIKE ?";
 
         JBDCConnect jbdcConnect = new JBDCConnect();
@@ -335,10 +339,10 @@ public class JBDCCadastroFinanceiro {
                             resultados.getInt("idimovel_financeiro"),
                             resultados.getString("nomeContrato"),
                             resultados.getString("nome_cliente"),
-                            resultados.getString("situacao_financeiro"),
                             resultados.getString("valor_parcela"),
                             resultados.getString("numeroParcelas"),
-                            resultados.getString("valor_total")
+                            resultados.getString("valor_total"),
+                            resultados.getString("situacao_financeiro")
                     );
                     listaContratos.add(contrato);
                 }
