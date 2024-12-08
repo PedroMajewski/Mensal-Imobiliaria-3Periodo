@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import Financeiro.Financeiro;
 import Model.FinanceiroModel;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +31,8 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
      */
     public CadastroFinanceiro() {
         initComponents();
+        MostrarListaImoveis();
+        MostrarListaClientes();
         JButton[] btns = {BtnCadastrar, BtnCancelar, BtnRetornar};
         for (JButton btn : btns) {
             btn.setBackground(new Color(30, 122, 206));
@@ -68,6 +71,88 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     }
 
+    public void MostrarListaImoveis() {
+
+        nomeImovelFinanceiro.setText("");
+        DefaultTableModel model = (DefaultTableModel) tableImoveis.getModel();
+
+        if (model.getColumnCount() == 0) {
+            model.addColumn("ID Imovel");
+            model.addColumn("Imovel");
+        }
+
+        model.setRowCount(0);
+
+        JBDCCadastroFinanceiro ListaProdutos = new JBDCCadastroFinanceiro();
+        ArrayList<FinanceiroModel> listaProdutos = ListaProdutos.MostrarImoveisTabela();
+
+        for (FinanceiroModel produto : listaProdutos) {
+            Object[] row = {
+                produto.getIdimovel(),
+                produto.getNome_imovel(),};
+            model.addRow(row);
+        }
+    }
+
+    public void MostrarListaClientes() {
+
+        nomeClienteFinanceiro.setText("");
+        DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
+
+        if (model.getColumnCount() == 0) {
+            model.addColumn("ID Locador");
+            model.addColumn("Locador");
+        }
+
+        model.setRowCount(0);
+
+        JBDCCadastroFinanceiro ListaProdutos = new JBDCCadastroFinanceiro();
+        ArrayList<FinanceiroModel> listaProdutos = ListaProdutos.MostrarClientesTabela();
+
+        for (FinanceiroModel produto : listaProdutos) {
+            Object[] row = {
+                produto.getIdimovel(),
+                produto.getNome_imovel(),};
+            model.addRow(row);
+        }
+    }
+
+    private void entregaDadosPesquisado(ArrayList<FinanceiroModel> imoveis) {
+
+        DefaultTableModel modelo = (DefaultTableModel) tableImoveis.getModel();
+        modelo.setRowCount(0);
+
+        for (FinanceiroModel imovel : imoveis) {
+            modelo.addRow(new Object[]{
+                imovel.getIdimovel(),
+                imovel.getNome_imovel()
+            });
+        }
+    }
+
+    private void entregaClientePesquisado(ArrayList<FinanceiroModel> imoveis) {
+
+        DefaultTableModel modelo = (DefaultTableModel) tableClientes.getModel();
+        modelo.setRowCount(0);
+
+        for (FinanceiroModel imovel : imoveis) {
+            modelo.addRow(new Object[]{
+                imovel.getIdimovel(),
+                imovel.getNome_imovel()
+            });
+        }
+    }
+    
+    private void limparCamposCadastro() {
+    NomeContrato.setText("");
+    ValorParcela.setText("");
+    NParcelas.setText("");
+    ValorTotal.setText("");
+    situacaoComboFinanceiro.setSelectedIndex(-1);
+    tableClientes.clearSelection();
+    tableImoveis.clearSelection();
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +178,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         ValorParcelaLabel = new javax.swing.JLabel();
         NParcelas = new javax.swing.JTextField();
         NParcelasLabel = new javax.swing.JLabel();
-        NomeLocador = new javax.swing.JTextField();
+        nomeClienteFinanceiro = new javax.swing.JTextField();
         NomeLocadorLabel = new javax.swing.JLabel();
         NomeContratoLabel1 = new javax.swing.JLabel();
         NomeContrato = new javax.swing.JTextField();
@@ -104,6 +189,8 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         tableImoveis = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableClientes = new javax.swing.JTable();
+        BtnCadastrar1 = new javax.swing.JButton();
+        BtnProcurarCliente = new javax.swing.JButton();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -226,21 +313,21 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         NParcelasLabel.setForeground(new java.awt.Color(153, 153, 153));
         NParcelasLabel.setText("N° Parcelas:");
 
-        NomeLocador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        NomeLocador.addActionListener(new java.awt.event.ActionListener() {
+        nomeClienteFinanceiro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        nomeClienteFinanceiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomeLocadorActionPerformed(evt);
+                nomeClienteFinanceiroActionPerformed(evt);
             }
         });
-        NomeLocador.addKeyListener(new java.awt.event.KeyAdapter() {
+        nomeClienteFinanceiro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                NomeLocadorKeyPressed(evt);
+                nomeClienteFinanceiroKeyPressed(evt);
             }
         });
 
         NomeLocadorLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         NomeLocadorLabel.setForeground(new java.awt.Color(153, 153, 153));
-        NomeLocadorLabel.setText("Nome Locador:");
+        NomeLocadorLabel.setText("Nome Cliente:");
 
         NomeContratoLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         NomeContratoLabel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -262,7 +349,6 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         IdImovelLabel1.setForeground(new java.awt.Color(153, 153, 153));
         IdImovelLabel1.setText("Nome imovel");
 
-        nomeImovelFinanceiro.setEditable(false);
         nomeImovelFinanceiro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         nomeImovelFinanceiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,7 +379,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "ID", "Imovel"
+                "ID Imovel", "Imovel"
             }
         ));
         jScrollPane1.setViewportView(tableImoveis);
@@ -310,7 +396,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "ID", "Clientes"
+                "ID Cliente", "Cliente"
             }
         ));
         jScrollPane2.setViewportView(tableClientes);
@@ -318,6 +404,30 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
             tableClientes.getColumnModel().getColumn(0).setResizable(false);
             tableClientes.getColumnModel().getColumn(0).setPreferredWidth(5);
         }
+
+        BtnCadastrar1.setBackground(new java.awt.Color(30, 122, 206));
+        BtnCadastrar1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnCadastrar1.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCadastrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Search.png"))); // NOI18N
+        BtnCadastrar1.setBorderPainted(false);
+        BtnCadastrar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCadastrar1ActionPerformed(evt);
+            }
+        });
+
+        BtnProcurarCliente.setBackground(new java.awt.Color(30, 122, 206));
+        BtnProcurarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BtnProcurarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        BtnProcurarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Search.png"))); // NOI18N
+        BtnProcurarCliente.setBorderPainted(false);
+        BtnProcurarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnProcurarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnProcurarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -327,7 +437,6 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(BtnRetornar)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -353,12 +462,20 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                             .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IdImovelLabel1)
-                            .addComponent(nomeImovelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NomeLocador, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NomeLocadorLabel)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(IdImovelLabel1)
+                                    .addComponent(nomeImovelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnCadastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(nomeClienteFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnProcurarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(BtnRetornar))
                 .addContainerGap(302, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -369,43 +486,51 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(76, 76, 76)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NParcelasLabel)
-                    .addComponent(NomeContratoLabel1)
-                    .addComponent(IdImovelLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeImovelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(25, 25, 25)
+                        .addComponent(IdImovelLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nomeImovelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnCadastrar1))
+                .addGap(8, 8, 8)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ValorTotalLabel)
-                            .addComponent(ValorParcelaLabel))
-                        .addGap(18, 18, 18)
+                            .addComponent(NParcelasLabel)
+                            .addComponent(NomeContratoLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addComponent(SituacaoComboLabel))
+                            .addComponent(NParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NomeContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ValorTotalLabel)
+                            .addComponent(ValorParcelaLabel)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(situacaoComboFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomeLocadorLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NomeLocador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ValorParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NomeLocadorLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nomeClienteFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnProcurarCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(SituacaoComboLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(situacaoComboFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(185, 185, 185))
+                .addGap(261, 261, 261))
         );
 
         javax.swing.GroupLayout PainelCentralLayout = new javax.swing.GroupLayout(PainelCentral);
@@ -427,8 +552,9 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -441,7 +567,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 916, Short.MAX_VALUE)
+            .addGap(0, 934, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PainelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -476,62 +602,47 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
         try {
+            int selectedRowCliente = tableClientes.getSelectedRow();
+            int selectedRowImovel = tableImoveis.getSelectedRow();
             
+            if (selectedRowCliente == -1) {
+                JOptionPane.showMessageDialog(null, "Por favor, selecione um cliente na tabela de clientes.");
+                return;
+            }
+            if (selectedRowImovel == -1) {
+                JOptionPane.showMessageDialog(null, "Por favor, selecione um imóvel na tabela de imóveis.");
+                return;
+            }
+            
+            String locador = tableClientes.getValueAt(selectedRowCliente, 0).toString(); 
+            int idImovel = Integer.parseInt(tableImoveis.getValueAt(selectedRowImovel, 0).toString());
+
             String nomeContrato = NomeContrato.getText();
             String situacaoTexto = situacaoComboFinanceiro.getSelectedItem().toString();
             String valorParcela = ValorParcela.getText();
             String numeroParcelas = NParcelas.getText();
             String valorTotal = ValorTotal.getText();
-            String locador = NomeLocador.getText();
-
-            FinanceiroModel financeiro = new FinanceiroModel( nomeContrato, situacaoTexto, valorParcela, numeroParcelas,
-                    valorTotal, locador);
-
+            
+            FinanceiroModel financeiro = new FinanceiroModel(
+                    nomeContrato, situacaoTexto, valorParcela, numeroParcelas, valorTotal, locador, idImovel
+            );
+            
             JBDCCadastroFinanceiro dao = new JBDCCadastroFinanceiro();
             dao.inserirContratoFinanceiro(financeiro);
-
+            
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+            
+            limparCamposCadastro();
         } catch (Exception ex) {
+            
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + ex.getMessage());
-        }
-
-        String CheckNome = NomeContrato.getText();
-        if (ValorParcela.getText().isEmpty()
-                && NParcelas.getText().isEmpty() && ValorTotal.getText().isEmpty() && NomeLocador.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "O nome do imóvel não pode estar vazio!");
-        } else {
-            String[] options = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(
-                    this,
-                    "Cadastro Registrado!" + "\n"
-                    + "Nome do Contrato: " + NomeContrato.getText() + "\n"
-                    + "Locador: " + NomeLocador.getText() + "\n"
-                    + "Valor Parcela: " + ValorParcela.getText() + "\n"
-                    + "Número Parcelas: " + NParcelas.getText() + "\n"
-                    + "Valor Total: " + ValorTotal.getText() + "\n"
-                    + "Situação: " + situacaoComboFinanceiro.getSelectedItem() + "\n\n\n"
-                    + "Cadastrar novo Contrato?" + "\n",
-                    "Confirmação de Cadastro",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.WARNING_MESSAGE,
-                    null,
-                    options,
-                    options[0]);
-            if (resposta == 1) {
-            } else {
-                NomeLocador.setText("");
-                ValorParcela.setText("");
-                NParcelas.setText("");
-                ValorTotal.setText("");
-                situacaoComboFinanceiro.setSelectedIndex(-1);
-            }
         }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void ValorTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValorTotalKeyPressed
         // TODO add your handling code here:
         if (evt.getExtendedKeyCode() == evt.VK_ENTER) {
-            NomeLocador.requestFocus();
+            nomeClienteFinanceiro.requestFocus();
         }
     }//GEN-LAST:event_ValorTotalKeyPressed
 
@@ -570,13 +681,13 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_NParcelasKeyTyped
 
-    private void NomeLocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeLocadorActionPerformed
+    private void nomeClienteFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeClienteFinanceiroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NomeLocadorActionPerformed
+    }//GEN-LAST:event_nomeClienteFinanceiroActionPerformed
 
-    private void NomeLocadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeLocadorKeyPressed
+    private void nomeClienteFinanceiroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeClienteFinanceiroKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NomeLocadorKeyPressed
+    }//GEN-LAST:event_nomeClienteFinanceiroKeyPressed
 
     private void NomeContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeContratoActionPerformed
         // TODO add your handling code here:
@@ -599,8 +710,31 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
     }//GEN-LAST:event_nomeImovelFinanceiroKeyTyped
 
     private void situacaoComboFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_situacaoComboFinanceiroActionPerformed
-                // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_situacaoComboFinanceiroActionPerformed
+
+    private void BtnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar1ActionPerformed
+
+        String valorPesquisa = nomeImovelFinanceiro.getText();
+
+        JBDCCadastroFinanceiro dao = new JBDCCadastroFinanceiro();
+
+        ArrayList<FinanceiroModel> produtosFiltrados = dao.filtrarImoveisPorNome(valorPesquisa);
+
+        entregaDadosPesquisado(produtosFiltrados);        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCadastrar1ActionPerformed
+
+    private void BtnProcurarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProcurarClienteActionPerformed
+
+        String valorPesquisa = nomeClienteFinanceiro.getText();
+
+        JBDCCadastroFinanceiro dao = new JBDCCadastroFinanceiro();
+
+        ArrayList<FinanceiroModel> produtosFiltrados = dao.filtrarClientesPorNome(valorPesquisa);
+
+        entregaClientePesquisado(produtosFiltrados);
+// TODO add your handling code here:
+    }//GEN-LAST:event_BtnProcurarClienteActionPerformed
 
     private void ShowPanel(JPanel p) {
         p.setSize(799, 700);
@@ -614,14 +748,15 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCadastrar;
+    private javax.swing.JButton BtnCadastrar1;
     private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnProcurarCliente;
     private javax.swing.JButton BtnRetornar;
     private javax.swing.JLabel IdImovelLabel1;
     private javax.swing.JTextField NParcelas;
     private javax.swing.JLabel NParcelasLabel;
     private javax.swing.JTextField NomeContrato;
     private javax.swing.JLabel NomeContratoLabel1;
-    private javax.swing.JTextField NomeLocador;
     private javax.swing.JLabel NomeLocadorLabel;
     private javax.swing.JPanel PainelCentral;
     private javax.swing.JLabel SituacaoComboLabel;
@@ -636,6 +771,7 @@ public class CadastroFinanceiro extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField nomeClienteFinanceiro;
     private javax.swing.JTextField nomeImovelFinanceiro;
     private javax.swing.JComboBox<String> situacaoComboFinanceiro;
     private javax.swing.JTable tableClientes;

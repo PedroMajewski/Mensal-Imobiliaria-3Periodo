@@ -10,14 +10,15 @@ package Model;
  */
 public class FinanceiroModel {
           
-    private int idImovelFinanceiro;    //idImovelFinanceiro Foreign IDIMOVEL
+    private int idImovelFinanceiro;
+    private int idimovel;
     private String nomeContrato;
     private String situacaoComboFinanceiro;
     private String numeroParcelas;
     private String valorParcela;
     private String valor_total;
-    private String Locatario;
     private String Locador;
+    private String nome_imovel;
 
     //Insere os dados na tabela
     public FinanceiroModel(int idImovelFinanceiro,String nomeContrato,String situacaoComboFinanceiro,String numeroParcelas, String valorParcela, String valor_total, String Locador) {
@@ -31,6 +32,21 @@ public class FinanceiroModel {
         this.Locador = Locador;
     }
     
+    public FinanceiroModel (String nomeContrato, String situacaoComboFinanceiro, String valorParcela, String numeroParcelas, String valor_total, String Locador, int idImovelFinanceiro){
+        this.nomeContrato = nomeContrato;
+        this.situacaoComboFinanceiro = situacaoComboFinanceiro;
+        this.valorParcela = valorParcela;
+        this.numeroParcelas = numeroParcelas;
+        this.valor_total = valor_total;
+        this.Locador = Locador;
+        this.idImovelFinanceiro = idImovelFinanceiro;
+    }
+    
+    public FinanceiroModel (int idimovel, String nome_imovel){
+        this.idimovel = idimovel;
+        this.nome_imovel = nome_imovel;
+    }
+    
     public FinanceiroModel( String nomeContrato,String situacaoComboFinanceiro,String numeroParcelas, String valorParcela, String valor_total, String Locador) {
   
         
@@ -42,6 +58,22 @@ public class FinanceiroModel {
         this.Locador = Locador;
     }
 
+    public int getIdimovel() {
+        return idimovel;
+    }
+
+    public void setIdimovel(int idimovel) {
+        this.idimovel = idimovel;
+    }
+
+    public String getNome_imovel() {
+        return nome_imovel;
+    }
+
+    public void setNome_imovel(String nome_imovel) {
+        this.nome_imovel = nome_imovel;
+    }
+    
     public void setSituacaoComboFinanceiro(String SituacaoComboFinanceiro) {
         this.situacaoComboFinanceiro = SituacaoComboFinanceiro;
     }

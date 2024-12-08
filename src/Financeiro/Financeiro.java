@@ -4,6 +4,7 @@
  */
 package Financeiro;
 
+import DAO.JBDCCadastroFinanceiro;
 import Imóvel.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,56 +18,119 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import Financeiro.CadastroFinanceiro;
+import Model.FinanceiroModel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author pedro
  */
-
-
-
 public class Financeiro extends javax.swing.JPanel {
 
     /**
      * Creates new form CadastroImóvel
      */
-  
     public Financeiro() {
         initComponents();
-        JButton [] btns = {BtnImovel, BtnPesquisa};
-       for(JButton btn : btns){
-           btn.setBackground(new Color(30,122,206));
-           btn.setUI(new BasicButtonUI());
-           btn.addMouseListener(new MouseListener(){
-               @Override
-               public void mouseClicked(MouseEvent e){
-                   
-               }
-               @Override
-               public void mousePressed(MouseEvent e){
-                   
-               }
-               @Override 
-                public void mouseReleased(MouseEvent e){
-                   
-               }
-               @Override
-               public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(47,141,227));
-               }
-               @Override
-               public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(30,122,206));
-               }
-           
-           });
-           }
-       
+        exibirDadosTabelaFinanceiro();
+        JButton[] btns = {BtnImovel, BtnPesquisa};
+        for (JButton btn : btns) {
+            btn.setBackground(new Color(30, 122, 206));
+            btn.setUI(new BasicButtonUI());
+            btn.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    btn.setBackground(new Color(47, 141, 227));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    btn.setBackground(new Color(30, 122, 206));
+                }
+
+            });
+        }
 
 // Adiciona o SistemaContent ao novo JPanel ou à outra parte da interface
-       
     }
 
+    public void exibirDadosTabelaFinanceiro() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaContratos.getModel();
+
+        if (modelo.getColumnCount() == 0) {
+            modelo.addColumn("ID Imóvel");
+            modelo.addColumn("Nome Contrato");
+            modelo.addColumn("Nome Cliente");
+            modelo.addColumn("Valor Parcela");
+            modelo.addColumn("Número Parcelas");
+            modelo.addColumn("Valor Total");
+            modelo.addColumn("Situação");
+        }
+
+        modelo.setRowCount(0);
+
+        JBDCCadastroFinanceiro dao = new JBDCCadastroFinanceiro();
+        ArrayList<FinanceiroModel> listaFinanceiro = dao.buscarDadosTabelaFinanceiro();
+
+        for (FinanceiroModel financeiro : listaFinanceiro) {
+            Object[] row = {
+                financeiro.getIdImovelFinanceiro(),
+                financeiro.getNomeContrato(),
+                financeiro.getLocador(),
+                financeiro.getValorParcela(),
+                financeiro.getNumeroParcelas(),
+                financeiro.getValor_total(),
+                financeiro.getSituacaoComboFinanceiro()
+            };
+            modelo.addRow(row);
+
+        }
+    }
+
+    public void atualizarTabelaContratos() {
+        try {
+
+            DefaultTableModel model = (DefaultTableModel) tabelaContratos.getModel();
+            model.setRowCount(0);
+
+            JBDCCadastroFinanceiro dao = new JBDCCadastroFinanceiro();
+            ArrayList<FinanceiroModel> contratos = dao.buscarDadosTabelaFinanceiro(); // Esse método retorna todos os contratos
+
+            for (FinanceiroModel contrato : contratos) {
+                model.addRow(new Object[]{
+                    contrato.getIdImovelFinanceiro(),
+                    contrato.getNomeContrato(),
+                    contrato.getLocador(),
+                    contrato.getValorParcela(),
+                    contrato.getNumeroParcelas(),
+                    contrato.getValor_total(),
+                    contrato.getSituacaoComboFinanceiro()
+                });
+            }
+
+            pesquisaText.setText("");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar a tabela: " + ex.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,12 +149,13 @@ public class Financeiro extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaContratos = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        pesquisaText = new javax.swing.JTextField();
         FiltroCombo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         BtnPesquisa = new javax.swing.JButton();
+        atualizarTabela = new javax.swing.JButton();
 
         PainelCentral.setBackground(new java.awt.Color(36, 114, 221));
         PainelCentral.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,23 +190,23 @@ public class Financeiro extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Aqui é possível o Financeiro e visualizar os contratos.");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaContratos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "IdImovel", "Nome", "Descricao", "Locador", "Locatario", "Preço", "CEP", "Ação"
+                "ID Imovel", "Nome Contrato", "Cliente", "Valor Parcela", "Numero Parcelas", "Valor Total", "Situação"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -152,14 +217,14 @@ public class Financeiro extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaContratos);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Pesquisar");
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        pesquisaText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdImovel", "Nome", "Descricao", "Proprietario", "Valor", " " }));
+        FiltroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Imovel", "Nome Contrato", "Nome Cliente", "Situação" }));
         FiltroCombo.setBorder(null);
         FiltroCombo.setLightWeightPopupEnabled(false);
 
@@ -173,6 +238,19 @@ public class Financeiro extends javax.swing.JPanel {
         BtnPesquisa.setText("Pesquisar");
         BtnPesquisa.setBorderPainted(false);
         BtnPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPesquisaActionPerformed(evt);
+            }
+        });
+
+        atualizarTabela.setBackground(new java.awt.Color(30, 122, 206));
+        atualizarTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Available Updates_1.png"))); // NOI18N
+        atualizarTabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarTabelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -182,26 +260,24 @@ public class Financeiro extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(pesquisaText, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel5))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel6)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(atualizarTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,19 +289,16 @@ public class Financeiro extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(BtnImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pesquisaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FiltroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atualizarTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -248,7 +321,7 @@ public class Financeiro extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -272,26 +345,65 @@ public class Financeiro extends javax.swing.JPanel {
         // TODO add your handling code here:
         CadastroFinanceiro CdFinanceiro = new CadastroFinanceiro();
         ShowPanel(CdFinanceiro);
-        
+
     }//GEN-LAST:event_BtnImovelActionPerformed
 
+    private void BtnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisaActionPerformed
 
-     private void ShowPanel(JPanel p){
-    p.setSize(799, 700);
-    p.setLocation(0, 0);
-    
-    PainelCentral.removeAll();
-    PainelCentral.add(p, BorderLayout.CENTER); 
-    PainelCentral.revalidate();
-    PainelCentral.repaint();    
-}
-   
-     
+        try {
+            String colunaSelecionada = "Nome do Contrato";
+            String valorPesquisa = pesquisaText.getText().trim();
+
+            if (valorPesquisa.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor, insira um valor para pesquisa.");
+                return;
+            }
+
+            JBDCCadastroFinanceiro cadastro = new JBDCCadastroFinanceiro();
+            ArrayList<FinanceiroModel> contratos = cadastro.filtrarContratos(colunaSelecionada, valorPesquisa);
+
+            DefaultTableModel model = (DefaultTableModel) tabelaContratos.getModel();
+            model.setRowCount(0);
+
+            for (FinanceiroModel contrato : contratos) {
+                model.addRow(new Object[]{
+                    contrato.getIdImovelFinanceiro(),
+                    contrato.getNomeContrato(),
+                    contrato.getLocador(),
+                    contrato.getSituacaoComboFinanceiro(),
+                    contrato.getValorParcela(),
+                    contrato.getNumeroParcelas(),
+                    contrato.getValor_total()
+                });
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar contratos: " + ex.getMessage());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnPesquisaActionPerformed
+
+    private void atualizarTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarTabelaActionPerformed
+        atualizarTabelaContratos();        // TODO add your handling code here:
+    }//GEN-LAST:event_atualizarTabelaActionPerformed
+
+    private void ShowPanel(JPanel p) {
+        p.setSize(799, 700);
+        p.setLocation(0, 0);
+
+        PainelCentral.removeAll();
+        PainelCentral.add(p, BorderLayout.CENTER);
+        PainelCentral.revalidate();
+        PainelCentral.repaint();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnImovel;
     private javax.swing.JButton BtnPesquisa;
     private javax.swing.JComboBox<String> FiltroCombo;
     private javax.swing.JPanel PainelCentral;
+    private javax.swing.JButton atualizarTabela;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -300,7 +412,7 @@ public class Financeiro extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField pesquisaText;
+    private javax.swing.JTable tabelaContratos;
     // End of variables declaration//GEN-END:variables
 }
