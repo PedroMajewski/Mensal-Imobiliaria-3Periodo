@@ -4,7 +4,7 @@
  */
 package TelaInicial;
 
-import Clientes.ClientesImovel;
+import Clientes.ClientesPrincipal;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -267,7 +267,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void BtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClientesActionPerformed
         // TODO add your handling code here:
-        ClientesImovel ClientesPrincipal = new ClientesImovel();
+        ClientesPrincipal ClientesPrincipal = new ClientesPrincipal();
         ShowPanel(ClientesPrincipal);
     }//GEN-LAST:event_BtnClientesActionPerformed
 
