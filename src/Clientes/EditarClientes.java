@@ -902,12 +902,6 @@ public class EditarClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailClienteKeyPressed
 
-    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
-        // TODO add your handling code here:
-        ClientesPrincipal ClientesPrincip = new ClientesPrincipal();
-        ShowPanel(ClientesPrincip);
-    }//GEN-LAST:event_RetornarActionPerformed
-
     private void IdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IdClienteActionPerformed
@@ -915,6 +909,12 @@ public class EditarClientes extends javax.swing.JPanel {
     private void IdClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdClienteKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_IdClienteKeyPressed
+
+    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
+        // TODO add your handling code here:
+        ClientesPrincipal ClientesPrincip = new ClientesPrincipal();
+        ShowPanel(ClientesPrincip);
+    }//GEN-LAST:event_RetornarActionPerformed
 
 
      private void ShowPanel(JPanel p){

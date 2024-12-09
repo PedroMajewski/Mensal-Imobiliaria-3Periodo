@@ -28,7 +28,7 @@ public class JBDCClientes {
     public void CadastroClientes(ClientesModel cadastroclientes){
         String sql = "INSERT INTO cliente (nome_cliente, celular_cliente, email_cliente, cep_cliente,"
                 + " bairro_cliente, endereco_cliente, numero_cliente, uf_cliente, TipoDocumento,"
-                + " Documento, cidade_cliente) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                + " Documento, cidade_cliente, Nascimento) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
                 
          try
         {
@@ -50,6 +50,7 @@ public class JBDCClientes {
                 ConexaoSentenca.setString(10,cadastroclientes.getTipoDocumento());
                 ConexaoSentenca.setString(11,cadastroclientes.getDocumento());
                 ConexaoSentenca.setString(12,cadastroclientes.getcidadecliente());
+                ConexaoSentenca.setString(13,cadastroclientes.getNascimento());
                 
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença
@@ -75,6 +76,7 @@ public class JBDCClientes {
                 + " c.TipoDocumento = ?,\n"
                 + " c.Documento = ?\n"
                 + " c.cidade_cliente = ?\n"
+                + " c.Nascimento = ?\n"
                 + "WHERE c.idcliente = ?";
                 
          try
@@ -97,6 +99,7 @@ public class JBDCClientes {
                 ConexaoSentenca.setString(9,cadastroclientes.getTipoDocumento());
                 ConexaoSentenca.setString(10,cadastroclientes.getDocumento());
                 ConexaoSentenca.setString(11,cadastroclientes.getcidadecliente());
+                ConexaoSentenca.setString(12,cadastroclientes.getNascimento());
                 ConexaoSentenca.setInt(12, cadastroclientes.getIdcliente());
                 
                 ConexaoSentenca.execute(); //executa o comando no banco
@@ -133,7 +136,8 @@ public class JBDCClientes {
 "    c.numero_cliente, \n" +
 "    c.uf_cliente, \n" +
 "    c.TipoDocumento, \n" +
-"    c.Documento, c.cidadecliente \n" +
+"    c.Documento, \n" +
+"    c.Nascimento, c.cidadecliente \n" +
 "FROM \n" +
 "    cliente AS c\n" +
 "ORDER BY \n" +
@@ -163,6 +167,7 @@ public class JBDCClientes {
                     ClientesModel.setTipoDocumento(SentencaCLientes.getString("TipoDocumento"));
                     ClientesModel.setDocumento(SentencaCLientes.getString("Documento"));
                     ClientesModel.setcidadecliente(SentencaCLientes.getString("cidade_cliente"));
+                    ClientesModel.setNascimento(SentencaCLientes.getString("Nascimento"));
                   
 
                     ListaClientes.add(ClientesModel);
@@ -193,7 +198,8 @@ public class JBDCClientes {
 "    c.numero_cliente, \n" +
 "    c.uf_cliente, \n" +
 "    c.TipoDocumento, \n" +
-"    c.Documento, c.cidadecliente \n" +
+"    c.Documento, \n" +
+"    c.cidadecliente \n" +
 "FROM \n" +
 "    cliente AS c\n" +
 "WHERE \n" +
@@ -225,6 +231,7 @@ public class JBDCClientes {
                     ClientesModel.setDocumento(SentencaCLientes.getString("TipoDocumento"));
                     ClientesModel.setEmail(SentencaCLientes.getString("Documento"));
                     ClientesModel.setcidadecliente(SentencaCLientes.getString("cidade_cliente"));
+                    ClientesModel.setNascimento(SentencaCLientes.getString("Nascimento"));
 
                     GuardarClienteSelecionado.setClienteSelecionado(ClienteSelecionado);
                     ClienteSelecionado.add(ClientesModel);
@@ -302,7 +309,8 @@ public class JBDCClientes {
 "    c.numero_cliente, \n" +
 "    c.uf_cliente, \n" +
 "    c.TipoDocumento, \n" +
-"    c.Documento, c.cidadecliente \n" +
+"    c.Documento, \n" +
+"    c.Nascimento, c.cidadecliente \n" +
 "FROM \n" +
 "    cliente AS c WHERE " + ColunaSelecionada + " LIKE ? \n" +
 "ORDER BY \n" +
@@ -341,6 +349,8 @@ public class JBDCClientes {
             case 8:
                 sentenca.setString(1,cadastro.getItemPesquisar());
                 break;
+            case 9:
+                sentenca.setString(1,cadastro.getItemPesquisar());
         }
 
                 //recebe o resultado da consulta
@@ -362,6 +372,7 @@ public class JBDCClientes {
                     ClientesModel.setTipoDocumento(SentencaCLientes.getString("TipoDocumento"));
                     ClientesModel.setDocumento(SentencaCLientes.getString("Documento"));
                     ClientesModel.setcidadecliente(SentencaCLientes.getString("cidade_cliente"));
+                    ClientesModel.setNascimento(SentencaCLientes.getString("Nascimento"));
                     
 
                     ListaCliente.add(ClientesModel);

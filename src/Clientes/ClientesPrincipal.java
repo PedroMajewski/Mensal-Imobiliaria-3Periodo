@@ -371,12 +371,6 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
-        // TODO add your handling code here:
-        TelaBoasVindas TelaInicio = new TelaBoasVindas();
-        ShowPanel(TelaInicio);
-    }//GEN-LAST:event_RetornarActionPerformed
-
     private void CdClientesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CdClientesBtnActionPerformed
         // TODO add your handling code here:
         CadastrodeClientes CadastroClientes = new CadastrodeClientes();
@@ -492,6 +486,12 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         DetalheCliente DetalharClienteJanela = new DetalheCliente();
         DetalharClienteJanela.setVisible(true);
     }//GEN-LAST:event_DetalharClientesActionPerformed
+
+    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
+        // TODO add your handling code here:
+        TelaBoasVindas TelaInicio = new TelaBoasVindas();
+        ShowPanel(TelaInicio);
+    }//GEN-LAST:event_RetornarActionPerformed
 
     private void ShowPanel(JPanel p){
     p.setSize(800,725);

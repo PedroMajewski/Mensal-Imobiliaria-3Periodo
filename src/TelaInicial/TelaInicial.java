@@ -4,7 +4,6 @@
  */
 package TelaInicial;
 
-import Clientes.ClientesPrincipal;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,6 +17,7 @@ import javax.swing.JPanel;
 import TelaInicial.TelaBoasVindas;
 import Financeiro.Financeiro;
 import Contrato.Contrato;
+import Clientes.ClientesPrincipal;
 /**
  *
  * @author pedro
@@ -267,8 +267,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void BtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClientesActionPerformed
         // TODO add your handling code here:
-        ClientesPrincipal ClientesPrincipal = new ClientesPrincipal();
-        ShowPanel(ClientesPrincipal);
+        ClientesPrincipal Clientes = new ClientesPrincipal();
+        ShowPanel(Clientes);
     }//GEN-LAST:event_BtnClientesActionPerformed
 
     private void BtnContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContratoActionPerformed
