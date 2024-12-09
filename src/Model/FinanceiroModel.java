@@ -11,7 +11,8 @@ package Model;
 public class FinanceiroModel {
           
     private int idImovelFinanceiro;
-    private int idimovel;
+    private int idContrato;
+    private Integer idimovel;
     private String nomeContrato;
     private String situacaoComboFinanceiro;
     private String numeroParcelas;
@@ -19,10 +20,12 @@ public class FinanceiroModel {
     private String valor_total;
     private String Locador;
     private String nome_imovel;
+    
 
     //Insere os dados na tabela
-    public FinanceiroModel(int idImovelFinanceiro,String nomeContrato,String Locador,String valorParcela, String numeroParcelas, String valor_total, String situacaoComboFinanceiro) {
+    public FinanceiroModel(int idContrato, int idImovelFinanceiro,String nomeContrato,String Locador,String valorParcela, String numeroParcelas, String valor_total, String situacaoComboFinanceiro) {
   
+        this.idContrato = idContrato;
         this.idImovelFinanceiro = idImovelFinanceiro;
         this.nomeContrato = nomeContrato;
         this.Locador = Locador;
@@ -56,6 +59,14 @@ public class FinanceiroModel {
         this.numeroParcelas = numeroParcelas;
         this.valor_total = valor_total;
         this.Locador = Locador;
+    }
+    
+    public int getIdContrato() {
+        return idContrato;
+    }
+
+    public void setIdContrato(int idContrato) {
+        this.idContrato = idContrato;
     }
 
     public int getIdimovel() {

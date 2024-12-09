@@ -68,6 +68,7 @@ public class JBDCCadastroFinanceiro {
 
                     FinanceiroModel financeiro = new FinanceiroModel();
 
+                    financeiro.setIdContrato(resultado.getInt("idfinanceiro"));
                     financeiro.setIdImovelFinanceiro(resultado.getInt("idImovelFinanceiro"));
                     financeiro.setNomeContrato(resultado.getString("nomeContrato"));
                     financeiro.setSituacaoComboFinanceiro(resultado.getString("situacaoFinanceiro"));
@@ -254,6 +255,7 @@ public class JBDCCadastroFinanceiro {
         ArrayList<FinanceiroModel> listaFinanceiro = new ArrayList<>();
 
         String sql = "SELECT "
+                + "f.idfinanceiro, "
                 + "f.idimovel_financeiro, "
                 + "f.nomeContrato, "
                 + "c.nome_cliente AS nomeCliente, "
@@ -273,9 +275,10 @@ public class JBDCCadastroFinanceiro {
                 try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
                     while (rs.next()) {
                         FinanceiroModel financeiro = new FinanceiroModel();
+                        financeiro.setIdContrato(rs.getInt("idfinanceiro"));
                         financeiro.setIdImovelFinanceiro(rs.getInt("idimovel_financeiro"));
                         financeiro.setNomeContrato(rs.getString("nomeContrato"));
-                        financeiro.setLocador(rs.getString("nomeCliente"));  
+                        financeiro.setLocador(rs.getString("nomeCliente"));
                         financeiro.setValorParcela(rs.getString("valor_parcela"));
                         financeiro.setNumeroParcelas(rs.getString("numeroParcelas"));
                         financeiro.setValor_total(rs.getString("valor_total"));
@@ -317,7 +320,7 @@ public class JBDCCadastroFinanceiro {
                 throw new IllegalArgumentException("Coluna inválida: " + colunaSelecionada);
         }
 
-        String sql = "SELECT f.idimovel_financeiro, f.nomeContrato, c.nome_cliente, f.valor_parcela, "
+        String sql = "SELECT f.idfinanceiro, f.idimovel_financeiro, f.nomeContrato, c.nome_cliente, f.valor_parcela, "
                 + "f.numeroParcelas, f.valor_total, f.situacao_financeiro "
                 + "FROM financeiro AS f "
                 + "INNER JOIN cliente AS c ON f.locador = c.idcliente "
@@ -336,6 +339,7 @@ public class JBDCCadastroFinanceiro {
 
                 while (resultados.next()) {
                     FinanceiroModel contrato = new FinanceiroModel(
+                            resultados.getInt("idfinanceiro"),
                             resultados.getInt("idimovel_financeiro"),
                             resultados.getString("nomeContrato"),
                             resultados.getString("nome_cliente"),
@@ -356,6 +360,103 @@ public class JBDCCadastroFinanceiro {
         }
 
         return listaContratos;
+    }
+
+    public String consultarNomeImovel(int idImovel) {
+        String nomeImovel = null;
+
+        String sql = "SELECT nome_imovel FROM imovel WHERE idimovel = ?";
+
+        try {
+            if (this.conexao.conectar()) {
+                PreparedStatement sentenca = this.conexao.getConnection().prepareStatement(sql);
+                sentenca.setInt(1, idImovel);
+
+                ResultSet resultado = sentenca.executeQuery();
+
+                if (resultado.next()) {
+                    nomeImovel = resultado.getString("nome_imovel");
+                }
+
+                sentenca.close();
+                this.conexao.getConnection().close();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao consultar o nome do imóvel: " + ex.getMessage());
+        }
+
+        return nomeImovel;
+    }
+
+    public void atualizarContratoFinanceiro(int idContrato, FinanceiroModel financeiro) {
+        String sql = "UPDATE financeiro SET nomeContrato = ?, locador = ?, valor_parcela = ?, "
+                + "numeroParcelas = ?, valor_total = ?, situacao_financeiro = ?, idimovel_financeiro = ? "
+                + "WHERE idfinanceiro = ?";
+
+        try {
+            if (conexao.conectar()) {
+                Connection conn = conexao.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+
+                stmt.setString(1, financeiro.getNomeContrato());
+                stmt.setString(2, financeiro.getLocador());
+                stmt.setString(3, financeiro.getValorParcela());
+                stmt.setString(4, financeiro.getNumeroParcelas());
+                stmt.setString(5, financeiro.getValor_total());
+                stmt.setString(6, financeiro.getSituacaoComboFinanceiro());
+                stmt.setInt(7, financeiro.getIdImovelFinanceiro());
+                stmt.setInt(8, idContrato);
+
+                stmt.executeUpdate();
+                stmt.close();
+                conn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Integer buscarIdImovelPorNome(String nomeImovel) {
+        String sql = "SELECT idimovel FROM imovel WHERE nome_imovel = ?";
+        Integer idImovel = null;
+
+        JBDCConnect jbdcConnect = new JBDCConnect();
+        try {
+
+            if (jbdcConnect.conectar()) {
+
+                PreparedStatement stmt = jbdcConnect.getConnection().prepareStatement(sql);
+                stmt.setString(1, nomeImovel);
+
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    idImovel = rs.getInt("idimovel");
+                }
+
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return idImovel;
+    }
+
+    public void excluirContratoFinanceiro(int contratoId) {
+        String sql = "DELETE FROM financeiro WHERE idfinanceiro = ?";
+
+        try {
+            JBDCConnect jbdcConnect = new JBDCConnect();
+            if (jbdcConnect.conectar()) {
+                PreparedStatement stmt = jbdcConnect.getConnection().prepareStatement(sql);
+                stmt.setInt(1, contratoId);
+                stmt.executeUpdate();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
