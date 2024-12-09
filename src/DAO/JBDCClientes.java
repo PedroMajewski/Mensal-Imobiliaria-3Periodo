@@ -28,7 +28,7 @@ public class JBDCClientes {
     public void CadastroClientes(ClientesModel cadastroclientes){
         String sql = "INSERT INTO cliente (nome_cliente, celular_cliente, email_cliente, cep_cliente,"
                 + " bairro_cliente, endereco_cliente, numero_cliente, uf_cliente, TipoDocumento,"
-                + " Documento, cidade_cliente, Nascimento) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                + " Documento, cidade_cliente, Nascimento) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
                 
          try
         {
@@ -100,7 +100,7 @@ public class JBDCClientes {
                 ConexaoSentenca.setString(10,cadastroclientes.getDocumento());
                 ConexaoSentenca.setString(11,cadastroclientes.getcidadecliente());
                 ConexaoSentenca.setString(12,cadastroclientes.getNascimento());
-                ConexaoSentenca.setInt(12, cadastroclientes.getIdcliente());
+                ConexaoSentenca.setInt(13, cadastroclientes.getIdcliente());
                 
                 ConexaoSentenca.execute(); //executa o comando no banco
                 ConexaoSentenca.close(); //fecha a sentença
@@ -137,7 +137,7 @@ public class JBDCClientes {
 "    c.uf_cliente, \n" +
 "    c.TipoDocumento, \n" +
 "    c.Documento, \n" +
-"    c.Nascimento, c.cidadecliente \n" +
+"    c.Nascimento, c.cidade_cliente \n" +
 "FROM \n" +
 "    cliente AS c\n" +
 "ORDER BY \n" +
@@ -158,7 +158,7 @@ public class JBDCClientes {
                     ClientesModel.setIdcliente(SentencaCLientes.getInt("idcliente"));
                     ClientesModel.setNomecliente(SentencaCLientes.getString("nome_cliente"));
                     ClientesModel.setTelefonecliente(SentencaCLientes.getString("celular_cliente"));
-                    ClientesModel.setEmail(SentencaCLientes.getString("email_"));
+                    ClientesModel.setEmail(SentencaCLientes.getString("email_cliente"));
                     ClientesModel.setCepcliente(SentencaCLientes.getString("cep_cliente"));
                     ClientesModel.setBairrocliente(SentencaCLientes.getString("bairro_cliente"));
                     ClientesModel.setEnderecocliente(SentencaCLientes.getString("endereco_cliente"));
@@ -199,7 +199,8 @@ public class JBDCClientes {
 "    c.uf_cliente, \n" +
 "    c.TipoDocumento, \n" +
 "    c.Documento, \n" +
-"    c.cidadecliente \n" +
+"    c.cidade_cliente \n" +
+"    c.Nascimento \n" + 
 "FROM \n" +
 "    cliente AS c\n" +
 "WHERE \n" +
@@ -310,7 +311,7 @@ public class JBDCClientes {
 "    c.uf_cliente, \n" +
 "    c.TipoDocumento, \n" +
 "    c.Documento, \n" +
-"    c.Nascimento, c.cidadecliente \n" +
+"    c.Nascimento, c.cidade_cliente \n" +
 "FROM \n" +
 "    cliente AS c WHERE " + ColunaSelecionada + " LIKE ? \n" +
 "ORDER BY \n" +
@@ -372,7 +373,7 @@ public class JBDCClientes {
                     ClientesModel.setTipoDocumento(SentencaCLientes.getString("TipoDocumento"));
                     ClientesModel.setDocumento(SentencaCLientes.getString("Documento"));
                     ClientesModel.setcidadecliente(SentencaCLientes.getString("cidade_cliente"));
-                    ClientesModel.setNascimento(SentencaCLientes.getString("Nascimento"));
+                    ClientesModel.setNascimento(SentencaCLientes.getString("Nascimento"));  
                     
 
                     ListaCliente.add(ClientesModel);

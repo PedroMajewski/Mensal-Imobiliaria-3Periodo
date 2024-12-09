@@ -34,7 +34,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         MostrarClientesTabela();
         JButton [] btns = { CdClientesBtn, PesquisarBtn, Retornar, RecarregarTabela, ExcluirClientesBtn, EditarClientes, DetalharClientes};
        for(JButton btn : btns){
-           btn.setBackground(new Color(186,47,57));
+           btn.setBackground(new Color(36,114,221));
            btn.setUI(new BasicButtonUI());
            btn.addMouseListener(new MouseListener(){
                @Override
@@ -51,11 +51,11 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                }
                @Override
                public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(239,86,96));
+                    btn.setBackground(new Color(34,114,221));
                }
                @Override
                public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(186,47,57));
+                   btn.setBackground(new Color(36,114,221));
                }
            
            });
