@@ -124,7 +124,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "IdCliente", "Nome do Cliente", "Email", "Documento", "Tipo de Cliente", "Tipo do Documento"
+                "IdCliente", "Nome do Cliente", "Numero", "Email", "Documento", "Tipo do Documento"
             }
         ));
         TabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
