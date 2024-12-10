@@ -32,7 +32,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         initComponents();
         JButton [] btns = {BtnClientes,CancelarBtn,Retornar};
        for(JButton btn : btns){
-           btn.setBackground(new Color(186,47,57));
+           btn.setBackground(new Color(36,114,221));
            btn.setUI(new BasicButtonUI());
            btn.addMouseListener(new MouseListener(){
                @Override
@@ -49,11 +49,11 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                }
                @Override
                public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(239,86,96));
+                    btn.setBackground(new Color(34,114,221));
                }
                @Override
                public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(186,47,57));
+                   btn.setBackground(new Color(36,114,221));
                }
            
            });
@@ -101,6 +101,8 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         CNPJCheckBox = new javax.swing.JCheckBox();
         Email = new javax.swing.JTextField();
         EnderecoClienteLabel1 = new javax.swing.JLabel();
+        DataNascimento = new javax.swing.JFormattedTextField();
+        EnderecoClienteLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         TituloLabel2 = new javax.swing.JLabel();
         TituloLabel3 = new javax.swing.JLabel();
@@ -353,6 +355,20 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         EnderecoClienteLabel1.setForeground(new java.awt.Color(12, 12, 12));
         EnderecoClienteLabel1.setText("Email");
 
+        try {
+            DataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        DataNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DataNascimentoKeyTyped(evt);
+            }
+        });
+
+        EnderecoClienteLabel2.setForeground(new java.awt.Color(12, 12, 12));
+        EnderecoClienteLabel2.setText("DDN");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -422,9 +438,15 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                         .addGap(29, 29, 29))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EnderecoClienteLabel1)
-                            .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EnderecoClienteLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(EnderecoClienteLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(DataNascimento))
+                        .addGap(436, 436, 436))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,14 +516,19 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TelefoneClienteLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EnderecoClienteLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(EnderecoClienteLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(EnderecoClienteLabel2))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(36, 114, 221));
@@ -609,6 +636,7 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 "Rua: " + EnderecoCliente.getText() + "\n" +
                 "Numero: " + NumeroCliente.getText() + "\n" +
                 "Cidade: " + CidadeCliente.getText() + "\n" +
+                "Data de Nascimento" + DataNascimento.getText() + "\n" +
                 "UF: " + UFCliente.getText() + "\n\n\n" +
                 "Cadastrar novo Cliente?" + "\n",
                 "Confirmação de Cadastro",
@@ -623,13 +651,12 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                 
                 ModelClientes.setNomecliente(NomeCliente.getText());
                 ModelClientes.setTelefonecliente(TelefoneCliente.getText());
+                ModelClientes.setEmail(Email.getText());
                 ModelClientes.setCepcliente(CEPCliente.getText());
                 ModelClientes.setBairrocliente(BairroCliente.getText());
                 ModelClientes.setEnderecocliente(EnderecoCliente.getText());
                 ModelClientes.setNumerocliente(NumeroCliente.getText());
                 ModelClientes.setUf(UFCliente.getText());
-                ModelClientes.setEmail(Email.getText());
-                ModelClientes.setcidadecliente(CidadeCliente.getText());
                 if(CPFCheckBox.isSelected()){
                     ModelClientes.setDocumento(DocumentoCPF.getText());
                     ModelClientes.setTipoDocumento("CPF");
@@ -637,6 +664,9 @@ public class CadastrodeClientes extends javax.swing.JPanel {
                     ModelClientes.setDocumento(DocumentoCNPJ.getText());
                     ModelClientes.setTipoDocumento("CNPJ");
                 }
+                ModelClientes.setcidadecliente(CidadeCliente.getText());
+                ModelClientes.setNascimento(DataNascimento.getText());
+                
                 JBDCClientes ClientesBanco = new JBDCClientes();
                 ClientesBanco.CadastroClientes(ModelClientes);
                 
@@ -883,6 +913,13 @@ public class CadastrodeClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailKeyPressed
 
+    private void DataNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DataNascimentoKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_DataNascimentoKeyTyped
+
      private void ShowPanel(JPanel p){
     p.setSize(800,700);
     p.setLocation(0,0);
@@ -905,12 +942,14 @@ public class CadastrodeClientes extends javax.swing.JPanel {
     private javax.swing.JTextField CidadeCliente;
     private javax.swing.JLabel CidadeClienteLabel;
     private javax.swing.JPanel Content;
+    private javax.swing.JFormattedTextField DataNascimento;
     private javax.swing.JFormattedTextField DocumentoCNPJ;
     private javax.swing.JFormattedTextField DocumentoCPF;
     private javax.swing.JTextField Email;
     private javax.swing.JTextField EnderecoCliente;
     private javax.swing.JLabel EnderecoClienteLabel;
     private javax.swing.JLabel EnderecoClienteLabel1;
+    private javax.swing.JLabel EnderecoClienteLabel2;
     private javax.swing.JTextField NomeCliente;
     private javax.swing.JLabel NomeClienteLabel;
     private javax.swing.JTextField NumeroCliente;

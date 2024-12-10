@@ -112,7 +112,7 @@ public class JBDCCadastroFinanceiro {
                 while (resultados.next()) {
                     FinanceiroModel imovel = new FinanceiroModel(
                             resultados.getInt("idimovel"),
-                            resultados.getString("nome_imovel")
+                        resultados.getString("nome_imovel")
                     );
                     listaImoveis.add(imovel);
                 }
@@ -129,6 +129,44 @@ public class JBDCCadastroFinanceiro {
     }
 
     //Usado na tela de cadastro de contratos financeiros
+    public ArrayList<FinanceiroModel> filtrarContratosIdImovel(String valorPesquisa) {
+        ArrayList<FinanceiroModel> listaImoveis = new ArrayList<>();
+
+        String sql = "SELECT * FROM financeiro WHERE idimovel_financeiro = ? ORDER BY idfinanceiro";
+
+        JBDCConnect jbdcConnect = new JBDCConnect();
+
+        try {
+
+            if (jbdcConnect.conectar()) {
+
+                PreparedStatement sentenca = jbdcConnect.getConnection().prepareStatement(sql);
+
+                sentenca.setString(1, valorPesquisa);
+
+                ResultSet resultado = sentenca.executeQuery();
+
+                while (resultado.next()) {
+                    FinanceiroModel financeiro = new FinanceiroModel();
+
+                    financeiro.setIdContrato(resultado.getInt("idfinanceiro"));
+                    financeiro.setNomeContrato(resultado.getString("nomeContrato"));
+                    financeiro.setSituacaoComboFinanceiro(resultado.getString("situacao_financeiro"));
+
+                    listaImoveis.add(financeiro);
+                }
+
+                sentenca.close();
+                jbdcConnect.getConnection().close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao filtrar imóveis por nome.", e);
+        }
+
+        return listaImoveis;
+    }
+
     public ArrayList<FinanceiroModel> filtrarClientesPorNome(String valorPesquisa) {
         ArrayList<FinanceiroModel> listaImoveis = new ArrayList<>();
 
@@ -166,7 +204,7 @@ public class JBDCCadastroFinanceiro {
 
         return listaImoveis;
     }
-
+    
     public ArrayList<FinanceiroModel> MostrarImoveisTabela() {
 
         ArrayList<FinanceiroModel> listaProdutos = new ArrayList<>();
@@ -387,6 +425,8 @@ public class JBDCCadastroFinanceiro {
 
         return nomeImovel;
     }
+    
+    
 
     public void atualizarContratoFinanceiro(int idContrato, FinanceiroModel financeiro) {
         String sql = "UPDATE financeiro SET nomeContrato = ?, locador = ?, valor_parcela = ?, "

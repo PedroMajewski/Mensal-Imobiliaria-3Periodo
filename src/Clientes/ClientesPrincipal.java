@@ -34,7 +34,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         MostrarClientesTabela();
         JButton [] btns = { CdClientesBtn, PesquisarBtn, Retornar, RecarregarTabela, ExcluirClientesBtn, EditarClientes, DetalharClientes};
        for(JButton btn : btns){
-           btn.setBackground(new Color(186,47,57));
+           btn.setBackground(new Color(36,114,221));
            btn.setUI(new BasicButtonUI());
            btn.addMouseListener(new MouseListener(){
                @Override
@@ -51,11 +51,11 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                }
                @Override
                public void mouseEntered(MouseEvent e){
-                    btn.setBackground(new Color(239,86,96));
+                    btn.setBackground(new Color(34,114,221));
                }
                @Override
                public void mouseExited(MouseEvent e){
-                   btn.setBackground(new Color(186,47,57));
+                   btn.setBackground(new Color(36,114,221));
                }
            
            });
@@ -124,7 +124,7 @@ public class ClientesPrincipal extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "IdCliente", "Nome do Cliente", "Email", "Documento", "Tipo de Cliente", "Tipo do Documento"
+                "IdCliente", "Nome do Cliente", "Numero", "Email", "Documento", "Tipo do Documento"
             }
         ));
         TabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -371,12 +371,6 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
-        // TODO add your handling code here:
-        TelaBoasVindas TelaInicio = new TelaBoasVindas();
-        ShowPanel(TelaInicio);
-    }//GEN-LAST:event_RetornarActionPerformed
-
     private void CdClientesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CdClientesBtnActionPerformed
         // TODO add your handling code here:
         CadastrodeClientes CadastroClientes = new CadastrodeClientes();
@@ -492,6 +486,12 @@ public class ClientesPrincipal extends javax.swing.JPanel {
         DetalheCliente DetalharClienteJanela = new DetalheCliente();
         DetalharClienteJanela.setVisible(true);
     }//GEN-LAST:event_DetalharClientesActionPerformed
+
+    private void RetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetornarActionPerformed
+        // TODO add your handling code here:
+        TelaBoasVindas TelaInicio = new TelaBoasVindas();
+        ShowPanel(TelaInicio);
+    }//GEN-LAST:event_RetornarActionPerformed
 
     private void ShowPanel(JPanel p){
     p.setSize(800,725);

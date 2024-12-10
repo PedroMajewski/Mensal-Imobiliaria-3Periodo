@@ -29,6 +29,7 @@ public class JBDCCadastroImovel {
         // Inicializa a conexão usando a classe JBDCConnect
         this.conexao = new JBDCConnect();
     }
+    
 
     public void InserirImovel(CadastroImovelModel cadastro) {
         //string com a consulta que será executada no banco
@@ -142,7 +143,7 @@ public class JBDCCadastroImovel {
                 ConexaoSentenca.close(); //fecha a sentença
                 this.conexao.getConnection().close(); //fecha a conexão com o banco
                 
-                JOptionPane.showMessageDialog(null, "A situação é " + cadastro.getSituacao());
+                
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
