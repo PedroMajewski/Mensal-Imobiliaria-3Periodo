@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import TelaInicial.TelaBoasVindas;
 import Financeiro.Financeiro;
 import Contrato.Contrato;
+import DashBoard.DashBoard;
 /**
  *
  * @author pedro
@@ -29,7 +30,7 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
-       JButton [] btns = {BtnPrincipal,BtnImovel,BtnClientes,BtnContrato,BtnFinanceiro};
+       JButton [] btns = {BtnPrincipal,BtnImovel,BtnClientes,BtnContrato,BtnFinanceiro,Dashbtn};
        for(JButton btn : btns){
            btn.setBackground(new Color(30,122,206));
            btn.setUI(new BasicButtonUI());
@@ -80,8 +81,7 @@ public class TelaInicial extends javax.swing.JFrame {
         BtnContrato = new javax.swing.JButton();
         BtnFinanceiro = new javax.swing.JButton();
         Titulo1 = new javax.swing.JLabel();
-        Titulo2 = new javax.swing.JLabel();
-        Titulo3 = new javax.swing.JLabel();
+        Dashbtn = new javax.swing.JButton();
         SistemaContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,15 +167,18 @@ public class TelaInicial extends javax.swing.JFrame {
         Titulo1.setText("Funções");
         Titulo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        Titulo2.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo2.setText("Usuário: Pedro");
-        Titulo2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        Titulo3.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo3.setText("25/09/2024 13:48");
-        Titulo3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Dashbtn.setBackground(new java.awt.Color(30, 122, 206));
+        Dashbtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        Dashbtn.setForeground(new java.awt.Color(255, 255, 255));
+        Dashbtn.setText("DashBoard");
+        Dashbtn.setBorderPainted(false);
+        Dashbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Dashbtn.setDoubleBuffered(true);
+        Dashbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DashbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -189,8 +192,7 @@ public class TelaInicial extends javax.swing.JFrame {
             .addComponent(BtnContrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BtnFinanceiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Titulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Dashbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,11 +213,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(BtnContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(Titulo3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Dashbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SistemaContentLayout = new javax.swing.GroupLayout(SistemaContent);
@@ -277,6 +277,11 @@ public class TelaInicial extends javax.swing.JFrame {
         ShowPanel(ContratoPrincipal);
     }//GEN-LAST:event_BtnContratoActionPerformed
 
+    private void DashbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashbtnActionPerformed
+        DashBoard dashboard = new DashBoard();
+        ShowPanel (dashboard);        // TODO add your handling code here:
+    }//GEN-LAST:event_DashbtnActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -334,12 +339,11 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton BtnFinanceiro;
     private javax.swing.JButton BtnImovel;
     private javax.swing.JButton BtnPrincipal;
+    private javax.swing.JButton Dashbtn;
     private javax.swing.JLabel Separator;
     private javax.swing.JPanel SistemaContent;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo1;
-    private javax.swing.JLabel Titulo2;
-    private javax.swing.JLabel Titulo3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

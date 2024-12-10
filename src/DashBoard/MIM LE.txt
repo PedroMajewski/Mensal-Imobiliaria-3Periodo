@@ -1,0 +1,4 @@
+foi gerado dois arquivos a mais pq eu precisei compliar a LIB  pelo prompt 
+pode colocar todos esses arquivos na mesma pasta normal
+nesse caso cria uma pasta chamada -DashBoard-
+com esse nome mesmo pra n te dar trabalho de renomear blzzz 
